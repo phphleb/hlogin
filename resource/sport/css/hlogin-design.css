@@ -1,0 +1,419 @@
+.hlogin-p-register-popup-global {
+    user-select: none;
+}
+
+.hlogin-p-register-popup-global * {
+    box-sizing: content-box !important;
+}
+
+.hlogin-p-register-popup-global img {
+    vertical-align: middle !important;
+}
+
+.hlogin-test-load-block-design {
+    margin: 0;
+    padding: 0;
+    height: 100px !important;
+}
+
+.hlogin-p-register-popup-global-in *:focus {
+    outline: 2px solid black;
+    outline-offset: -2px;
+}
+
+.hlogin-shadow-on-block-st {
+    -webkit-box-shadow: 0 0 3px 0 rgba(0, 0, 0, .35), 0 0 3px 0 rgba(0, 0, 0, .35);
+    -moz-box-shadow: 0 0 3px 0 rgba(0, 0, 0, .35), 0 0 3px 0 rgba(0, 0, 0, .35);
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, .35), 0 0 3px 0 rgba(0, 0, 0, .35);
+}
+
+.hlogin-p-register-popup-global {
+    box-sizing: content-box;
+    position: fixed;
+    margin: 0;
+    background-color: #fcfdfb;
+    left: 0;
+    top: 0;
+    width: 100%;
+    min-height: 100%;
+    max-height: 100%;
+    border-radius: 4px;
+    right: auto;
+    bottom: auto;
+    z-index: 2147483646;
+    overflow: auto;
+    max-width: 100%;
+}
+
+.hlogin-p-register-popup-global-in {
+    box-sizing: content-box;
+    max-width: 320px;
+    padding: 10px 20px 10px 20px;
+    margin: 5px;
+    overflow: auto;
+}
+
+.hlogin-p-close-popup-x a {
+    font-family: Arial;
+    position: absolute;
+    right: 10px;
+    top: 4px;
+    background-color: #fcfdfb;
+    font-weight: bold;
+    color: grey;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 100%;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+.hlogin-p-popup-check-info {
+    position: relative;
+    top: 5px;
+    color: maroon;
+    font-size: 13px;
+}
+
+.hlogin-p-popup-confirm-block {
+    margin-bottom: 2px;
+}
+
+.hlogin-p-overlay-fon-from-popup,
+.hlogin-p-block-over-popup {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 2147483645;
+    bottom: auto;
+    right: auto;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    background-color: #474b59;
+    opacity: 0.85;
+}
+
+.hlogin-p-popup-cell-error {
+    background-color: #fedecd;
+}
+
+.hlogin-g-input-cell-over {
+    margin: 10px 0 5px 0;
+}
+
+.hlogin-g-input-cell-text {
+    padding-left: 3px;
+    font-size: 15px;
+    font-weight: bolder;
+    color: #2e303e;
+    text-align: left;
+    padding-bottom: 4px;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;
+}
+
+.hlogin-g-input-cell,
+.hlogin-g-input-password-cell {
+    width: calc(100% - 11px) !important;
+    height: 30px;
+    font-size: 14px;
+    padding: 0px 4px !important;
+    border-radius: 0;
+    border: 1px solid gray;
+    background-color: white;
+}
+
+.hlogin-g-input-password-cell {
+    width: calc(100% - 33px) !important;
+    padding-right: 25px !important;
+}
+
+.hlogin-p-popup-confirm-text,
+.hlogin-p-popup-message-text,
+.hlogin-p-popup-subscription-text {
+    color: grey;
+    font-size: 12px;
+}
+
+.hlogin-p-popup-subscription-text {
+    padding-top: 3px;
+}
+
+.hlogin-p-popup-confirm-text-over {
+    width: max-content;
+    cursor: pointer;
+}
+
+.hlogin-p-popup-confirm-checkbox {
+    margin: 1px 8px 0 0;
+    cursor: pointer;
+}
+
+.hlogin-g-link-grey {
+    color: grey;
+}
+
+.hlogin-g-link-line {
+    white-space: nowrap;
+    text-decoration: underline;
+}
+
+.hlogin-g-link-grey:hover {
+    color: #a8a8a8;
+}
+
+.hlogin-p-active-link,
+.hlogin-p-action-page-link {
+    color: #000000;
+    text-decoration: none;
+    border-bottom: 1px solid #000000;
+    display: inline-block;
+    margin: 2px 15px 10px 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.hlogin-p-active-link:hover,
+.hlogin-p-action-page-link:hover {
+    color: #666666;
+    border-bottom: 1px solid #666666;
+}
+
+.hlogin-p-action-page-link {
+    color: grey;
+    margin: 2px 10px 4px 5px;
+    border-bottom: 1px dashed grey;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;
+}
+
+.hlogin-p-action-page-link:hover {
+    color: #848484;
+    border-bottom: 1px dashed #848484;
+}
+
+.hlogin-p-autogen-pass {
+    position: relative;
+    top: 4px;
+    background-color: white;
+    left: 4px;
+}
+
+.hlogin-p-over-btn-adaptive {
+    display: inline-block;
+    width: 100%;
+    margin-top: 15px;
+}
+
+.hlogin-f-btn-empty {
+    display: inline-block;
+    border: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+    background-image: none !important;
+    box-shadow: none !important;
+}
+
+.hlogin-f-btn {
+    border: 0;
+    padding: 8px 4px;
+    cursor: pointer;
+    color: white;
+    background-color: #000000;
+    width: calc(100% - 2px);
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    min-height: 30px;
+    margin: 5px 0 15px 0;
+    border-radius: 30px;
+    font-weight: bolder;
+}
+
+.hlogin-f-btn:hover {
+    background-color: #244496;
+}
+
+.hlogin-f-btn-green, .hlogin-f-btn-blue, .hlogin-f-btn-orange {
+    background-color: #000000;
+}
+
+.hlogin-btn-disable, .hlogin-btn-disable:hover {
+    background-color: grey;
+    cursor: auto;
+}
+
+.hlogin-p-generator {
+    margin-bottom: 15px;
+}
+
+.hlogin-p-title-h3, .hlogin-p-title-h3 button,
+.hlogin-p-title-h3-copy {
+    color: #000000;
+    font-weight: bold;
+    font-size: 22px;
+    margin-bottom: 15px;
+    text-align: justify;
+    padding: 0 !important;
+}
+
+.hlogin-p-title-h3-copy {
+    border-bottom: 2px solid #000000;
+    margin-bottom: 0;
+    margin-right: 0;
+    margin-top: 0;
+    text-transform: capitalize;
+}
+
+.hlogin-p-title-h3-copy:hover {
+    border-bottom: 2px solid #666666;
+}
+
+.hlogin-p-action-password-visible {
+    display: inline-block;
+    position: relative;
+    top: 28px;
+    left: 5px;
+    border-bottom: 0;
+    padding: 0px 5px;
+    float: right;
+    font-weight: normal;
+}
+
+.hlogin-p-action-password-visible:hover {
+    border-bottom: 0;
+}
+
+.hlogin-p-register-popup-global input,
+.hlogin-p-register-popup-global textarea,
+.hlogin-g-text-select {
+    user-select: text;
+    -webkit-user-select: initial;
+    -khtml-user-select: initial;
+    -moz-user-select: initial;
+    -ms-user-select: initial;
+    user-select: initial;
+}
+
+.hlogin-p-popup-remember-checkbox {
+    position: relative;
+    bottom: 2px;
+    left: 3px;
+    display: inline-block;
+    margin-right: 6px;
+    width: 20px;
+    height: 20px;
+}
+
+.hlogin-p-popup-remember-text {
+    display: inline-block;
+    color: #2e303e;
+    font-size: 14px;
+    max-width: 85%;
+    vertical-align: middle;
+}
+
+.hlogin-p-popup-remember-over,
+.hlogin-p-popup-check-email-over {
+    display: block;
+    margin: 3px 0 10px 0;
+    width: max-content;
+    cursor: pointer;
+    max-width: 100%;
+    margin-bottom: 5px;
+}
+
+.hlogin-p-popup-check-email-over {
+    display: none;
+}
+
+.hlogin-p-check-email {
+    display: inline;
+}
+
+.hlogin-p-popup-message-text {
+    margin: 10px 0;
+}
+
+.hlogin-p-text-info-text {
+    font-size: 17px;
+    padding: 5px 0;
+}
+
+#HloginMessageInPopupInfoTitle_UserMessage {
+    color: #646464;
+}
+
+.hlogin-m-message-error-color {
+    color: #a6aeae;
+}
+
+.hlogin-a7e-danger {
+    font-size: 24px;
+    font-weight: bold;
+    color: chocolate;
+}
+
+.hlogin-input-error-overlay-block {
+    font-size: 12px;
+    color: #d24616;
+    white-space: nowrap;
+}
+
+.hlogin-input-error {
+    border-color: #d24616;
+}
+
+.hlogin-input-error-checkbox {
+    outline: 1px solid #d24616;
+    outline-offset: -3px;
+}
+
+.hlogin-p-block-over-popup {
+    z-index: 2147483647;
+    opacity: 0.1;
+}
+
+#hlogin-error-nternet-connection-popup {
+    position: fixed;
+    top: 40px;
+    width: 320px;
+    z-index: 2147483647;
+    border: 1px solid grey;
+    background-color: whitesmoke;
+    padding: 10px;
+}
+
+.hlogin-light-alert-color {
+    color: #de832c;
+    border-color: #de832c;
+}
+
+.hlogin-light-alert-color:hover {
+    color: #f49031;
+    border-color: #f49031;
+}
+
+.hlogin-v-time-left {
+    margin-top: 10px;
+    color: blue;
+    font-size: 12px;
+}
+
+.hlogin-s-required-marker {
+    display: inline-block;
+    color: #4f59a2;
+    padding-left: 2px;
+}
+.hlogin-g-textarea-cell {
+    height:150px;
+    padding: 5px;
+}
+.hlogin-f-btn-close {
+    position: relative;
+    top: 30px;
+}

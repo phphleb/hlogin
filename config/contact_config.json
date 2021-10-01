@@ -1,0 +1,9 @@
+{
+  "contact": {
+    "version": "1",
+    "data": {
+      "mail_to": "",
+      "active": "on"
+    }
+  }
+}

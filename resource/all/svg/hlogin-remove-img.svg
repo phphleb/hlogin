@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="30px" height="30px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 300 300"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+>
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .fil1 {fill:#D9DADA;fill-rule:nonzero}
+    .fil0 {fill:#2B2A29;fill-rule:nonzero}
+   ]]>
+  </style>
+ </defs>
+ <g id="x0020_1">
+  <metadata id="Hlogin-Layer"/>
+  <polygon class="fil0" points="239.1,70.1 289.6,137.1 255,137.1 255,282 78.8,282 78.8,250.1 223.1,250.1 223.1,137.1 188.5,137.1 "/>
+  <polygon class="fil0" points="77.4,232.3 26.9,165.3 61.5,165.3 61.5,20.3 237.7,20.3 237.7,52.2 93.3,52.2 93.3,165.3 128,165.3 "/>
+  <polygon class="fil1" points="224,60.3 274.5,127.3 239.9,127.3 239.9,272.3 63.7,272.3 63.7,240.4 208,240.4 208,127.3 173.4,127.3 "/>
+  <polygon class="fil1" points="62.3,222.5 11.7,155.5 46.4,155.5 46.4,10.6 222.6,10.6 222.6,42.5 78.2,42.5 78.2,155.5 112.8,155.5 "/>
+ </g>
+</svg>

@@ -1,0 +1,21 @@
+{
+  "hlogin": {
+    "version": "1",
+    "reg_data": {
+      "design": "base",
+      "lang": "en",
+      "block_orient": "top",
+      "cell_password": "on",
+      "profile_phone": "on",
+      "profile_name": "on",
+      "profile_surname": "on",
+      "profile_address": "on",
+      "terms_url": "#1",
+      "privacy_policy_url": "#2",
+      "font_base": "PT Sans, sans-serif",
+      "reg_table_name": "users",
+      "cell_reg_page_head": "&amp;lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot;&amp;gt;",
+      "get_url_after_reg": "/$LANG/login/profile/"
+    }
+  }
+}

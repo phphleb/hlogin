@@ -1,0 +1,9 @@
+{
+  "ucaptcha": {
+    "version": "1",
+    "data": {
+      "active": "on",
+      "design": "base"
+    }
+  }
+}

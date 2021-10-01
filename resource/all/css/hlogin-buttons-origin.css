@@ -1,0 +1,178 @@
+.hlogin-f-hidden {
+    display: none!important;
+}
+.hlogin-f-nowrap {
+    white-space: nowrap;
+}
+.hlogin-buttons-over-block--control {
+    z-index: 2147483640;
+    width: 40px;
+    height: max-content;
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, .10), 0 0 2px 0 rgba(0, 0, 0, .10);
+    user-select: none;
+    font-size: 12px;
+    cursor: pointer;
+}
+.hlogin-buttons-over-block-top--control {
+    position: absolute;
+    width: content-box;
+    z-index: 2147483640;
+    white-space: nowrap;
+    height: 40px;
+    user-select: none;
+    text-align: left;
+    top: 0;
+    right: 80px;
+    border: 1px solid #3b3b3b;
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, .10), 0 0 2px 0 rgba(0, 0, 0, .10);
+    padding: 0 8px 0 3px;
+    cursor: pointer;
+}
+.hlogin-buttons-over-block-top--control:hover {
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, .10), 0 0 2px 0 rgba(0, 0, 0, .10);
+}
+
+.hlogin-buttons-over-block-top--control td {
+    height: 40px;
+    padding: 0;
+    vertical-align: middle;
+    text-align: center;
+}
+.hlogin-buttons-over-block-top--control img {
+    padding: 0;
+    border: 0;
+    min-width: 30px;
+}
+.hlogin-buttons-over-block--control>div {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #3b3b3b;
+    cursor: pointer;
+    text-align: center;
+    padding-top: 7px;
+}
+.hlogin-buttons-over-block--control>span:hover {
+    opacity: 0.8;
+}
+.hlogin-buttons-right, .hlogin-buttons-left {
+    position: fixed;
+    top: 40px;
+}
+.hlogin-buttons-right #HloginButtonsMain, .hlogin-buttons-left #HloginButtonsMain {
+    border-bottom: 1px solid black;
+}
+.hlogin-buttons-right #HloginButtonsContact, .hlogin-buttons-left #HloginButtonsContact {
+    position:relative;
+    bottom: 1px;
+}
+.hlogin-buttons-right {
+    right: 0;
+}
+.hlogin-buttons-left {
+    left: 0;
+}
+.hlogin-buttons-right #HloginButtonsMain {
+    border-radius: 4px 0 0 0;
+}
+.hlogin-buttons-left #HloginButtonsMain {
+    border-radius: 0 4px 0 0;
+}
+.hlogin-buttons-right #HloginButtonsContact {
+    border-radius: 0 0 0 4px;
+}
+.hlogin-buttons-left #HloginButtonsContact {
+    border-radius: 0 0 4px 0;
+}
+
+.hlogin-buttons-design-base, .hlogin-buttons-design-light {
+    background-color: #fafafa;
+}
+.hlogin-buttons-design-dark span, .hlogin-buttons-over-block-top--control.hlogin-buttons-design-dark {
+    color: white;
+    background-color: #333335;
+}
+.hlogin-buttons-design-dark span:hover, .hlogin-buttons-design-game span:hover, .hlogin-buttons-design-sport span:hover {
+    opacity: 0.85;
+}
+.hlogin-buttons-design-special {
+    background-color: white;
+    color: black;
+    outline: 2px solid black;
+    outline-offset: -1px;
+    border-bottom: 5px solid black;
+    font-weight: bold;
+}
+
+.hlogin-buttons-over-block-top--control.hlogin-buttons-design-special img {
+    display:none;
+}
+
+.hlogin-buttons-design-special span {
+    margin-left: 5px;
+}
+
+.hlogin-buttons-design-special span:hover {
+    color: #435f68;
+}
+
+.hlogin-buttons-design-blank {
+    background-color: rgb(80, 189, 64);
+    /* You need to reassign this picture with a tag '!important' */
+    background-image: url(/en/login/resource/100500/blank/svg/svg/background/);
+}
+
+.hlogin-buttons-design-blank span {
+    color: white;
+    text-shadow: 1px 1px 0 black;
+}
+
+.hlogin-buttons-design-light {
+    background-color: white;
+    box-shadow: none;
+    border: 0;
+    border-bottom: 1px solid grey;
+}
+
+.hlogin-buttons-design-light:hover {
+    box-shadow: none;
+}
+
+.hlogin-buttons-right.hlogin-buttons-design-light div {
+    border: 0;
+}
+
+.hlogin-buttons-design-light span:hover {
+    color: #4f59a2;
+}
+
+.hlogin-buttons-design-sport {
+    color: white;
+    background-color: #000000;
+}
+
+.hlogin-buttons-design-game {
+    border: 0;
+    color: white;
+    text-decoration: none;
+    border-radius: 2px;
+    background: #323C54;
+    box-shadow: 0 -1px #242e42 inset;
+    transition: 0.2s;
+    border-bottom: 2px solid #192232;
+}
+.hlogin-buttons-design-game span, .hlogin-buttons-design-sport span {
+    color: white;
+}
+
+/* Small Devices, Tablets */
+@media only screen and (max-width: 769px) {
+    .hlogin-buttons-over-block-top--control td span {
+        display: none;
+    }
+    .hlogin-buttons-over-block-top--control {
+        right: 10px;
+    }
+    .hlogin-buttons-over-block-top--control.hlogin-buttons-design-special img {
+        display: inline-block;
+    }
+}
