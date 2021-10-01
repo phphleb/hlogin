@@ -28,8 +28,8 @@
         "phphleb/updater": "*",
         "phphleb/adminpan": "dev-master",
         "phphleb/muller": "*",
-        "phphleb/nicejson": "*",
-        "phphleb/ucaptcha": "*"
+        "phphleb/nicejson": "dev-main",
+        "phphleb/ucaptcha": "dev-main"
     },
     "minimum-stability": "dev"
 }
