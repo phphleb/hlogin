@@ -103,7 +103,7 @@ Force setting the language of the panels on the page (by default the language is
  ```
 
 You can replace the standard authorization buttons with any ones having previously disabled the standard ones in the admin panel. Own buttons can be assigned one of the following actions:
- ```js
+ ```javascript
 <script>
 // Setting the design for the page via JS. For example this can be set to the type `special` for visually impaired users.
 hloginSetDesignToPopups('dark');
