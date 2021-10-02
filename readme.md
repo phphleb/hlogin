@@ -43,15 +43,18 @@ use Phphleb\Hlogin\App\OriginData as RegData;
 
 Route::before('Hlogin\Registrar', [RegType::UNDEFINED_USER, '>='])->getGroup();
 // Routes in this group will be available to all unregistered and registered users except those that were marked deleted and banned.
-   Route::before('Hlogin\Registrar', [RegType::PRIMARY_USER, '>='])->getGroup();
-   // Routes in this group will be available to those who pre-registered (but didn't confirm E-mail), as well as to all registered users (including administrators).
-       Route::before('Hlogin\Registrar', [RegType::REGISTERED_USER, '>='])->getGroup();
-      // Routes in this group will be available to all users who have completed full registration (confirmed by E-mail including administrators).
-          Route::before('Hlogin\Registrar', [RegType::REGISTERED_COMANDANTE, '='])->getGroup();
-          // Routes in this group will be available only to administrators. 
-          Route::endGroup();
-       Route::endGroup();
-   Route::endGroup();
+Route::endGroup();
+
+Route::before('Hlogin\Registrar', [RegType::PRIMARY_USER, '>='])->getGroup();
+// Routes in this group will be available to those who pre-registered (but didn't confirm E-mail), as well as to all registered users (including administrators).
+Route::endGroup();
+
+Route::before('Hlogin\Registrar', [RegType::REGISTERED_USER, '>='])->getGroup();
+// Routes in this group will be available to all users who have completed full registration (confirmed by E-mail including administrators).
+Route::endGroup();
+
+Route::before('Hlogin\Registrar', [RegType::REGISTERED_COMANDANTE, '='])->getGroup();
+// Routes in this group will be available only to administrators. 
 Route::endGroup();
 
 Route::before('Hlogin\Registrar', [RegType::PRIMARY_USER, '>=', RegData::HIDE_PANELS])->getGroup();
