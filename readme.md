@@ -252,3 +252,9 @@ When upgrading the library version it is highly recommended to repeat the path f
 
  $ php console --clear-routes-cache 
  ```
+
+-----------------------------------
+
+[![License: MIT](https://img.shields.io/badge/License-MIT%20(Free)-brightgreen.svg)](https://github.com/phphleb/draft/blob/main/LICENSE) ![PHP](https://img.shields.io/badge/PHP-7-blue) ![PHP](https://img.shields.io/badge/PHP-8-blue) ![PHP](https://img.shields.io/badge/HLEB%20Framework->=1.5.69-brightgreen)
+
+
