@@ -1,7 +1,9 @@
 <?php
 
     /**
-     * Demo addition of functionality.
+     * @author  Foma Tuturov <fomiash@yandex.ru>
+     *
+     * Adding `hlogin` functionality.
      */
 
     require __DIR__ . "/loader.php";
