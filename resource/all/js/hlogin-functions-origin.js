@@ -1,3 +1,8 @@
+console.log(
+    '==================' + "\n" +
+    'Phphleb/Hlogin 1.0' + "\n" +
+    '==================' + "\n"
+);
 if (typeof uHLogin === 'undefined') uHLogin = {};
 if (typeof uHLogin.functions === 'undefined') uHLogin.functions = {
   lang: 'en',
@@ -77,6 +82,12 @@ if (typeof uHLogin.functions === 'undefined') uHLogin.functions = {
     var blocks = document.querySelectorAll('link[href*="/css/css/hlogin-design"]');
     if (typeof uHLogin.buttons !== 'undefined') uHLogin.buttons.init();
     blocks.length ? th.loadCss(url, blocks[0]) : th.loadCss(url);
+    var elements = document.querySelectorAll('.hlogin-p-register-popup-global');
+    for (let el of elements) {
+      if (typeof el !== 'undefined' && el) {
+        el.setAttribute('data-type', design);
+      }
+    }
     setTimeout( function() {th.deleteBlocks(blocks);}, 1500);
   },
   revertDesign: function() {

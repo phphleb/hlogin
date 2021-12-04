@@ -303,8 +303,10 @@ if (typeof mHLogin.actions === 'undefined') {
                 block.style.display = "none";
                 block.classList.add('hlogin-shadow-on-block-st');
                 block.classList.add('hlogin-p-register-popup-global');
+                block.classList.add('hlogin-wn');
                 block.classList.add('hlogin-p-register-popup-user--control');
-                block.align = "center";
+                block.setAttribute('data-type', this.F.design);
+                block.setAttribute('align', "center");
                 block.style.visibility = "hidden";
                 if (this.getConfigValue("font_base")) {
                     block.style.fontFamily = this.getConfigValue("font_base");

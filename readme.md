@@ -215,6 +215,14 @@ class MainHloginExplorer {
 
 ### Design
 Your own design is available when you select the blank type in the admin panel. After that, you can copy it to the `/public/css/` folder and change the CSS file of any other design from the existing ones by connecting it to the site by yourself.
+```css
+.hlogin-wn[data-type='base'] input {
+   /* CSS rule for "input" design "base" */
+}
+.hlogin-wn[data-type='dark'] input {
+   /* CSS rule for "input" design "dark" */
+}
+```
 
 ### Admin area
 
