@@ -83,7 +83,7 @@ if (typeof uHLogin.functions === 'undefined') uHLogin.functions = {
     if (typeof uHLogin.buttons !== 'undefined') uHLogin.buttons.init();
     blocks.length ? th.loadCss(url, blocks[0]) : th.loadCss(url);
     var elements = document.querySelectorAll('.hlogin-p-register-popup-global');
-    for (let el of elements) {
+    for (var el of elements) {
       if (typeof el !== 'undefined' && el) {
         el.setAttribute('data-type', design);
       }
@@ -155,7 +155,7 @@ if (typeof uHLogin.functions === 'undefined') uHLogin.functions = {
     return this.registrationData.endingUrl ? '/' : '';
   },
   deleteBlocks: function (els) {
-    for (let e in els) {
+    for (var e in els) {
       this.deleteBlock(els[e]);
     }
   },

@@ -665,7 +665,7 @@ if (typeof mHLogin.actions === 'undefined') {
             if(this.F.captchaActive == 1) {
                 var els = this.$$(".hlogin-captcha");
                 this.captchaCode = this.generateCaptchaLink();
-                for (let e in els) {
+                for (var e in els) {
                     if (typeof els[e] !== 'undefined' && els[e]) {
                         els[e].src = this.captchaCode;
                     }

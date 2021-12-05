@@ -115,7 +115,7 @@ if (typeof hlUnvrsl.Def === 'undefined') hlUnvrsl.Def = {
         return false;
     },
     deleteBlocks: function (els) {
-        for (let e in els) {
+        for (var e in els) {
             this.deleteBlock(els[e]);
         }
     },
