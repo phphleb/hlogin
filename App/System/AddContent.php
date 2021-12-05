@@ -58,21 +58,21 @@ final class AddContent
         }
 
 
-        return <<<SCRIPT
-<script class="$name">
-      if (typeof $name !== 'function'){ 
-          function $name() { 
-              var $name = {};
-              $name.csrfToken = '{$csrf}';
-              $name.userRegister = {$reg};
-              $name.version = '{$version}';
-              $name.config = '{$config}';
-              $name.endingUrl = {$endingUrl};
-              $name.captchaActive = {$captchaActive};
-              $name.isContact = {$sendMessageBlock};
-              $name.lang = '{$lang}';
-              $name.design = '{$design}';
-              $action $name;
+        return "<script class=\"{$name}\">
+      if (typeof {$name} !== 'function'){ 
+          function {$name}() { 
+              var {$name} = {
+              csrfToken: '{$csrf}',
+              userRegister: {$reg},
+              version: '{$version}',
+              lang: '{$lang}',
+              config: '{$config}',
+              endingUrl: {$endingUrl},
+              captchaActive: {$captchaActive},
+              isContact: {$sendMessageBlock},
+              design: '{$design}'
+              };
+              $action {$name};
         }
       }
 var {$name}_interval = setInterval(function(){
@@ -87,7 +87,7 @@ var {$name}_interval = setInterval(function(){
         }
     }, 20);  
 </script>
-SCRIPT;
+";
     }
 
     static protected function clearConfig($data, $type) {
