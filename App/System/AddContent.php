@@ -66,11 +66,11 @@ final class AddContent
               userRegister: {$reg},
               version: '{$version}',
               lang: '{$lang}',
-              config: '{$config}',
               endingUrl: {$endingUrl},
               captchaActive: {$captchaActive},
               isContact: {$sendMessageBlock},
-              design: '{$design}'
+              design: '{$design}',
+              config: '{$config}'
               };
               $action {$name};
         }
