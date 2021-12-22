@@ -122,7 +122,7 @@ class OriginData
      * @return string
      * */
     public static function initRegistrationPanels($type = self::SHOW_PANELS) {
-        $panels = hleb_e0b1036c1070101_template('hlogin/templates/add', ['type' => $type], true);
+        $panels = hleb_insert_template('hlogin/templates/add', ['type' => $type], true);
         return is_string($panels) ? $panels : '';
     }
 }

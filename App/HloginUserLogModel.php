@@ -37,7 +37,8 @@ final class HloginUserLogModel extends \Hleb\Scheme\App\Models\MainModel
      * Установленное в конфигурационном файле название таблицы с архивом пользователей
      * @return string
      */
-    public static function getTableName() {
+    public static function getTableName(): string
+    {
         return 'userlogs';
     }
 
@@ -45,7 +46,8 @@ final class HloginUserLogModel extends \Hleb\Scheme\App\Models\MainModel
      * Проверка существования таблицы
      * @return bool
      */
-    public static function checkTableUsers() {
+    public static function checkTableUsers(): bool
+    {
         try {
             $result = DB::run("SELECT 1 FROM " . self::getTableName() . " LIMIT 1")
                     ->rowCount();

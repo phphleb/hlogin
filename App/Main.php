@@ -4,6 +4,8 @@
 namespace Phphleb\Hlogin\App;
 
 
+use Phphleb\Spreader\ConfigTransfer;
+
 final class Main
 {
     protected static $configData = [];
@@ -28,16 +30,14 @@ final class Main
         return 'users';
     }
 
-    public static function getConfig($storageFile = "register/config.json") {
+    public static function getConfig(string $storageFile = "register/config.json", string $target = 'hlogin'): ?array
+    {
         if (empty(self::$configData[$storageFile])) {
-            $configFile = (defined('HLEB_STORAGE_DIRECTORY') ?
-                    rtrim(HLEB_STORAGE_DIRECTORY , '\\/ ') :
-                    HLEB_GLOBAL_DIRECTORY . DIRECTORY_SEPARATOR . 'storage') . DIRECTORY_SEPARATOR . $storageFile;
-            if (file_exists($configFile)) {
-                self::$configData[$storageFile] = json_decode(file_get_contents($configFile), true);
-            } else {
-                return null;
-            }
+            $path = defined('HLEB_GLOBAL_DIRECTORY') ?
+                (defined('HLEB_STORAGE_DIRECTORY') ? rtrim(HLEB_STORAGE_DIRECTORY, '\\/ ') : HLEB_GLOBAL_DIRECTORY . DIRECTORY_SEPARATOR . 'storage') :
+                dirname(__DIR__, 4) . DIRECTORY_SEPARATOR . 'storage';
+
+            self::$configData[$storageFile] = (new ConfigTransfer($path . '/' . $storageFile, $target))->get();
         }
         return self::$configData[$storageFile];
     }
@@ -63,7 +63,7 @@ final class Main
     }
 
     public static function getConfigUCaptchaData() {
-        $config = self::getConfig("lib/ucaptcha/config.json");
+        $config = self::getConfig("lib/ucaptcha/config.json", "ucaptcha");
         if (isset($config['ucaptcha'], $config['ucaptcha']["data"])) {
             $design = $config['ucaptcha']["data"]['design'];
             if($design == 'auto') {
@@ -76,7 +76,7 @@ final class Main
     }
 
     public static function getConfigMuller() {
-        $config = self::getConfig("lib/muller/config.json");
+        $config = self::getConfig("lib/muller/config.json", "muller");
         if (!empty($config['muller'])) {
             return $config['muller'];
         }
@@ -84,7 +84,7 @@ final class Main
     }
 
     public static function getConfigContact() {
-        $config = self::getConfig("register/contact_config.json");
+        $config = self::getConfig("register/contact_config.json", "contact");
         if (!empty($config['contact'])) {
             return $config['contact'];
         }

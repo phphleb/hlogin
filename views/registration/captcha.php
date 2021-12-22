@@ -10,7 +10,7 @@ use Hleb\Constructor\Handlers\Request;
 use Phphleb\Ucaptcha\Captcha;
 
 $path = HLEB_PROJECT_STORAGE_DIR . "/lib/ucaptcha/config.json";
-$data = Converter::getData($path);
+$data = Converter::getData($path, 'ucaptcha');
 $regData = $data['ucaptcha']['data'] ?? [];
 $request = Request::getPost();
 $active = isset($data['ucaptcha']['data']['active']) && $data['ucaptcha']['data']['active'] === 'on';
@@ -20,7 +20,7 @@ if(!empty(Request::getPost())) {
     if (Converter::testCaptchaJson($path)) {
         $data['ucaptcha']['data']['active'] = isset($request['active']) && $request['active'] === 'on'  ? "on" : "off";
         $data['ucaptcha']['data']['design'] = isset($request['design']) && in_array($request['design'], array_merge(Captcha::TYPES, ['auto']))  ? $request['design'] : "base";
-        Converter::saveData($data, $path);
+        Converter::saveData($data, $path, 'ucaptcha');
         Converter::testCaptchaJson($path);
         save_data(true);
     } else {

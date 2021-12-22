@@ -34,7 +34,7 @@ final class AddContent
         // Registration
         $version = Main::getVersion();
         $config = (new JsonConverter(json_encode(self::clearConfig(Main::getConfigRegData(), $type)), 0, 0, "\\" . "\n" . str_repeat(" ", 13)))->get();
-        $csrf = hleb_c3dccfa0da1a3e_csrf_token();
+        $csrf = hleb_csrf_token();
         $action = 'return';
         $reg = self::getRegistration();
         $endingUrl = HLEB_PROJECT_ENDING_URL ? 1 : 0;

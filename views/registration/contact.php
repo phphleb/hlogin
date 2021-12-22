@@ -9,7 +9,7 @@ use Phphleb\Hlogin\App\Main;
 use Hleb\Constructor\Handlers\Request;
 
 $path = HLEB_PROJECT_STORAGE_DIR . "/register/contact_config.json";
-$data = Converter::getData($path);
+$data = Converter::getData($path, 'contact');
 $regData = $data['contact']['data'] ?? [];
 $request = Request::getPost();
 $email = $baseEmail = 'admin@' . Request::getDomain();
@@ -23,7 +23,7 @@ if(!empty(Request::getPost())) {
     if (Converter::testContactJson($path)) {
         $data['contact']['data']['active'] = isset($request['active']) && $request['active'] === 'on'  ? "on" : "off";
         $data['contact']['data']['mail_to'] = isset($request['mail_to']) && strpos($request['mail_to'], '@') !== false ? $request['mail_to'] : $baseEmail;
-        Converter::saveData($data, $path);
+        Converter::saveData($data, $path, 'contact');
         Converter::testContactJson($path);
         save_data(true);
     } else {

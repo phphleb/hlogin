@@ -25,12 +25,12 @@ class Profile
         $this->code = html_entity_decode(html_entity_decode($data)) ?? '';
 
         if (UserRegistration::checkRegisterAndHigher()) {
-            return hleb_v5ds34hop4nm1d_page_view(self::REGISTER_PAGE_PATH, ['type' => 'UserProfile', 'title' => $title, 'insertedCode' => $this->code]);
+            return hleb_view(self::REGISTER_PAGE_PATH, ['type' => 'UserProfile', 'title' => $title, 'insertedCode' => $this->code]);
         }
         if (UserRegistration::checkPrimaryOnly()) {
-            return hleb_v5ds34hop4nm1d_page_view(self::REGISTER_PAGE_PATH, ['type' => 'MessageFromConfirmEmail', 'title' => $title, 'insertedCode' => $this->code]);
+            return hleb_view(self::REGISTER_PAGE_PATH, ['type' => 'MessageFromConfirmEmail', 'title' => $title, 'insertedCode' => $this->code]);
         }
-        return hleb_v5ds34hop4nm1d_page_view(self::REGISTER_PAGE_PATH, ['type' => 'UserEnter', 'title' => Translate::get('enter_page'), 'insertedCode' => $this->code]);
+        return hleb_view(self::REGISTER_PAGE_PATH, ['type' => 'UserEnter', 'title' => Translate::get('enter_page'), 'insertedCode' => $this->code]);
     }
 
 }

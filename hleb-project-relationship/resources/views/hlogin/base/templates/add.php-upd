@@ -19,5 +19,5 @@
  |-----------------------------------------------------------|
  */
 if (class_exists('Phphleb\Hlogin\App\System\AddContent')) {
-    print Phphleb\Hlogin\App\System\AddContent::getScriptCode($this->type ?? null, $this->forced ?? false);
+    print Phphleb\Hlogin\App\System\AddContent::getScriptCode($type ?? null, $forced ?? false);
 }

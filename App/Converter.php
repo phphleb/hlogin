@@ -3,126 +3,116 @@
 
 namespace Phphleb\Hlogin\App;
 
-use Phphleb\Nicejson\JsonConverter;
+use Phphleb\Spreader\ConfigTransfer;
 
 final class Converter
 {
-    protected static $origin = true;
+    protected static bool $origin = true;
 
-    protected static $data = null;
+    protected static ?array $data = null;
 
     private function __construct(){}
 
-    public static function getData(string $path) {
+    public static function getData(string $path, string $target): ?array
+    {
         if (!self::$origin || is_null(self::$data)) {
-            self::$data = json_decode(file_get_contents($path), true);
+            self::$data = (new ConfigTransfer($path, $target))->get();
         }
         return self::$data;
     }
 
-    public static function saveData(array $data, string $path) {
+    public static function saveData(array $data, string $path, string $target): void
+    {
         self::$data = $data;
         self::$origin = false;
-        $jsonConverted = (new JsonConverter(json_encode($data)))->get();
-        file_put_contents($path, $jsonConverted);
+        (new ConfigTransfer($path, $target))->save($data);
     }
 
-    public static function testJson(string $path) {
+    public static function testJson(string $path): bool
+    {
         try {
-            $json = json_decode(file_get_contents($path), true);
-        } catch (\Exception $exception) {
+            $data = (new ConfigTransfer($path, 'hlogin'))->get();
+        } catch (\Throwable $exception) {
             self::setOriginJson($path);
             return false;
         }
-        if (!isset($json, $json['hlogin'], $json['hlogin']['reg_data']['design'], $json['hlogin']['version'])) {
+        if (!isset($data, $data['hlogin'], $data['hlogin']['reg_data']['design'], $data['hlogin']['version'])) {
             self::setOriginJson($path);
             return false;
         }
         return true;
     }
 
-    public static function setOriginJson(string $path) {
-        self::setJson($path, HLEB_VENDOR_DIRECTORY . "/phphleb/hlogin/standard_config.json");
+    public static function setOriginJson(string $path): void
+    {
+        self::setJson($path, HLEB_VENDOR_DIRECTORY . "/phphleb/hlogin/standard_config.json", "hlogin");
     }
 
-    public static function testCaptchaJson(string $path) {
-        if (!file_exists($path)) {
-            self::setOriginCaptchaJson($path);
-            return false;
-        }
+    public static function testCaptchaJson(string $path): bool
+    {
         try {
-            $json = json_decode(file_get_contents($path), true);
+            $data = (new ConfigTransfer($path, 'ucaptcha'))->get();
         } catch (\Exception $exception) {
             self::setOriginCaptchaJson($path);
             return false;
         }
-        if (!isset($json, $json['ucaptcha'], $json['ucaptcha']['version'])) {
+        if (!isset($data, $data['ucaptcha'], $data['ucaptcha']['version'])) {
             self::setOriginCaptchaJson($path);
             return false;
         }
         return true;
     }
 
-    public static function setOriginCaptchaJson(string $path) {
-        self::setJson($path, HLEB_VENDOR_DIRECTORY . "/phphleb/hlogin/config/ucaptcha_config.json");
+    public static function setOriginCaptchaJson(string $path): void
+    {
+        self::setJson($path, HLEB_VENDOR_DIRECTORY . "/phphleb/hlogin/config/ucaptcha_config.json", "ucaptcha");
     }
 
-    public static function testMullerJson(string $path) {
-        if (!file_exists($path)) {
-            self::setOriginMullerJson($path);
-            return false;
-        }
+    public static function testMullerJson(string $path): bool
+    {
         try {
-            $json = json_decode(file_get_contents($path), true);
+            $data = (new ConfigTransfer($path, 'muller'))->get();
         } catch (\Exception $exception) {
             self::setOriginMullerJson($path);
             return false;
         }
-        if (!isset($json, $json['muller'], $json['muller']['version'])) {
+        if (!isset($data, $data['muller'], $data['muller']['version'])) {
             self::setOriginMullerJson($path);
             return false;
         }
         return true;
     }
 
-    public static function setOriginMullerJson(string $path) {
-        self::setJson($path, HLEB_VENDOR_DIRECTORY . "/phphleb/hlogin/config/muller_config.json");
+    public static function setOriginMullerJson(string $path): void
+    {
+        self::setJson($path, HLEB_VENDOR_DIRECTORY . "/phphleb/hlogin/config/muller_config.json", "muller");
     }
 
-    public static function testContactJson(string $path) {
-        if (!file_exists($path)) {
-            self::setOriginContactJson($path);
-            return false;
-        }
+    public static function testContactJson(string $path): bool
+    {
         try {
-            $json = json_decode(file_get_contents($path), true);
+            $data = (new ConfigTransfer($path, 'contact'))->get();
         } catch (\Exception $exception) {
             self::setOriginContactJson($path);
             return false;
         }
-        if (!isset($json, $json['contact'], $json['contact']['version'])) {
+        if (!isset($data, $data['contact'], $data['contact']['version'])) {
             self::setOriginContactJson($path);
             return false;
         }
         return true;
     }
 
-    public static function setOriginContactJson(string $path) {
-        self::setJson($path, HLEB_VENDOR_DIRECTORY . "/phphleb/hlogin/config/contact_config.json");
+    public static function setOriginContactJson(string $path): void
+    {
+        self::setJson($path, HLEB_VENDOR_DIRECTORY . "/phphleb/hlogin/config/contact_config.json", "contact");
     }
 
-    private static function setJson( string $path, string $originPath) {
-        $directory = dirname($path);
-        if (!file_exists($directory)) {
-            mkdir($directory, 0775, true);
-        }
-        if (!file_exists($path)) {
-            $fp = fopen( $path, "w");
-            fwrite($fp, file_get_contents($originPath));
-            fclose($fp);
-        } else {
-            file_put_contents($path, file_get_contents($originPath));
-        }
+    private static function setJson(string $path, string $originPath, string $target): void
+    {
+        $originData = json_decode(file_get_contents($originPath), true);
+        (new ConfigTransfer($path, $target))->save($originData);
     }
 
 }
+

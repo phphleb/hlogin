@@ -10,7 +10,7 @@ use Phphleb\Hlogin\App\Main;
 use Hleb\Constructor\Handlers\Request;
 
 $path = HLEB_PROJECT_STORAGE_DIR . "/lib/muller/config.json";
-$data = Converter::getData($path);
+$data = Converter::getData($path, 'muller');
 $regData = $data['muller']['data'] ?? [];
 $request = Request::getPost();
 $types = ['base', 'dark'];
@@ -29,7 +29,7 @@ if(!empty(Request::getPost())) {
         $data['muller']['data']['regards_block'] = isset($request['regards_block']) ? $request['regards_block'] : "";
         $data['muller']['data']['duplicate-en-text'] = isset($request['duplicate-en-text']) && $request['duplicate-en-text'] === 'on'  ? 'on' : 'off';
 
-        Converter::saveData($data, $path);
+        Converter::saveData($data, $path, 'muller');
         Converter::testMullerJson($path);
         save_data(true);
     } else {

@@ -53,5 +53,11 @@ function show_message_log() {
     }
 }
 
+if (defined('HLEB_CONFIG_SPREADER_TYPE') && HLEB_CONFIG_SPREADER_TYPE !== 'File') {
+    $rowName = defined('HLEB_CONFIG_SPREADER_NAME') ? HLEB_CONFIG_SPREADER_NAME : 'global';
+    print "
+    <div><pre>  Db `spreader_configs`.`designation` = '{$rowName}'  </pre></div>
+    ";
+}
 
 

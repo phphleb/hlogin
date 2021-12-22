@@ -66,7 +66,8 @@ final class UserRegistration
      * Проверка на пользователя, который помечен удалённым или забанен.
      * @return bool
      */
-    static public function checkDeleted() {
+    static public function checkDeleted(): bool
+    {
         return self::getNumericType() < self::UNDEFINED_USER;
     }
 
@@ -75,7 +76,8 @@ final class UserRegistration
      * Проверка на любого незаблокированного пользователя.
      * @return bool
      */
-    static public function checkActiveUser() {
+    static public function checkActiveUser(): bool
+    {
         return self::getNumericType() >= self::UNDEFINED_USER;
     }
 
@@ -84,7 +86,8 @@ final class UserRegistration
      * Проверка на любую регистрацию, без подтвержденного E-mail и выше.
      * @return bool
      */
-    static public function checkPrimaryAndHigher() {
+    static public function checkPrimaryAndHigher(): bool
+    {
         return self::getNumericType() >= self::PRIMARY_USER;
     }
 
@@ -93,7 +96,8 @@ final class UserRegistration
      * Проверка на зарегистрированного и выше.
      * @return bool
      */
-    static public function checkRegisterAndHigher() {
+    static public function checkRegisterAndHigher(): bool
+    {
         return self::getNumericType() >= self::REGISTERED_USER;
     }
 
@@ -102,7 +106,8 @@ final class UserRegistration
      * Проверка на зарегистрированного пользователя первого уровня и выше.
      * @return bool
      */
-    static public function checkFirstLevelRegisterAndHigher() {
+    static public function checkFirstLevelRegisterAndHigher(): bool
+    {
         return self::getNumericType() >= self::VARIABLE_FIRST_LEVEL_REG_USER;
     }
 
@@ -111,7 +116,8 @@ final class UserRegistration
      * Проверка на зарегистрированного пользователя второго уровня и выше.
      * @return bool
      */
-    static public function checkSecondLevelRegisterAndHigher() {
+    static public function checkSecondLevelRegisterAndHigher(): bool
+    {
         return self::getNumericType() >= self::VARIABLE_SECOND_LEVEL_REG_USER;
     }
 
@@ -120,7 +126,8 @@ final class UserRegistration
      * Проверка на зарегистрированного пользователя третьего уровня и выше.
      * @return bool
      */
-    static public function checkThirdLevelRegisterAndHigher() {
+    static public function checkThirdLevelRegisterAndHigher(): bool
+    {
         return self::getNumericType() >= self::VARIABLE_THIRD_LEVEL_REG_USER;
     }
 
@@ -129,7 +136,8 @@ final class UserRegistration
      * Проверка на администратора и выше.
      * @return bool
      */
-    static public function checkAdminAndHigher() {
+    static public function checkAdminAndHigher(): bool
+    {
         return self::getNumericType() >= self::REGISTERED_ADMIN;
     }
 
@@ -138,7 +146,8 @@ final class UserRegistration
      * Проверка регистрацию, без подтвержденного E-mail.
      * @return bool
      */
-    static public function checkPrimaryOnly() {
+    static public function checkPrimaryOnly(): bool
+    {
         return self::getNumericType() === self::PRIMARY_USER;
     }
 
@@ -147,7 +156,8 @@ final class UserRegistration
      * Проверка на зарегистрированного.
      * @return bool
      */
-    static public function checkRegisterOnly() {
+    static public function checkRegisterOnly(): bool
+    {
         return self::getNumericType() === self::REGISTERED_USER ;
     }
 
@@ -156,7 +166,8 @@ final class UserRegistration
      * Проверка на зарегистрированного пользователя первого уровня.
      * @return bool
      */
-    static public function checkFirstLevelRegisterOnly() {
+    static public function checkFirstLevelRegisterOnly(): bool
+    {
         return self::getNumericType() === self::VARIABLE_FIRST_LEVEL_REG_USER;
     }
 
@@ -165,7 +176,8 @@ final class UserRegistration
      * Проверка на зарегистрированного пользователя второго уровня.
      * @return bool
      */
-    static public function checkSecondLevelRegisterOnly() {
+    static public function checkSecondLevelRegisterOnly(): bool
+    {
         return self::getNumericType() === self::VARIABLE_SECOND_LEVEL_REG_USER;
     }
 
@@ -174,7 +186,8 @@ final class UserRegistration
      * Проверка на зарегистрированного пользователя третьего уровня.
      * @return bool
      */
-    static public function checkThirdLevelRegisterOnly() {
+    static public function checkThirdLevelRegisterOnly(): bool
+    {
         return self::getNumericType() === self::VARIABLE_THIRD_LEVEL_REG_USER;
     }
 
@@ -183,7 +196,8 @@ final class UserRegistration
      * Проверка на администратора.
      * @return bool
      */
-    static public function checkAdminOnly() {
+    static public function checkAdminOnly(): bool
+    {
         return self::getNumericType() === self::REGISTERED_ADMIN;
     }
 
@@ -192,7 +206,8 @@ final class UserRegistration
      * Проверка на суперадминистратора.
      * @return bool
      */
-    static public function checkComandante() {
+    static public function checkComandante(): bool
+    {
         return self::getNumericType() === self::REGISTERED_COMANDANTE;
     }
 
@@ -201,7 +216,8 @@ final class UserRegistration
      * Проверка на регистрацию текущего пользователя, возвращает числовой тип.
      * @return integer
      */
-    static public function getNumericType() {
+    static public function getNumericType(): int
+    {
         return self::createType();
     }
 
@@ -225,7 +241,8 @@ final class UserRegistration
      * Возвращает ID, если пользователь зарегистрирован
      * @return null|int
      */
-    static public function getUserId() {
+    static public function getUserId(): ?int
+    {
         if (self::$id) {
             return self::$id;
         }
@@ -245,7 +262,8 @@ final class UserRegistration
      * @param string|null $cp
      * @return bool
      */
-    static public function getRegType($type, $cp = '>=') {
+    static public function getRegType($type, $cp = '>='): bool
+    {
         $t = self::getNumericType();
         if ((is_integer($type) && (
                     ($cp == '=' && $t == $type) ||
@@ -263,22 +281,26 @@ final class UserRegistration
     }
 
     // Устанавливает E-mail без записи в базу данных
-    static public function setEmailAddress(string $value) {
+    static public function setEmailAddress(string $value): void
+    {
         self::$email = $value;
     }
 
     // Устанавливает тип без записи в базу данных
-    static public function setType($value = self::UNDEFINED_USER) {
+    static public function setType($value = self::UNDEFINED_USER): void
+    {
         self::$type = $value;
     }
 
     // Возвращает E-mail
-    static public function getCurrentEmail() {
+    static public function getCurrentEmail()
+    {
         return UserRegistration::checkEmailAddress();
     }
 
     // Реализует выход
-    static public function exit() {
+    static public function exit(): void
+    {
         if(!isset($_SESSION)) session_start();
         $_SESSION = [];
         if (ini_get("session.use_cookies")) {

@@ -4,13 +4,12 @@
 namespace Phphleb\Hlogin\App\System;
 
 
-use Hleb\Constructor\VCreator;
 use Phphleb\Muller\StandardMail;
 
 class SendEmail
 {
-    private $sender;
-    private $errors = [];
+    private StandardMail $sender;
+    private array $errors = [];
 
     /**
      * Инициализация конструктора.

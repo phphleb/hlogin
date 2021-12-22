@@ -3,7 +3,7 @@ use Phphleb\Hlogin\App\Main as Main;
 if ($this->type == 'ContactMessage') {
     $contact = Main::getConfigContact();
     if($contact['data']['active'] !== "on") {
-        hleb_bt3e3gl60pg8h71e00jep901_error_404();
+        hleb_page_404();
     }
 }
 ?><!DOCTYPE html>
@@ -68,7 +68,7 @@ if ($this->type == 'ContactMessage') {
     }
 </script>
 <?php
-hleb_e0b1036c1070101_template('hlogin/templates/add');
+hleb_insert_template('hlogin/templates/add');
 ?>
 
 </body></html>

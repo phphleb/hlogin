@@ -10,7 +10,7 @@ use Hleb\Constructor\Handlers\Request;
 use Phphleb\Hlogin\App\OriginData;
 
 $path = HLEB_PROJECT_STORAGE_DIR . "/register/config.json";
-$data = Converter::getData($path);
+$data = Converter::getData($path, 'hlogin');
 $request = Request::getPost();
 $regData = $data['hlogin']['reg_data'] ?? [];
 $version = $data['hlogin']['version'] ?? null;
@@ -51,7 +51,7 @@ if(!empty(Request::getPost())) {
             $data['hlogin']['reg_data']['reg_table_name'] = OriginData::USERS_TABLE_NAME;
         }
 
-        Converter::saveData($data, $path);
+        Converter::saveData($data, $path, 'hlogin');
         Converter::testJson($path);
         save_data(true);
     } else {

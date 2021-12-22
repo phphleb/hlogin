@@ -28,19 +28,19 @@ class Action
         $lang = Request::get('lang');
 
         if(!in_array($lang, OriginData::LANGUAGES)) {
-            return hleb_v5ds34hop4nm1d_page_view('404');
+            return hleb_view('404');
         }
         if ($action === 'exit') {
-            return hleb_v5ds34hop4nm1d_page_view(self::EXIT_PAGE_PATH);
+            return hleb_view(self::EXIT_PAGE_PATH);
         }
         if ($action === 'exitforce') {
-            return hleb_v5ds34hop4nm1d_page_view(self::EXIT_PAGE_FORCED_PATH);
+            return hleb_view(self::EXIT_PAGE_FORCED_PATH);
         }
         if (UserRegistration::checkDeleted()) {
             return "User has been deleted or blocked.";
         }
         if (in_array($action, ['registration', 'enter', 'recovery']) && UserRegistration::checkPrimaryAndHigher()) {
-            hleb_ad7371873a6ad40_redirect('/' . $lang . '/login/profile/');
+            hleb_redirect('/' . $lang . '/login/profile/');
         }
 
         Translate::setLang($lang);
@@ -65,26 +65,25 @@ class Action
                 return $this->page('ContactMessage', Translate::get('contact_message'));
                 break;
             default:
-                return hleb_v5ds34hop4nm1d_page_view('404');
+                return hleb_view('404');
         }
-        return false;
     }
 
     private function page(string $type, string $title = null) {
-        return hleb_v5ds34hop4nm1d_page_view(self::REGISTER_PAGE_PATH, ['type' => $type, 'title' => $title, 'insertedCode' => $this->code]);
+        return hleb_view(self::REGISTER_PAGE_PATH, ['type' => $type, 'title' => $title, 'insertedCode' => $this->code]);
     }
 
     private function confirmEmail() {
         $code = Request::getGetString('code');
         if (empty($code)) {
             if (UserRegistration::checkRegisterAndHigher()) {
-                return hleb_v5ds34hop4nm1d_page_view(self::REGISTER_PAGE_PATH, ['type' => 'EmailConfirmSuccess', 'title' => 'Е-mail', 'insertedCode' => $this->code]);
+                return hleb_view(self::REGISTER_PAGE_PATH, ['type' => 'EmailConfirmSuccess', 'title' => 'Е-mail', 'insertedCode' => $this->code]);
             }
-            hleb_ad7371873a6ad40_redirect('/' . Request::get('lang') . '/login/action/enter/');
+            hleb_redirect('/' . Request::get('lang') . '/login/action/enter/');
         }
         $regData = HloginUserModel::getCells('hash', $code, ['id', 'email', 'hash', 'regtype', 'confirm', 'sessionkey']);
         if (!$regData || $regData['regtype'] < UserRegistration::PRIMARY_USER || $regData['hash'] !== $code) {
-            return hleb_v5ds34hop4nm1d_page_view(self::REGISTER_PAGE_PATH, ['type' => 'ErrorConfirmEmail', 'title' => 'Error', 'insertedCode' => $this->code]);
+            return hleb_view(self::REGISTER_PAGE_PATH, ['type' => 'ErrorConfirmEmail', 'title' => 'Error', 'insertedCode' => $this->code]);
         }
         $confirmResult = true;
         if ($regData['confirm'] !== 1) {
@@ -100,10 +99,10 @@ class Action
         if($regtypeResult && $confirmResult) {
             // Вход
             $this->login($regData['email'], $regData['sessionkey'], $type);
-            hleb_ad7371873a6ad40_redirect('/' . Request::get('lang') . '/login/action/confirm/');
+            hleb_redirect('/' . Request::get('lang') . '/login/action/confirm/');
         }
 
-        return hleb_v5ds34hop4nm1d_page_view(self::REGISTER_PAGE_PATH, ['type' => 'ErrorConfirmEmail', 'title' => 'Error', 'insertedCode' => $this->code]);
+        return hleb_view(self::REGISTER_PAGE_PATH, ['type' => 'ErrorConfirmEmail', 'title' => 'Error', 'insertedCode' => $this->code]);
     }
 
     /*
@@ -130,7 +129,7 @@ class Action
             } else {
                 unset($_SESSION['HLEB_REGISTER_REDIRECT_URL']);
             }
-            hleb_ad7371873a6ad40_redirect('/' . $urlLang . '/login/action/enter/');
+            hleb_redirect('/' . $urlLang . '/login/action/enter/');
         }
         // Показ панелей
         OriginData::setRegPanelOn($panels === OriginData::SHOW_PANELS);
