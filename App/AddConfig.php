@@ -18,8 +18,7 @@ final class AddConfig
         $configFile = $this->getStorageDirPath() . "/register/config.json";
         $configStandardFile = realpath(__DIR__ . "/../standard_config.json");
         $standardData = $this->getOrigin($configStandardFile);
-
-        $transfer = new ConfigTransfer($configFile, 'hlogin');
+        $transfer = (new ConfigTransfer())->setTarget($configFile, 'hlogin');
         $data = $transfer->get();
         if (!$data) {
             $data = $standardData;
@@ -36,7 +35,7 @@ final class AddConfig
         $configStandardFile = realpath(__DIR__ . "/../config/muller_config.json");
         $standardData = $this->getOrigin($configStandardFile);
 
-        $transfer = new ConfigTransfer($configFile, 'muller');
+        $transfer = (new ConfigTransfer())->setTarget($configFile, 'muller');
         $data = $transfer->get();
         if (!$data) {
             $data = $standardData;
@@ -63,7 +62,7 @@ final class AddConfig
         $configStandardFile = realpath(__DIR__ . "/../config/ucaptcha_config.json");
         $standardData = $this->getOrigin($configStandardFile);
 
-        $transfer = new ConfigTransfer($configFile, 'ucaptcha');
+        $transfer = (new ConfigTransfer())->setTarget($configFile, 'ucaptcha');
         $data = $transfer->get();
         if (!$data) {
             $data = $standardData;
@@ -79,7 +78,7 @@ final class AddConfig
         $configStandardFile = realpath(__DIR__ . "/../config/contact_config.json");
         $standardData = $this->getOrigin($configStandardFile);
 
-        $transfer = new ConfigTransfer($configFile, 'contact');
+        $transfer = (new ConfigTransfer())->setTarget($configFile, 'contact');
         $data = $transfer->get();
         if (!$data) {
             $data = $standardData;

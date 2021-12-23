@@ -8,9 +8,11 @@ use Phphleb\Spreader\ConfigTransfer;
 
 final class Main
 {
-    protected static $configData = [];
+    protected static array $configData = [];
 
-    private function __construct(){}
+    protected static ?ConfigTransfer $transfer = null;
+
+    private function __construct() {}
 
     public static function getVersion() {
         $config = self::getConfig();
@@ -33,11 +35,15 @@ final class Main
     public static function getConfig(string $storageFile = "register/config.json", string $target = 'hlogin'): ?array
     {
         if (empty(self::$configData[$storageFile])) {
+
+            if(is_null(self::$transfer)) {
+                self::$transfer = new ConfigTransfer();
+            }
             $path = defined('HLEB_GLOBAL_DIRECTORY') ?
                 (defined('HLEB_STORAGE_DIRECTORY') ? rtrim(HLEB_STORAGE_DIRECTORY, '\\/ ') : HLEB_GLOBAL_DIRECTORY . DIRECTORY_SEPARATOR . 'storage') :
                 dirname(__DIR__, 4) . DIRECTORY_SEPARATOR . 'storage';
 
-            self::$configData[$storageFile] = (new ConfigTransfer($path . '/' . $storageFile, $target))->get();
+            self::$configData[$storageFile] = self::$transfer->setTarget($path . '/' . $storageFile, $target)->get(true);
         }
         return self::$configData[$storageFile];
     }

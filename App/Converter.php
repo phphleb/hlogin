@@ -16,7 +16,7 @@ final class Converter
     public static function getData(string $path, string $target): ?array
     {
         if (!self::$origin || is_null(self::$data)) {
-            self::$data = (new ConfigTransfer($path, $target))->get();
+            self::$data = (new ConfigTransfer())->setTarget($path, $target)->get();
         }
         return self::$data;
     }
@@ -25,13 +25,13 @@ final class Converter
     {
         self::$data = $data;
         self::$origin = false;
-        (new ConfigTransfer($path, $target))->save($data);
+        (new ConfigTransfer())->setTarget($path, $target)->save($data);
     }
 
     public static function testJson(string $path): bool
     {
         try {
-            $data = (new ConfigTransfer($path, 'hlogin'))->get();
+            $data = (new ConfigTransfer())->setTarget($path, 'hlogin')->get();
         } catch (\Throwable $exception) {
             self::setOriginJson($path);
             return false;
@@ -51,7 +51,7 @@ final class Converter
     public static function testCaptchaJson(string $path): bool
     {
         try {
-            $data = (new ConfigTransfer($path, 'ucaptcha'))->get();
+            $data = (new ConfigTransfer())->setTarget($path, 'ucaptcha')->get();
         } catch (\Exception $exception) {
             self::setOriginCaptchaJson($path);
             return false;
@@ -71,7 +71,7 @@ final class Converter
     public static function testMullerJson(string $path): bool
     {
         try {
-            $data = (new ConfigTransfer($path, 'muller'))->get();
+            $data = (new ConfigTransfer())->setTarget($path, 'muller')->get();
         } catch (\Exception $exception) {
             self::setOriginMullerJson($path);
             return false;
@@ -91,7 +91,7 @@ final class Converter
     public static function testContactJson(string $path): bool
     {
         try {
-            $data = (new ConfigTransfer($path, 'contact'))->get();
+            $data = (new ConfigTransfer())->setTarget($path, 'contact')->get();
         } catch (\Exception $exception) {
             self::setOriginContactJson($path);
             return false;
@@ -111,7 +111,7 @@ final class Converter
     private static function setJson(string $path, string $originPath, string $target): void
     {
         $originData = json_decode(file_get_contents($originPath), true);
-        (new ConfigTransfer($path, $target))->save($originData);
+        (new ConfigTransfer())->setTarget($path, $target)->save($originData);
     }
 
 }

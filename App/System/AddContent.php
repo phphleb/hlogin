@@ -51,9 +51,18 @@ final class AddContent
         $lang = OriginData::getLocalLang();
 
         if(empty($captcha) || empty($contact)) {
-            $message = 'HLOGIN-LIB-001-LOAD_CONFIG_ERROR:' .
-                ' The configuration files of the `HLOGIN` library in the `storage` folder are not included. If there are multiple entry points, copy these files from the original folder or execute `php console phphleb/hlogin --add` in the current root directory.' . '~' .
-                ' Не подключены конфигурационные файлы библиотеки `HLOGIN` в папке `storage`. Если точек входа несколько, скопируйте эти файлы из оригинальной папки или выполните `php console phphleb/hlogin --add` в текущей корневой директории.';
+            if (!defined('HLEB_CONFIG_SPREADER_TYPE') || HLEB_CONFIG_SPREADER_TYPE === 'File') {
+                $message = 'HLOGIN-LIB-001-LOAD_CONFIG_ERROR:' .
+                    ' The configuration files of the `HLOGIN` library in the `storage` folder are not included. If there are multiple entry points, copy these files from the original folder or execute `php console phphleb/hlogin --add` in the current root directory.' . '~' .
+                    ' Не подключены конфигурационные файлы библиотеки `HLOGIN` в папке `storage`. Если точек входа несколько, скопируйте эти файлы из оригинальной папки или выполните `php console phphleb/hlogin --add` в текущей корневой директории.';
+
+            } else if (HLEB_CONFIG_SPREADER_TYPE === 'Db') {
+                $message = 'HLOGIN-LIB-002-LOAD_DB_CONFIG_ERROR:' .
+                    ' The configuration data of the `HLOGIN` library in the database are not included. If there are multiple entry points, execute `php console phphleb/hlogin --add` in the current root directory.' . '~' .
+                    ' Не подключены конфигурационные данные библиотеки `HLOGIN` в базе данных. Если точек входа несколько, выполните `php console phphleb/hlogin --add` в текущей корневой директории.';
+            } else {
+                $message = "HLEB_CONFIG_SPREADER_TYPE [" . HLEB_CONFIG_SPREADER_TYPE . "] should be equal 'File' OR 'Db' ~ ";
+            }
             ErrorOutput::get($message);
         }
 
