@@ -548,7 +548,8 @@ class Data extends OriginData
             $this->errorCells[] = 'email';
         }
         $message = $this->checkedCell('contact_text', self::MESSAGE_PATTERN);
-        if(!$message) {
+        // Проверка сообщения и антибот от простой подстановки набора символов в поля.
+        if(!$message || strripos(trim($message), ' ') === false) {
             $this->errorCells[] = 'contact_text';
         }
         $name = $this->checkedCell('sender_name', self::NAME_PATTERN);
