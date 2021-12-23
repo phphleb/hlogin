@@ -32,6 +32,7 @@ show_message_log();
 ?>
 <br><div class="hlogin-lang"><?= language_block(); ?></div>
 <div class="hlogin-link-base"><a href="https://github.com/phphleb/ucaptcha">github.com/phphleb/ucaptcha</a></div>
+<div><?= add_type_bd_status() ?></div>
 <div class="hlogin-captcha-over">
     <h2>Universal Captcha v.<?=  $data['ucaptcha']['version'] ?></h2>
 <form name="block_position" action="" method="post">

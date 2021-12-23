@@ -61,8 +61,10 @@ if(!empty(Request::getPost())) {
 show_message_log();
 
 ?>
+<div><?= add_type_bd_status() ?></div>
 <div class='hlogin-a7e-page'><div class="hlogin-lang"><?= language_block(); ?></div>
     <div class="hlogin-link-base"><a href="https://github.com/phphleb/hlogin">github.com/phphleb/hlogin</a></div>
+
     <div><span class="hlogin-h2">HLOGIN</span> <span class="hlogin-h2-version">v<?=  $version ?> Beta</span></div><br>
 
     <form name="block_position" action="" method="post">

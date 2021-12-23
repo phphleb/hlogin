@@ -307,3 +307,12 @@ input.hlogin-select-filter[type="button"] {
     z-index: 2000;
     padding: 20px;
 }
+.hlogin-db-connection-status {
+    margin: 5px 0 0 10px;
+    padding: 2px 5px;
+    color: steelblue;
+    font-size: 12px;
+    width: max-content;
+    position: relative;
+    white-space: nowrap;
+}

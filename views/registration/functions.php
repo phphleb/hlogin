@@ -53,11 +53,14 @@ function show_message_log() {
     }
 }
 
-if (defined('HLEB_CONFIG_SPREADER_TYPE') && HLEB_CONFIG_SPREADER_TYPE !== 'File') {
-    $rowName = defined('HLEB_CONFIG_SPREADER_NAME') ? HLEB_CONFIG_SPREADER_NAME : 'global';
-    print "
-    <div><pre>  Db `spreader_configs`.`designation` = '{$rowName}'  </pre></div>
+function add_type_bd_status() {
+    if (defined('HLEB_CONFIG_SPREADER_TYPE') && HLEB_CONFIG_SPREADER_TYPE !== 'File') {
+        $rowName = strip_tags(defined('HLEB_CONFIG_SPREADER_NAME') ? HLEB_CONFIG_SPREADER_NAME : 'global');
+        return "
+    <div class='hlogin-db-connection-status'> Db `spreader_configs`.`designation` = {$rowName} </div>
     ";
+    }
+    return '';
 }
 
 
