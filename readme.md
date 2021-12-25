@@ -196,7 +196,7 @@ Admin panel page for managing user data
 When validating values ​​on the backend side (sent from registration forms) you can also handle it with your own PHP handler, if it is available. This way you can, for example, add your own field to the form and check it by yourself.
  ```php
 <?php
-// Файл /app/Optional/MainHloginExplorer.php
+// File /app/Optional/MainHloginExplorer.php
 namespace App\Optional;
 class MainHloginExplorer {
     /** @return bool */
@@ -246,6 +246,26 @@ The sending email can be found in `php.ini` (sendmail_path = ... -f'email@exampl
 
 By default messages are additionally logged to the `/storage/logs/` folder with `mail.log` ending.
 
+
+### Individual mail server
+
+To replace the standard sending, you need to create the _App\Optional\HloginMailServer_ class based on _DefaultMail_.
+```php
+<?php
+// File /app/Optional/HloginMailServer.php
+namespace App\Optional;
+use Phphleb\Muller\Src\DefaultMail;
+class HloginMailServer extends DefaultMail 
+{ 
+   /** @inheritDoc */
+   public function send() { /* ... */ }  
+
+   /** @inheritDoc */
+   public function savePostInFile() { /* ... */ }
+     
+   public function setParameters(string $parameters) { /* ... */ }
+}
+```
 
 ### Update
 

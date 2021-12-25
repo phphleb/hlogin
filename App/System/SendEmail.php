@@ -5,10 +5,11 @@ namespace Phphleb\Hlogin\App\System;
 
 
 use Phphleb\Muller\StandardMail;
+use Phphleb\Muller\Src\DefaultMail;
 
 class SendEmail
 {
-    private StandardMail $sender;
+    private DefaultMail $sender;
     private array $errors = [];
 
     /**
@@ -22,7 +23,7 @@ class SendEmail
                 $this->errors[] = "Empty parameter.";
                 return;
             }
-            $this->sender = new StandardMail(false);
+            $this->sender = class_exists('App\Optional\HloginMailServer') ? new App\Optional\HloginMailServer() : new StandardMail(false);
             $this->sender->setNameFrom($params['name']);
             $this->sender->setTo($params['to']);
             $this->sender->setAddressFrom($params['from']);
