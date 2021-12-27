@@ -54,16 +54,10 @@ final class Translate
         if(isset(self::$langData[$lang])) {
             return self::$langData;
         }
-        require_once self::getTranslateDirectory() . $lang . '.php';
+        require_once __DIR__ . '/Langs/' . $lang . '.php';
         self::$langData[$lang] = $data;
         return self::$langData;
     }
 
-    private static function getTranslateDirectory() {
-        if (defined('HLOGIN_TRANSLATION_DIRECTORY')) {
-            return HLEB_GLOBAL_DIRECTORY . '/' . trim(HLOGIN_TRANSLATION_DIRECTORY, " /\\") . '/';
-        }
-        return __DIR__ . '/Langs/';
-    }
 }
 

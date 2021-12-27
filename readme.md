@@ -268,11 +268,6 @@ class HloginMailServer extends DefaultMail
 ```
 
 
-### Customization
-
-To use your own language files, you must specify the path to the new folder from the root of the project in the _HLOGIN_TRANSLATION_DIRECTORY_ constant.
-
-
 ### Update
 
 When upgrading the library version it is highly recommended to repeat the path from the installation, reassign the design and update the autoloader. You don't need to create tables and an administrator during the upgrade.
