@@ -10,8 +10,6 @@ final class Translate
 
     private static $langData = [];
 
-    private static $savedWarning = [];
-
     private function __construct(){}
 
     public static function setLang(string $type) {
@@ -28,7 +26,6 @@ final class Translate
         if (!empty($data[$lang][$name])) {
             return $data[$lang][$name];
         };
-        isset(self::$savedWarning[$name]) or self::$savedWarning[$name] = error_log("No Hlogin translation set for phrase `{$name}` in language [{$lang}].");
         return $name;
     }
 

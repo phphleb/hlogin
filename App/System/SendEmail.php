@@ -23,7 +23,7 @@ class SendEmail
                 $this->errors[] = "Empty parameter.";
                 return;
             }
-            $this->sender = class_exists('App\Optional\HloginMailServer') ? new App\Optional\HloginMailServer() : new StandardMail(false);
+            $this->sender = class_exists('App\Optional\HloginMailServer') ? new \App\Optional\HloginMailServer() : new StandardMail(false);
             $this->sender->setNameFrom($params['name']);
             $this->sender->setTo($params['to']);
             $this->sender->setAddressFrom($params['from']);
