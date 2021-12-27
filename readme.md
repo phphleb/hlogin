@@ -263,9 +263,15 @@ class HloginMailServer extends DefaultMail
    /** @inheritDoc */
    public function savePostInFile() { /* ... */ }
      
-   public function setParameters(string $parameters) { /* ... */ }
+   public function setParameters($parameters = '') { }
 }
 ```
+
+
+### Customization
+
+To use your own language files, you must specify the path to the new folder from the root of the project in the _HLOGIN_TRANSLATION_DIRECTORY_ constant.
+
 
 ### Update
 

@@ -10,6 +10,8 @@ final class Translate
 
     private static $langData = [];
 
+    private static $savedWarning = [];
+
     private function __construct(){}
 
     public static function setLang(string $type) {
@@ -26,6 +28,7 @@ final class Translate
         if (!empty($data[$lang][$name])) {
             return $data[$lang][$name];
         };
+        isset(self::$savedWarning[$name]) or self::$savedWarning[$name] = error_log("No Hlogin translation set for phrase `{$name}` in language [{$lang}].");
         return $name;
     }
 
@@ -54,9 +57,16 @@ final class Translate
         if(isset(self::$langData[$lang])) {
             return self::$langData;
         }
-        require_once __DIR__ . '/Langs/' . $lang . '.php';
+        require_once self::getTranslateDirectory() . $lang . '.php';
         self::$langData[$lang] = $data;
         return self::$langData;
+    }
+
+    private static function getTranslateDirectory() {
+        if (defined('HLOGIN_TRANSLATION_DIRECTORY')) {
+            return HLEB_GLOBAL_DIRECTORY . '/' . trim(HLOGIN_TRANSLATION_DIRECTORY, " /\\") . '/';
+        }
+        return __DIR__ . '/Langs/';
     }
 }
 
