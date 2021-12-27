@@ -258,7 +258,7 @@ use Phphleb\Muller\Src\DefaultMail;
 class HloginMailServer extends DefaultMail 
 { 
    /** @inheritDoc */
-   public function send() { /* ... */ }  
+   public function send() { /* ... */ return true; }  
 
    /** @inheritDoc */
    public function savePostInFile() { /* ... */ }
