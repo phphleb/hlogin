@@ -91,7 +91,9 @@ if (typeof uHLogin.functions === 'undefined') uHLogin.functions = {
     setTimeout( function() {th.deleteBlocks(blocks);}, 1500);
   },
   revertDesign: function() {
-    this.removeDesign(this.oldDesign);
+    if (uHLogin.functions.oldDesign && uHLogin.functions.design !== uHLogin.functions.oldDesign) {
+      this.removeDesign(this.oldDesign);
+    }
   },
   // Обрезка указанных символов с двух сторон строки
   trim: function (str, chars) {
