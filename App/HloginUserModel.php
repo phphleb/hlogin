@@ -232,11 +232,11 @@ final class HloginUserModel extends \Hleb\Scheme\App\Models\MainModel
         if ($pageLimit > 1000) {
             $pageLimit = 1000;
         }
-        try {
-            return DB::run("SELECT id, email, login, name, surname, phone, address, promocode, regtype, ip, subscription, regdate, confirm FROM " . self::getTableName() . " WHERE {$where} {$sort} LIMIT {$firstLimit}, {$pageLimit}", $list)
-                ->fetchAll();
-        } catch (\Throwable $e) {
+        if (DB::getPdoInstance()->getAttribute(\PDO::ATTR_DRIVER_NAME) === 'pgsql') {
             return DB::run("SELECT id, email, login, name, surname, phone, address, promocode, regtype, ip, subscription, regdate, confirm FROM " . self::getTableName() . " WHERE {$where} {$sort} OFFSET {$firstLimit} LIMIT {$pageLimit}", $list)
+                ->fetchAll();
+        } else {
+            return DB::run("SELECT id, email, login, name, surname, phone, address, promocode, regtype, ip, subscription, regdate, confirm FROM " . self::getTableName() . " WHERE {$where} {$sort} LIMIT {$firstLimit}, {$pageLimit}", $list)
                 ->fetchAll();
         }
     }
