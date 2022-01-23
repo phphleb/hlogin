@@ -264,17 +264,17 @@ final class HloginUserModel extends \Hleb\Scheme\App\Models\MainModel
         return [$where, $list];
     }
 
-    protected static function run($sql, $args = []): \PDO
+    protected static function run($sql, $args = []): \PDOStatement
     {
         if (empty(self::$pdo)) {
             self::$pdo = DB::getPdoInstance();
             self::$pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
             self::$pdo->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_ASSOC);
         }
-        self::$pdo = self::$pdo->prepare($sql);
-        self::$pdo->execute($args);
+        $stmt = self::$pdo->prepare($sql);
+        $stmt->execute($args);
 
-        return self::$pdo;
+        return $stmt;
     }
 
 }
