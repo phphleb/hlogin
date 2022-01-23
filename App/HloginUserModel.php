@@ -113,8 +113,31 @@ final class HloginUserModel extends \Hleb\Scheme\App\Models\MainModel
     }
 
     public static function createRegisterTable() {
-        return DB::run("
-    CREATE TABLE " . Main::getTableName() . " (
+        if (DB::getPdoInstance()->getAttribute(\PDO::ATTR_DRIVER_NAME) === 'pgsql') {
+            return DB::run("
+    CREATE TABLE IF NOT EXISTS  " . Main::getTableName() . " (
+        id SERIAL PRIMARY KEY,
+        regtype integer NOT NULL DEFAULT '0',
+        login varchar(100) DEFAULT NULL,
+        confirm integer NOT NULL DEFAULT '0',
+        email varchar(100) NOT NULL,
+        password varchar(255) NOT NULL,
+        name varchar(100) DEFAULT NULL,
+        surname varchar(100) DEFAULT NULL,
+        phone varchar(30) DEFAULT NULL,
+        address varchar(255) DEFAULT NULL,
+        promocode varchar(100) DEFAULT NULL,
+        ip varchar(50) DEFAULT NULL,
+        subscription integer NOT NULL DEFAULT '0',
+        period integer NOT NULL DEFAULT '0',
+        regdate timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        hash varchar(100) DEFAULT NULL,
+        sessionkey varchar(100) DEFAULT NULL,
+        UNIQUE (email)
+    )");
+        }
+            return DB::run("
+    CREATE TABLE IF NOT EXISTS  " . Main::getTableName() . " (
         id int(11) NOT NULL AUTO_INCREMENT,
         regtype int(2) NOT NULL DEFAULT '0',
         login varchar(100) DEFAULT NULL,
@@ -133,7 +156,7 @@ final class HloginUserModel extends \Hleb\Scheme\App\Models\MainModel
         hash varchar(100) DEFAULT NULL,
         sessionkey varchar(100) DEFAULT NULL,
         PRIMARY KEY (id),
-        UNIQUE KEY email_address (email)
+        UNIQUE (email)
     )");
     }
 
@@ -197,11 +220,11 @@ final class HloginUserModel extends \Hleb\Scheme\App\Models\MainModel
         $sort = [];
         [$where, $list] = self::getFilter($filters);
         $list['regtype'] = 0;
-        $where .= ' `regtype` >= :regtype ';
+        $where .= ' regtype >= :regtype ';
         foreach ($listSort as $key => $param) {
             if (in_array($key, ['id_sort', 'confirm_sort', 'regtype_sort', 'subscription_sort'])) {
                 $cell = explode('_', $key)[0];
-                $sort[] = (int) $param ? "`$cell` ASC" : "`$cell` DESC";
+                $sort[] = (int) $param ? "$cell ASC" : "$cell DESC";
             }
         }
         $sort = count($sort) ? 'ORDER BY ' . implode(', ', $sort) : '';
@@ -209,14 +232,19 @@ final class HloginUserModel extends \Hleb\Scheme\App\Models\MainModel
         if ($pageLimit > 1000) {
             $pageLimit = 1000;
         }
-        return DB::run("SELECT `id`, `email`, `login`, `name`, `surname`, `phone`, `address`, `promocode`, `regtype`, `ip`, `subscription`, `regdate`, `confirm` FROM " . self::getTableName() . " WHERE {$where} {$sort} LIMIT {$firstLimit}, {$pageLimit}", $list)
-            ->fetchAll();
+        try {
+            return DB::run("SELECT id, email, login, name, surname, phone, address, promocode, regtype, ip, subscription, regdate, confirm FROM " . self::getTableName() . " WHERE {$where} {$sort} LIMIT {$firstLimit}, {$pageLimit}", $list)
+                ->fetchAll();
+        } catch (\Throwable $e) {
+            return DB::run("SELECT id, email, login, name, surname, phone, address, promocode, regtype, ip, subscription, regdate, confirm FROM " . self::getTableName() . " WHERE {$where} {$sort} OFFSET {$firstLimit} LIMIT {$pageLimit}", $list)
+                ->fetchAll();
+        }
     }
 
     public static function getCount(array $filters = []) {
         [$where, $list] = self::getFilter($filters);
         $list['regtype'] = 0;
-        $where .= ' `regtype` >= :regtype ';
+        $where .= ' regtype >= :regtype ';
         return (int) DB::run('SELECT COUNT(1) as count FROM ' . self::getTableName() . ' WHERE ' . $where, $list)->fetchColumn();
     }
 
@@ -228,7 +256,7 @@ final class HloginUserModel extends \Hleb\Scheme\App\Models\MainModel
         foreach($filters as $key => $filter) {
             if(!in_array($filter['name'] ?? '', $listName) || !preg_match('/^[0-9a-zA-Z\_\ \.\@\-\:\;\&]{1,50}$/', $filter['value'] ?? '')) break;
             $selector = $listSelector[$filter['selector']];
-            $where .= " `{$filter['name']}` " . $selector . " :{$filter['name']}{$key} AND";
+            $where .= " {$filter['name']} " . $selector . " :{$filter['name']}{$key} AND";
             $list[$filter['name'] . $key ] = $filter['selector'] === '7' ? '%' . $filter['value'] . '%' : $filter['value'];
         }
         return [$where, $list];

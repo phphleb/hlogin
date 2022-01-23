@@ -90,7 +90,7 @@ final class HloginUserLogModel extends \Hleb\Scheme\App\Models\MainModel
         $moderatorid = null
     ) {
         return DB::run(
-                "INSERT INTO " . self::getTableName() . " (`parent`, `regtype`, `action`, `email`, `ip`, `name`, `surname`, `phone`, `address`, `description`, `moderatorid`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                "INSERT INTO " . self::getTableName() . " (parent, regtype, action, email, ip, name, surname, phone, address, description, moderatorid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                 [$parent, $regtype, $action, $email, $ip, $name, $surname, $phone, $address, $description, $moderatorid]
             )->rowCount() === 1;
     }
@@ -111,6 +111,25 @@ final class HloginUserLogModel extends \Hleb\Scheme\App\Models\MainModel
     }
 
     public static function createRegisterLogTable() {
+        if (DB::getPdoInstance()->getAttribute(\PDO::ATTR_DRIVER_NAME) === 'pgsql') {
+            return DB::run("
+    CREATE TABLE IF NOT EXISTS userlogs (
+        id BIGSERIAL PRIMARY KEY,
+        parent integer NOT NULL,
+        regtype integer NOT NULL,
+        action varchar(25) DEFAULT NULL,
+        email varchar(100) NOT NULL,
+        ip varchar(50) DEFAULT NULL,
+        name varchar(100) DEFAULT NULL,
+        surname varchar(100) DEFAULT NULL,
+        phone varchar(30) DEFAULT NULL,
+        address varchar(255) DEFAULT NULL,
+        logdate timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        description varchar(255) DEFAULT NULL,
+        moderatorid integer DEFAULT NULL
+    )");
+        }
+
         return DB::run("
      CREATE TABLE userlogs (
         id int(11) NOT NULL AUTO_INCREMENT,
@@ -128,6 +147,8 @@ final class HloginUserLogModel extends \Hleb\Scheme\App\Models\MainModel
         moderatorid int(11) DEFAULT NULL,
         PRIMARY KEY AUTO_INCREMENT (id)
     )");
+
     }
 
 }
+
