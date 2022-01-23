@@ -44,6 +44,8 @@ final class HloginUserModel extends \Hleb\Scheme\App\Models\MainModel
 
     protected static $name = 'users';
 
+    protected static ?\PDO $pdo = null;
+
     /**
      * Установленное в конфигурационном файле название таблицы с пользователями
      * @return string
@@ -55,7 +57,7 @@ final class HloginUserModel extends \Hleb\Scheme\App\Models\MainModel
     // Получение пользователя по E-mail
     public static function checkEmailAddressAndGetData(string $email) {
         try {
-            $stmt = DB::run("SELECT * FROM " . Main::getTableName() . " WHERE email=?", [$email]);
+            $stmt = self::run("SELECT * FROM " . Main::getTableName() . " WHERE email=?", [$email]);
             return !empty($stmt) && !empty($stmt->rowCount()) ? $stmt->fetch() : false;
         } catch (\Exception $exception) {
             error_log($exception->getMessage());
@@ -66,7 +68,7 @@ final class HloginUserModel extends \Hleb\Scheme\App\Models\MainModel
     // Удаление данных пользователя
     public static function deleteUser(string $email) {
         try {
-            $stmt = DB::run("DELETE FROM " . Main::getTableName() . " WHERE email=?", [$email]);
+            $stmt = self::run("DELETE FROM " . Main::getTableName() . " WHERE email=?", [$email]);
             return $stmt->fetch();
         } catch (\Exception $exception) {
             error_log($exception->getMessage());
@@ -92,7 +94,7 @@ final class HloginUserModel extends \Hleb\Scheme\App\Models\MainModel
         string $sessionkey = null
     ) {
         try {
-            $stmt = DB::run("INSERT INTO " . Main::getTableName() . " (email, password, period, regtype, login, name, surname, phone, address, promocode, ip, subscription, hash, sessionkey) VALUES
+            $stmt = self::run("INSERT INTO " . Main::getTableName() . " (email, password, period, regtype, login, name, surname, phone, address, promocode, ip, subscription, hash, sessionkey) VALUES
         (:email, :password, :period, :regtype, :login, :name, :surname, :phone, :address, :promocode, :ip, :subscription, :hash, :sessionkey)",
                 ['email' => $email, 'password' => $password, 'period' => $period, 'regtype' => $regtype, 'login' => $login, 'name' => $name, 'surname' => $surname, 'phone' => $phone, 'address' => $address, 'promocode' => $promocode, 'ip' => $ip, 'subscription' => $subscription, 'hash' => $hash, 'sessionkey' => $sessionkey]);
             return !empty($stmt->rowCount());
@@ -104,7 +106,7 @@ final class HloginUserModel extends \Hleb\Scheme\App\Models\MainModel
 
     public static function setPeriodTime($email) {
         try {
-            $stmt = DB::run("UPDATE " . Main::getTableName() . " SET period=? WHERE email=?", [time(), $email]);
+            $stmt = self::run("UPDATE " . Main::getTableName() . " SET period=? WHERE email=?", [time(), $email]);
             return $stmt->rowCount() === 1;
         } catch (\Exception $exception) {
             error_log($exception->getMessage());
@@ -114,7 +116,7 @@ final class HloginUserModel extends \Hleb\Scheme\App\Models\MainModel
 
     public static function createRegisterTable() {
         if (DB::getPdoInstance()->getAttribute(\PDO::ATTR_DRIVER_NAME) === 'pgsql') {
-            return DB::run("
+            return self::run("
     CREATE TABLE IF NOT EXISTS  " . Main::getTableName() . " (
         id SERIAL PRIMARY KEY,
         regtype integer NOT NULL DEFAULT '0',
@@ -136,7 +138,7 @@ final class HloginUserModel extends \Hleb\Scheme\App\Models\MainModel
         UNIQUE (email)
     )");
         }
-            return DB::run("
+            return self::run("
     CREATE TABLE IF NOT EXISTS  " . Main::getTableName() . " (
         id int(11) NOT NULL AUTO_INCREMENT,
         regtype int(2) NOT NULL DEFAULT '0',
@@ -162,7 +164,7 @@ final class HloginUserModel extends \Hleb\Scheme\App\Models\MainModel
 
     public static function createAdmin(string $email, string $passwordHash, string $hash, string $sessionKey) {
         $adminType = UserRegistration::REGISTERED_COMANDANTE;
-        return DB::run(
+        return self::run(
                 "INSERT INTO " . Main::getTableName() . " (id, regtype, confirm, name, email, password, hash, sessionkey) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", [1, $adminType, 1, 'Admin', $email, $passwordHash, $hash, $sessionKey])
                 ->rowCount() === 1;
     }
@@ -173,7 +175,7 @@ final class HloginUserModel extends \Hleb\Scheme\App\Models\MainModel
      */
     public static function checkTableUsers() {
         try {
-            $result = DB::run("SELECT 1 FROM " . self::getTableName() . " LIMIT 1", [])
+            $result = self::run("SELECT 1 FROM " . self::getTableName() . " LIMIT 1", [])
                 ->rowCount();
         } catch (\Exception $exception) {
             error_log($exception->getMessage());
@@ -186,10 +188,10 @@ final class HloginUserModel extends \Hleb\Scheme\App\Models\MainModel
         $returnCells = is_array($returnCells) ? $returnCells : [$returnCells];
         try {
             if (empty($returnCells)) {
-                return DB::run("SELECT * FROM " . self::getTableName() . " WHERE {$searchName}=? LIMIT 1", [$searchValue])
+                return self::run("SELECT * FROM " . self::getTableName() . " WHERE {$searchName}=? LIMIT 1", [$searchValue])
                     ->fetch();
             }
-            return DB::run("SELECT " . implode(", ", $returnCells) . " FROM " . self::getTableName() . " WHERE {$searchName}=? LIMIT 1", [$searchValue])
+            return self::run("SELECT " . implode(", ", $returnCells) . " FROM " . self::getTableName() . " WHERE {$searchName}=? LIMIT 1", [$searchValue])
                 ->fetch();
         } catch (\Exception $exception) {
             error_log(__CLASS__ . ":" . $exception->getLine() . "" . $exception->getMessage());
@@ -206,7 +208,7 @@ final class HloginUserModel extends \Hleb\Scheme\App\Models\MainModel
             $param[] = $key . "=:" . $key;
         }
         try {
-            return DB::run("UPDATE " . self::getTableName() . " SET " . implode(", ", $param) . " WHERE {$name}=:{$searchName}", $list)
+            return self::run("UPDATE " . self::getTableName() . " SET " . implode(", ", $param) . " WHERE {$name}=:{$searchName}", $list)
                     ->rowCount() == 1;
         } catch (\Exception $exception) {
             error_log(__CLASS__ . ":" . $exception->getLine() . " " . $exception->getMessage());
@@ -233,10 +235,10 @@ final class HloginUserModel extends \Hleb\Scheme\App\Models\MainModel
             $pageLimit = 1000;
         }
         if (DB::getPdoInstance()->getAttribute(\PDO::ATTR_DRIVER_NAME) === 'pgsql') {
-            return DB::run("SELECT id, email, login, name, surname, phone, address, promocode, regtype, ip, subscription, regdate, confirm FROM " . self::getTableName() . " WHERE {$where} {$sort} OFFSET {$firstLimit} LIMIT {$pageLimit}", $list)
+            return self::run("SELECT id, email, login, name, surname, phone, address, promocode, regtype, ip, subscription, regdate, confirm FROM " . self::getTableName() . " WHERE {$where} {$sort} OFFSET {$firstLimit} LIMIT {$pageLimit}", $list)
                 ->fetchAll();
         } else {
-            return DB::run("SELECT id, email, login, name, surname, phone, address, promocode, regtype, ip, subscription, regdate, confirm FROM " . self::getTableName() . " WHERE {$where} {$sort} LIMIT {$firstLimit}, {$pageLimit}", $list)
+            return self::run("SELECT id, email, login, name, surname, phone, address, promocode, regtype, ip, subscription, regdate, confirm FROM " . self::getTableName() . " WHERE {$where} {$sort} LIMIT {$firstLimit}, {$pageLimit}", $list)
                 ->fetchAll();
         }
     }
@@ -245,7 +247,7 @@ final class HloginUserModel extends \Hleb\Scheme\App\Models\MainModel
         [$where, $list] = self::getFilter($filters);
         $list['regtype'] = 0;
         $where .= ' regtype >= :regtype ';
-        return (int) DB::run('SELECT COUNT(1) as count FROM ' . self::getTableName() . ' WHERE ' . $where, $list)->fetchColumn();
+        return (int) self::run('SELECT COUNT(1) as count FROM ' . self::getTableName() . ' WHERE ' . $where, $list)->fetchColumn();
     }
 
     private static function getFilter(array $filters = []) {
@@ -260,6 +262,19 @@ final class HloginUserModel extends \Hleb\Scheme\App\Models\MainModel
             $list[$filter['name'] . $key ] = $filter['selector'] === '7' ? '%' . $filter['value'] . '%' : $filter['value'];
         }
         return [$where, $list];
+    }
+
+    protected static function run($sql, $args = []): \PDO
+    {
+        if (empty(self::$pdo)) {
+            self::$pdo = DB::getPdoInstance();
+            self::$pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+            self::$pdo->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_ASSOC);
+        }
+        self::$pdo = self::$pdo->prepare($sql);
+        self::$pdo->execute($args);
+
+        return self::$pdo;
     }
 
 }

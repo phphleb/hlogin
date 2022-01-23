@@ -33,6 +33,8 @@ final class HloginUserLogModel extends \Hleb\Scheme\App\Models\MainModel
 
     const MODIFICATION_ACTION = 'modification';
 
+    protected static ?\PDO $pdo = null;
+
     /**
      * Установленное в конфигурационном файле название таблицы с архивом пользователей
      * @return string
@@ -49,7 +51,7 @@ final class HloginUserLogModel extends \Hleb\Scheme\App\Models\MainModel
     public static function checkTableUsers(): bool
     {
         try {
-            $result = DB::run("SELECT 1 FROM " . self::getTableName() . " LIMIT 1")
+            $result = self::run("SELECT 1 FROM " . self::getTableName() . " LIMIT 1")
                     ->rowCount();
         } catch (\Exception $exception) {
             error_log($exception->getMessage());
@@ -65,7 +67,7 @@ final class HloginUserLogModel extends \Hleb\Scheme\App\Models\MainModel
      */
     public static function getUserLogsDataByEmail(string $email) {
         try {
-            $stmt = DB::run("SELECT * FROM " . self::getTableName() . " WHERE email=?", [$email]);
+            $stmt = self::run("SELECT * FROM " . self::getTableName() . " WHERE email=?", [$email]);
             return !empty($stmt) && !empty($stmt->rowCount()) ? $stmt->fetch(PDO::FETCH_ASSOC) : false;
         } catch (\Exception $exception) {
             error_log($exception->getMessage());
@@ -89,7 +91,7 @@ final class HloginUserLogModel extends \Hleb\Scheme\App\Models\MainModel
         $description = null,
         $moderatorid = null
     ) {
-        return DB::run(
+        return DB::self(
                 "INSERT INTO " . self::getTableName() . " (parent, regtype, action, email, ip, name, surname, phone, address, description, moderatorid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                 [$parent, $regtype, $action, $email, $ip, $name, $surname, $phone, $address, $description, $moderatorid]
             )->rowCount() === 1;
@@ -102,7 +104,7 @@ final class HloginUserLogModel extends \Hleb\Scheme\App\Models\MainModel
      */
     public static function getUserLogsDataById(string $id) {
         try {
-            $stmt = DB::run("SELECT * FROM " . self::getTableName() . " WHERE parent=?", [$id]);
+            $stmt = self::run("SELECT * FROM " . self::getTableName() . " WHERE parent=?", [$id]);
             return !empty($stmt) && !empty($stmt->rowCount()) ? $stmt->fetch(PDO::FETCH_ASSOC) : false;
         } catch (\Exception $exception) {
             error_log($exception->getMessage());
@@ -112,7 +114,7 @@ final class HloginUserLogModel extends \Hleb\Scheme\App\Models\MainModel
 
     public static function createRegisterLogTable() {
         if (DB::getPdoInstance()->getAttribute(\PDO::ATTR_DRIVER_NAME) === 'pgsql') {
-            return DB::run("
+            return self::run("
     CREATE TABLE IF NOT EXISTS userlogs (
         id BIGSERIAL PRIMARY KEY,
         parent integer NOT NULL,
@@ -130,7 +132,7 @@ final class HloginUserLogModel extends \Hleb\Scheme\App\Models\MainModel
     )");
         }
 
-        return DB::run("
+        return self::run("
      CREATE TABLE userlogs (
         id int(11) NOT NULL AUTO_INCREMENT,
         parent int(11) NOT NULL,
@@ -148,6 +150,19 @@ final class HloginUserLogModel extends \Hleb\Scheme\App\Models\MainModel
         PRIMARY KEY AUTO_INCREMENT (id)
     )");
 
+    }
+
+    protected static function run($sql, $args = []): \PDO
+    {
+        if (empty(self::$pdo)) {
+            self::$pdo = DB::getPdoInstance();
+            self::$pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+            self::$pdo->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_ASSOC);
+        }
+        self::$pdo = self::$pdo->prepare($sql);
+        self::$pdo->execute($args);
+
+        return self::$pdo;
     }
 
 }
