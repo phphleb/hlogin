@@ -91,7 +91,7 @@ final class HloginUserLogModel extends \Hleb\Scheme\App\Models\MainModel
         $description = null,
         $moderatorid = null
     ) {
-        return DB::self(
+        return self::run(
                 "INSERT INTO " . self::getTableName() . " (parent, regtype, action, email, ip, name, surname, phone, address, description, moderatorid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                 [$parent, $regtype, $action, $email, $ip, $name, $surname, $phone, $address, $description, $moderatorid]
             )->rowCount() === 1;
