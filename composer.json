@@ -23,7 +23,7 @@
         "ext-readline": "*",
         "ext-json": "*",
         "ext-pdo": "*",
-        "phphleb/framework": ">=1.6.1",
+        "phphleb/framework": ">=1.6.3",
         "phphleb/debugpan": ">=1.3",
         "phphleb/updater": "*",
         "phphleb/adminpan": "dev-master",
