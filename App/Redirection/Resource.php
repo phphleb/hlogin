@@ -20,12 +20,15 @@ class Resource
         $this->type = $type = Request::get('type');
         $this->name = Request::get('name');
         $this->extension = Request::get('ext');
-        $directory = HLEB_VENDOR_DIRECTORY . DIRECTORY_SEPARATOR . "phphleb" . DIRECTORY_SEPARATOR . "hlogin" . DIRECTORY_SEPARATOR . "resource" . DIRECTORY_SEPARATOR;
-        $this->path = $directory . $this->design . DIRECTORY_SEPARATOR . $this->type . DIRECTORY_SEPARATOR . $this->name . (empty($this->extension) ? DIRECTORY_SEPARATOR : "." . $this->extension);
 
-        $path = realpath($this->path);
+        if (defined('HLOGIN_LOCALIZE_FRONTEND_DIR') && $this->extension === 'js' &&  strpos($this->name, 'hlogin-lang-') === 0 && file_exists($this->localizePath($directory = HLEB_GLOBAL_DIRECTORY . DIRECTORY_SEPARATOR .  trim(HLOGIN_LOCALIZE_FRONTEND_DIR, '\\/ ')))) {
+            // Found file in another directory.
+        } else {
+            $directory = HLEB_VENDOR_DIRECTORY . DIRECTORY_SEPARATOR . "phphleb" . DIRECTORY_SEPARATOR . "hlogin" . DIRECTORY_SEPARATOR . "resource" . DIRECTORY_SEPARATOR . $this->design . DIRECTORY_SEPARATOR . $this->type;
+        }
+        $this->path = realpath($this->localizePath($directory));
 
-        if (!$path || strpos($path, realpath($directory)) !== 0) {
+        if (!$this->path || strpos($this->path, realpath($directory)) !== 0) {
             return $this->page404();
         }
         $expires = time() + 60 * 60 * 24 * 30 * 6;
@@ -81,6 +84,10 @@ class Resource
         header("Content-Type: $mimeType");
         readfile($this->path);
         exit();
+    }
+
+    protected function  localizePath(string $directory) {
+        return $directory . DIRECTORY_SEPARATOR . $this->name . (empty($this->extension) ? DIRECTORY_SEPARATOR : "." . $this->extension);
     }
 
 }

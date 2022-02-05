@@ -54,7 +54,11 @@ final class Translate
         if(isset(self::$langData[$lang])) {
             return self::$langData;
         }
-        require_once __DIR__ . '/Langs/' . $lang . '.php';
+        if (defined('HLOGIN_LOCALIZE_BACKEND_DIR') && file_exists($localizePath = HLEB_GLOBAL_DIRECTORY . DIRECTORY_SEPARATOR . trim(HLOGIN_LOCALIZE_BACKEND_DIR, '\\/ ') . DIRECTORY_SEPARATOR . $lang . '.php')) {
+            require_once $localizePath;
+        } else {
+            require_once __DIR__ . DIRECTORY_SEPARATOR . 'Langs' . DIRECTORY_SEPARATOR . $lang . '.php';
+        }
         self::$langData[$lang] = $data;
         return self::$langData;
     }

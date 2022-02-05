@@ -225,6 +225,30 @@ Your own design is available when you select the blank type in the admin panel. 
 }
 ```
 
+### Localization
+
+To include files with your own translations, set two constants in the framework config. These files will replace the default ones.
+
+```php
+/*
+|-----------------------------------------------------------------------------
+| Sets a custom path for a folder with frontend localization.
+|
+| Устанавливает собственный путь для папки с фронтенд локализацией.
+|
+*/
+define('HLOGIN_LOCALIZE_FRONTEND_DIR', '/vendor/phphleb/hlogin/resource/all/js/');
+
+/*
+|-----------------------------------------------------------------------------
+| Sets a custom path for a folder with backend localization.
+|
+| Устанавливает собственный путь для папки с бэкенд-локализацией.
+|
+*/
+define('HLOGIN_LOCALIZE_BACKEND_DIR', '/vendor/phphleb/hlogin/App/Langs/');
+```
+
 ### Admin area
 
 When creating your own sub pages in the admin panel surround their routes with access restrictions as shown below:

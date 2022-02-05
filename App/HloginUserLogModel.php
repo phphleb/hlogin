@@ -155,7 +155,7 @@ final class HloginUserLogModel extends \Hleb\Scheme\App\Models\MainModel
     protected static function run($sql, $args = []): \PDOStatement
     {
         if (empty(self::$pdo)) {
-            self::$pdo = DB::getPdoInstance();
+            self::$pdo = DB::getNewPdoInstance();
             self::$pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
             self::$pdo->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_ASSOC);
         }
