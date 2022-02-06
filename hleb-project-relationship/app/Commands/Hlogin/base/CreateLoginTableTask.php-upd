@@ -29,7 +29,7 @@ use Phphleb\Hlogin\App\OriginData;
 
 class CreateLoginTableTask extends \Hleb\Scheme\App\Commands\MainTask
 {
-    // php console hlogin/create-Login-table-task
+    // php console hlogin/create-login-table-task
 
     const DESCRIPTION = "Create tables for login";
 
