@@ -1,6 +1,6 @@
 console.log(
     '==================' + "\n" +
-    'Phphleb/Hlogin 1.0' + "\n" +
+    'Phphleb/Hlogin 1.4' + "\n" +
     '==================' + "\n"
 );
 if (typeof uHLogin === 'undefined') uHLogin = {};
@@ -10,7 +10,7 @@ if (typeof uHLogin.functions === 'undefined') uHLogin.functions = {
   pageDesign: null,
   oldDesign: null,
   design: 'base',
-  languages: ['ru', 'en', 'de', 'es', 'zh'],
+  languages: [],
   loadedJs: [],
   cssFilePrefix: 'hlogin-main-css-file-',
   registrationData: null,
@@ -49,6 +49,7 @@ if (typeof uHLogin.functions === 'undefined') uHLogin.functions = {
     if (typeof hlogin_init_script === 'function') {
       this.registrationData = hlogin_init_script();
       this.version = this.registrationData.version;
+      this.languages = this.registrationData.languages.split(',');
       this.registrationData.config = this.configData = JSON.parse(this.registrationData.config);
       this.deleteBlocks(uHLogin.functions.$$('.hlogin_init_script'));
       if(this.registrationData.lang) {

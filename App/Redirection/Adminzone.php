@@ -12,7 +12,7 @@ use Phphleb\Hlogin\App\Translate;
 class  Adminzone
 {
     public static function supportedLanguages() {
-        return OriginData::LANGUAGES;
+        return OriginData::getLanguages();
     }
 
     function get($type) {

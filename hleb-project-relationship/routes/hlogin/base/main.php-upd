@@ -35,7 +35,7 @@ Route::prefix('/{lang}/login/')->before('Hlogin\Registrar', [RegType::UNDEFINED_
     Route::get("/resource/{version}/{des}/{type}/{ext}/{name}/")->controller("Hlogin\AuthController@resource");
     Route::protect()->type(['post','get'])->get("/data/{action}/{value?}/")->controller("Hlogin\AuthController@data");
     Route::get("/profile/{value?}/")->controller("Hlogin\AuthController@profile");
-Route::endGroup()->where(["lang" => implode("|", RegData::LANGUAGES)]);
+Route::endGroup()->where(["lang" => '[a-z0-9\-]{1,7}']);
 
 Route::before('Hlogin\Registrar', [RegType::PRIMARY_USER, '>=', RegData::HIDE_PANELS])->getGroup();
     Route::get("/{lang}/login/{action}/{value?}/")->controller("Hlogin\AuthController@index");
@@ -51,7 +51,7 @@ Route::prefix('/{lang}/adminzone/')->before('Hlogin\Registrar', [RegType::REGIST
        Route::get("/registration/contact/")->adminPanController('Hlogin\AdminzoneController@index', ["param_title", 'feedback'], ["feedback"]);
        Route::get("/registration/profile/")->adminPanController('Hlogin\AdminzoneController@index', "reg_profile", ["profile"]);
     Route::endType();
-Route::endGroup()->where(["lang" => implode("|", RegData::LANGUAGES)]);
+Route::endGroup()->where(["lang" => '[a-z0-9\-]{1,7}']);
 
 Route::before('Hlogin\Registrar', [RegType::REGISTERED_COMANDANTE, '>=', RegData::HIDE_BUTTONS])->getGroup();
     Route::get("/{lang}/login/gui/main/preview/", view('hlogin/gui/')); // Preview of standard panels

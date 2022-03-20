@@ -16,7 +16,7 @@ class OriginData
 
     const MESSAGE_PATTERN = '/^[^<>]{5,10000}$/';
 
-    const LANGUAGES = ['ru', 'en', 'de', 'es', 'zh'];
+    const LANGUAGES = ['ru', 'en', 'de', 'es', 'zh']; // For compatibility with older versions
 
     const GLOBAL_PATTERNS = ['base', 'dark', 'light', 'special', 'sport', 'game', 'blank'];
 
@@ -44,9 +44,11 @@ class OriginData
 
     private static $design = null;
 
-    private static $showPanels = true;
+    private static bool $showPanels = true;
 
     private static $localLang = null;
+
+    private static array $languages = [];
 
     /**
      * Sets the language type for the current script.
@@ -56,7 +58,7 @@ class OriginData
      * @param string $lang
      */
     public static function setLocalLang(string $lang) {
-        if(in_array($lang, self::LANGUAGES)) {
+        if(in_array($lang, self::getLanguages())) {
             self::$localLang = $lang;
         }
     }
@@ -124,6 +126,28 @@ class OriginData
     public static function initRegistrationPanels($type = self::SHOW_PANELS) {
         $panels = hleb_insert_template('hlogin/templates/add', ['type' => $type], true);
         return is_string($panels) ? $panels : '';
+    }
+
+    public static function getLanguages(): array {
+        if (empty(self::$languages)) {
+            self::$languages = self::searchFileNamesInDirectory(__DIR__ . DIRECTORY_SEPARATOR . 'Langs');
+            if (defined('HLOGIN_LOCALIZE_BACKEND_DIR')) {
+                self::$languages = array_unique(array_merge(self::$languages, self::searchFileNamesInDirectory( HLEB_GLOBAL_DIRECTORY . DIRECTORY_SEPARATOR . trim(HLOGIN_LOCALIZE_BACKEND_DIR, '\\/ '))));
+            }
+        }
+        return self::$languages;
+    }
+
+    private static function searchFileNamesInDirectory(string $directory) {
+        $langList = [];
+        if (is_dir($directory)) {
+            foreach (scandir($directory) as $file) {
+                if ($file !== '.' && $file !== '..') {
+                    $langList[] = explode('.', $file)[0];
+                }
+            }
+        }
+        return $langList;
     }
 }
 

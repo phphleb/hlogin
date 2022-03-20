@@ -40,6 +40,7 @@ final class AddContent
         $endingUrl = HLEB_PROJECT_ENDING_URL ? 1 : 0;
         $jsFunctions = "/en/login/resource/$version/all/js/js/hlogin-functions" . ($endingUrl ? "/" : "");
         $design = OriginData::getDesign();
+        $languages = implode(',', OriginData::getLanguages());
 
         // Captcha
         $captcha = Main::getConfigUCaptchaData();
@@ -69,12 +70,13 @@ final class AddContent
 
         return "<script class=\"{$name}\">
       if (typeof {$name} !== 'function'){ 
-          function {$name}() { 
+          function {$name}() {
               var {$name} = {
               csrfToken: '{$csrf}',
               userRegister: {$reg},
               version: '{$version}',
               lang: '{$lang}',
+              languages: '{$languages}',
               endingUrl: {$endingUrl},
               captchaActive: {$captchaActive},
               isContact: {$sendMessageBlock},

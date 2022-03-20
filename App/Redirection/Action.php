@@ -27,7 +27,7 @@ class Action
         $action = Request::get('action');
         $lang = Request::get('lang');
 
-        if(!in_array($lang, OriginData::LANGUAGES)) {
+        if(!in_array($lang, OriginData::getLanguages())) {
             return hleb_view('404');
         }
         if ($action === 'exit') {
@@ -120,7 +120,7 @@ class Action
             $urlLang = \Phphleb\Hlogin\App\Main::getDefaultLang() ?? 'en';
             $urlParts = explode('/', Request::getMainClearUrl());
             if (count($urlParts)) {
-                $urlLangSearch = in_array(strtolower($urlParts[0]), \Phphleb\Hlogin\App\OriginData::LANGUAGES);
+                $urlLangSearch = in_array(strtolower($urlParts[0]), \Phphleb\Hlogin\App\OriginData::getLanguages());
                 if ($urlLangSearch) {
                     $urlLang = $urlParts[0];
                 }

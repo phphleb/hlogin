@@ -30,7 +30,7 @@ if(!empty(Request::getPost())) {
             if ($key === 'design' && in_array($value, OriginData::GLOBAL_PATTERNS)) {
                 $data['hlogin']['reg_data']['design'] = $value;
             }
-            if ($key === 'lang' && in_array($value, OriginData::LANGUAGES)) {
+            if ($key === 'lang' && in_array($value, OriginData::getLanguages())) {
                 $data['hlogin']['reg_data']['lang'] = $value;
             }
             if ($key === 'cell_reg_types') {
@@ -89,7 +89,7 @@ show_message_log();
          <label  class="hlogin-a7e-str">
              <select class="hlogin-a7e-text" name="lang">
                  <?php
-                 foreach(OriginData::LANGUAGES as $lang){
+                 foreach(OriginData::getLanguages() as $lang){
                      print "<option value='$lang' " . ($data['hlogin']['reg_data']['lang'] == $lang ? "selected" : "") . ">$lang</option>";
                  }
                  ?>

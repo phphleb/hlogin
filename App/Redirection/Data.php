@@ -46,7 +46,7 @@ class Data extends OriginData
 
     public function get() {
         $this->lang = Request::get('lang');
-        if(!in_array($this->lang, OriginData::LANGUAGES)) {
+        if(!in_array($this->lang, OriginData::getLanguages())) {
             http_response_code (404);
             return null;
         }
