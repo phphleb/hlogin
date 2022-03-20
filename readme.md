@@ -251,6 +251,8 @@ define('HLOGIN_LOCALIZE_FRONTEND_DIR', '/vendor/phphleb/hlogin/resource/all/js/'
 define('HLOGIN_LOCALIZE_BACKEND_DIR', '/vendor/phphleb/hlogin/App/Langs/');
 ```
 
+You can add your own localization by naming the files accordingly.
+
 ### Admin area
 
 When creating your own sub pages in the admin panel surround their routes with access restrictions as shown below:
