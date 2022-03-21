@@ -16,6 +16,7 @@ class OriginData
 
     const MESSAGE_PATTERN = '/^[^<>]{5,10000}$/';
 
+    /** @internal  */
     const LANGUAGES = ['ru', 'en', 'de', 'es', 'zh']; // For compatibility with older versions
 
     const GLOBAL_PATTERNS = ['base', 'dark', 'light', 'special', 'sport', 'game', 'blank'];
@@ -128,9 +129,16 @@ class OriginData
         return is_string($panels) ? $panels : '';
     }
 
+    /**
+     * Returns the result of a search for all used language abbreviations.
+     *
+     * Возвращает результат поиска всех тспользуемых языковых сокращений.
+     *
+     * @return array
+     */
     public static function getLanguages(): array {
         if (empty(self::$languages)) {
-            self::$languages = self::searchFileNamesInDirectory(__DIR__ . DIRECTORY_SEPARATOR . 'Langs');
+            self::$languages = self::LANGUAGES;
             if (defined('HLOGIN_LOCALIZE_BACKEND_DIR')) {
                 self::$languages = array_unique(array_merge(self::$languages, self::searchFileNamesInDirectory( HLEB_GLOBAL_DIRECTORY . DIRECTORY_SEPARATOR . trim(HLOGIN_LOCALIZE_BACKEND_DIR, '\\/ '))));
             }
