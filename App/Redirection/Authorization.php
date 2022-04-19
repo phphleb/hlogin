@@ -31,7 +31,7 @@ class Authorization
             );
         }
         $_SESSION = [];
-        setcookie('HLOGIN_VERIFICATION_INDEX', null, 0, '/');
+        setcookie('HLOGIN_VERIFICATION_INDEX', '', 0, '/');
         session_destroy();
 
         if($_SERVER['REQUEST_METHOD'] === 'GET') {

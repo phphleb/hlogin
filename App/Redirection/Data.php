@@ -239,7 +239,7 @@ class Data extends OriginData
             if (Request::getCookie($cookieName)) {
                 return $this->ajaxFormat(self::USER_PASSWORD_TYPE, null, Translate::get('again_message'), [self::OTHER]);
             }
-            setcookie($cookieName, 1, time() + 50, '/');
+            setcookie($cookieName, '1', time() + 50, '/');
             // Отправка письма
             $senderResult = $this->sendMailPasswordRecovery($email, Translate::get('recovery_from') . ' ' . Request::getHost(), $row['hash'], $row['id'], $row['email']);
             if (!$senderResult) {
@@ -359,7 +359,7 @@ class Data extends OriginData
         $result = HloginUserModel::setCells('email', $regData['email'], $cells);
 
         // Сброс куки с запомненной сессией входа
-        setcookie('HLOGIN_VERIFICATION_INDEX', null, 0, '/');
+        setcookie('HLOGIN_VERIFICATION_INDEX', '', 0, '/');
 
         if (!$result) {
             return $this->ajaxFormat(self::NEW_PASSWORD_TYPE, null, Translate::get('total_error'), [self::OTHER]);
