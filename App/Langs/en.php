@@ -85,6 +85,7 @@ $data = [
     'email_confirm_header' => 'Confirmation E-mail',
     'contact_message' => 'Send message',
     'save_post_to_log' => 'Save emails to log',
+    'not_send_by_email' => 'Do not send to E-mail',
     'save_changes' => 'Save changes',
     'feedback' => 'Feedback',
     'all' => 'All',

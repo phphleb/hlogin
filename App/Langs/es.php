@@ -86,6 +86,7 @@ $data = [
     'email_confirm_header' => 'Confirmación del correo electrónico',
     'contact_message' => 'Enviar el correo',
     'save_post_to_log' => 'Guardar correos electrónicos en el registro',
+    'not_send_by_email' => 'No enviar por correo electrónico',
     'save_changes' => 'Guardar cambios',
     'feedback' => 'Comentarios',
     'all' => 'Total',

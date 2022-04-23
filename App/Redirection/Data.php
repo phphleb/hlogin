@@ -744,7 +744,7 @@ class Data extends OriginData
             'save_log' => $this->getEmailSaveToLog(),
             'message' => $textStandard . "\n" . $this->getTextUnderMessage(),
         ];
-        $post = new SendEmail($params, false);
+        $post = new SendEmail($params, $this->getNotSendByEmail());
         if (count($post->getErrors())) {
             return false;
         }
@@ -779,7 +779,7 @@ class Data extends OriginData
             'save_log' => $this->getEmailSaveToLog(),
             'message' => $textStandard . "\n" . $this->getTextUnderMessage(),
         ];
-        $post = new SendEmail($params, false);
+        $post = new SendEmail($params, $this->getNotSendByEmail());
         if (count($post->getErrors())) {
             return false;
         }
@@ -807,7 +807,7 @@ class Data extends OriginData
             'save_log' => $this->getEmailSaveToLog(),
             'message' => "Message from: " . $senderName . " [" . $senderMail . "]<br>" . "\n" .  Translate::getMailData($design, 'feeedback_message', ['message' => $message]),
         ];
-        $post = new SendEmail($params, false);
+        $post = new SendEmail($params, $this->getNotSendByEmail());
         if (count($post->getErrors())) {
             return false;
         }
@@ -926,6 +926,11 @@ class Data extends OriginData
     private function getEmailSaveToLog() {
         $config = Main::getConfigMuller();
         return isset($config['data']['save_log']) && $config['data']['save_log'] === 'on';
+    }
+
+    private function getNotSendByEmail() {
+        $config = Main::getConfigMuller();
+        return isset($config['data']['not_send_by_email']) && $config['data']['not_send_by_email'] === 'on';
     }
 
     /**

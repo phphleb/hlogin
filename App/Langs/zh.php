@@ -86,6 +86,7 @@ $data = [
     'email_confirm_header' => '确认电子邮箱',
     'contact_message' => '发送消息',
     'save_post_to_log' => '把邮件保存在日志文件',
+    'not_send_by_email' => '不要通过电子邮件发送',
     'save_changes' => '保存修改',
     'feedback' => '反馈',
     'all' => '总共',

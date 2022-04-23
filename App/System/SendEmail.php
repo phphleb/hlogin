@@ -11,6 +11,7 @@ class SendEmail
 {
     private DefaultMail $sender;
     private array $errors = [];
+    private bool $onlyToFile = false;
 
     /**
      * Инициализация конструктора.
@@ -19,6 +20,7 @@ class SendEmail
      */
     public function __construct(array $params, bool $onlyToFile = false) {
         try {
+            $this->onlyToFile = $onlyToFile;
             if (empty($params['to']) || empty($params['name']) || empty($params['from'])) {
                 $this->errors[] = "Empty parameter.";
                 return;
@@ -33,10 +35,10 @@ class SendEmail
             $this->sender->setMessage($params['design'], $params['message']);
             $this->sender->setDebugPath(HLEB_GLOBAL_DIRECTORY . DIRECTORY_SEPARATOR . 'storage/logs');
             $this->sender->setDebug(true);
-            if($onlyToFile || $params['save_log']) {
+            if($params['save_log']) {
                 $this->sender->saveFileIntoDirectory(HLEB_GLOBAL_DIRECTORY . DIRECTORY_SEPARATOR . 'storage/logs');
             }
-            if($onlyToFile) {
+            if($this->onlyToFile && $params['save_log']) {
                 $this->sender->saveOnlyToFile(true);
             }
         } catch (\Exception $exception) {
@@ -47,7 +49,7 @@ class SendEmail
     public function send() {
         if (empty($this->errors)) {
             $result = $this->sender->send();
-            if (!$result) {
+            if (!$result && !$this->onlyToFile) {
                 $this->errors[] = "Not sended.";
             }
         }

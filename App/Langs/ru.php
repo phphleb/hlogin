@@ -86,6 +86,7 @@ $data = [
     'email_confirm_header' => 'Подтверждение E-mail',
     'contact_message' => 'Отправить сообщение',
     'save_post_to_log' => 'Сохранять письма в лог',
+    'not_send_by_email' => 'Не отправлять на E-mail',
     'save_changes' => 'Сохранить изменения',
     'feedback' => 'Обратная связь',
     'all' => 'Всего',

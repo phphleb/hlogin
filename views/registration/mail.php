@@ -26,6 +26,7 @@ if(!empty(Request::getPost())) {
         $data['muller']['data']['design'] = isset($request['design']) && in_array($request['design'], $types)  ? $request['design'] : "";
         $data['muller']['data']['mail_from'] = isset($request['mail_from']) && strpos($request['mail_from'], '@') !== false ? $request['mail_from'] : $baseEmail;
         $data['muller']['data']['save_log'] = isset($request['save_log']) && $request['save_log'] === 'on'  ? 'on' : 'off';
+        $data['muller']['data']['not_send_by_email'] = isset($request['not_send_by_email']) && $request['not_send_by_email'] === 'on'  ? 'on' : 'off';
         $data['muller']['data']['regards_block'] = isset($request['regards_block']) ? $request['regards_block'] : "";
         $data['muller']['data']['duplicate-en-text'] = isset($request['duplicate-en-text']) && $request['duplicate-en-text'] === 'on'  ? 'on' : 'off';
 
@@ -51,6 +52,7 @@ show_message_log();
 <p>
     <label  class="hlogin-a7e-str"><input name="mail_from" class="hlogin_mail_text"  type="text" value="<?= $email; ?>"></label>
 </p>
+    <label  class="hlogin-a7e-str"><input name="save_log"  type="checkbox" value="on" <?= hl_checkbox_on('not_send_by_email', $regData); ?> > <?php echo Translate::get('not_send_by_email'); ?></label><br>
     <label  class="hlogin-a7e-str"><input name="save_log"  type="checkbox" value="on" <?= hl_checkbox_on('save_log', $regData); ?> > <?php echo Translate::get('save_post_to_log'); ?></label><br>
     <label  class="hlogin-a7e-str"><input name="duplicate-en-text"  type="checkbox" value="on" <?= hl_checkbox_on('duplicate-en-text', $regData); ?> > <?php echo Translate::get('duplicate-english'); ?></label>
     <br>
