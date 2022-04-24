@@ -278,21 +278,16 @@ By default messages are additionally logged to the `/storage/logs/` folder with 
 
 ### Individual mail server
 
-To replace the standard sending, you need to create the _App\Optional\HloginMailServer_ class based on _DefaultMail_.
+To replace the standard sending, you need to create the _App\Optional\HloginMailServer_ class based on _DefaultMail_ оr _StandardMail_.
 ```php
 <?php
 // File /app/Optional/HloginMailServer.php
 namespace App\Optional;
-use Phphleb\Muller\Src\DefaultMail;
-class HloginMailServer extends DefaultMail 
+use Phphleb\Muller\StandardMail;
+class HloginMailServer extends StandardMail 
 { 
    /** @inheritDoc */
-   public function send() { /* ... */ return true; }  
-
-   /** @inheritDoc */
-   public function savePostInFile() { /* ... */ }
-     
-   public function setParameters($parameters = '') { }
+   public function send() { /* ... */ return true; }     
 }
 ```
 
