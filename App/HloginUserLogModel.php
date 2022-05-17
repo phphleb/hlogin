@@ -148,7 +148,7 @@ final class HloginUserLogModel extends \Hleb\Scheme\App\Models\MainModel
         description varchar(255) DEFAULT NULL,
         moderatorid int(11) DEFAULT NULL,
         PRIMARY KEY AUTO_INCREMENT (id)
-    )");
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci");
 
     }
 

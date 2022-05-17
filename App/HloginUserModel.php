@@ -159,7 +159,7 @@ final class HloginUserModel extends \Hleb\Scheme\App\Models\MainModel
         sessionkey varchar(100) DEFAULT NULL,
         PRIMARY KEY (id),
         UNIQUE (email)
-    )");
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci");
     }
 
     public static function createAdmin(string $email, string $passwordHash, string $hash, string $sessionKey) {

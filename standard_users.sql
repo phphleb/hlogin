@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS users (
     sessionkey varchar(100) DEFAULT NULL,
     PRIMARY KEY AUTO_INCREMENT (id),
     UNIQUE KEY email_address (email)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE IF NOT EXISTS userlogs (
     id int(11) NOT NULL AUTO_INCREMENT,
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS userlogs (
     description varchar(255) DEFAULT NULL,
     moderatorid int(11) DEFAULT NULL,
     PRIMARY KEY AUTO_INCREMENT (id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
 /* PostgreSQL */
