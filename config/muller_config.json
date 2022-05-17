@@ -5,6 +5,7 @@
       "mail_from": "",
       "design": "",
       "save_log": "on",
+      "not_send_by_email": "off",
       "regards_block": "",
       "duplicate-en-text": ""
     }
