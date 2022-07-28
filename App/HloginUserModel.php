@@ -115,7 +115,7 @@ final class HloginUserModel extends \Hleb\Scheme\App\Models\MainModel
     }
 
     public static function createRegisterTable() {
-        if (DB::getPdoInstance()->getAttribute(\PDO::ATTR_DRIVER_NAME) === 'pgsql') {
+        if (self::connection()->getAttribute(\PDO::ATTR_DRIVER_NAME) === 'pgsql') {
             return self::run("
     CREATE TABLE IF NOT EXISTS  " . Main::getTableName() . " (
         id SERIAL PRIMARY KEY,
@@ -138,7 +138,7 @@ final class HloginUserModel extends \Hleb\Scheme\App\Models\MainModel
         UNIQUE (email)
     )");
         }
-            return self::run("
+        return self::run("
     CREATE TABLE IF NOT EXISTS  " . Main::getTableName() . " (
         id int(11) NOT NULL AUTO_INCREMENT,
         regtype int(2) NOT NULL DEFAULT '0',
@@ -234,7 +234,7 @@ final class HloginUserModel extends \Hleb\Scheme\App\Models\MainModel
         if ($pageLimit > 1000) {
             $pageLimit = 1000;
         }
-        if (DB::getPdoInstance()->getAttribute(\PDO::ATTR_DRIVER_NAME) === 'pgsql') {
+        if (self::connection()->getAttribute(\PDO::ATTR_DRIVER_NAME) === 'pgsql') {
             return self::run("SELECT id, email, login, name, surname, phone, address, promocode, regtype, ip, subscription, regdate, confirm FROM " . self::getTableName() . " WHERE {$where} {$sort} OFFSET {$firstLimit} LIMIT {$pageLimit}", $list)
                 ->fetchAll();
         } else {
@@ -264,17 +264,30 @@ final class HloginUserModel extends \Hleb\Scheme\App\Models\MainModel
         return [$where, $list];
     }
 
+    public static function getConnectionData()
+    {
+        return [
+            'driver' => self::connection()->getAttribute(\PDO::ATTR_DRIVER_NAME) ?? 'undefined',
+            'connection' => defined('HLEB_TYPE_DB') ? HLEB_TYPE_DB : 'undefined'
+        ];
+    }
+
     protected static function run($sql, $args = []): \PDOStatement
+    {
+        $stmt = self::connection()->prepare($sql);
+        $stmt->execute($args);
+
+        return $stmt;
+    }
+
+    protected static function connection(): \PDO
     {
         if (empty(self::$pdo)) {
             self::$pdo = DB::getNewPdoInstance();
             self::$pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
             self::$pdo->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_ASSOC);
         }
-        $stmt = self::$pdo->prepare($sql);
-        $stmt->execute($args);
-
-        return $stmt;
+        return self::$pdo;
     }
 
 }

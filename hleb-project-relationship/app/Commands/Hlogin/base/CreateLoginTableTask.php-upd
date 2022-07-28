@@ -34,6 +34,15 @@ class CreateLoginTableTask extends \Hleb\Scheme\App\Commands\MainTask
     const DESCRIPTION = "Create tables for login";
 
     protected function execute() {
+        try {
+            $data = '';
+            foreach (HloginUserModel::getConnectionData() as $key => $value) {
+                $data .= '| '  . strtoupper($key) . ': ' . $value . PHP_EOL;
+            }
+            echo $data . PHP_EOL;
+        } catch (\Exception $e) {
+           die($e->getMessage() .  PHP_EOL);
+        }
         $email = $this->action("Enter Administrator E-mail", "Wrong format [E-mail]" .  PHP_EOL, OriginData::EMAIL_PATTERN);
         $password = $this->action("Enter Administrator password", "Wrong format [password]"  . PHP_EOL, OriginData::PASSWORD_PATTERN);
         try {

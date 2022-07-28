@@ -52,7 +52,7 @@ final class HloginUserLogModel extends \Hleb\Scheme\App\Models\MainModel
     {
         try {
             $result = self::run("SELECT 1 FROM " . self::getTableName() . " LIMIT 1")
-                    ->rowCount();
+                ->rowCount();
         } catch (\Exception $exception) {
             error_log($exception->getMessage());
             return false;
@@ -113,7 +113,7 @@ final class HloginUserLogModel extends \Hleb\Scheme\App\Models\MainModel
     }
 
     public static function createRegisterLogTable() {
-        if (DB::getPdoInstance()->getAttribute(\PDO::ATTR_DRIVER_NAME) === 'pgsql') {
+        if (self::connection()->getAttribute(\PDO::ATTR_DRIVER_NAME) === 'pgsql') {
             return self::run("
     CREATE TABLE IF NOT EXISTS userlogs (
         id BIGSERIAL PRIMARY KEY,
@@ -154,15 +154,20 @@ final class HloginUserLogModel extends \Hleb\Scheme\App\Models\MainModel
 
     protected static function run($sql, $args = []): \PDOStatement
     {
+        $stmt = self::connection()->prepare($sql);
+        $stmt->execute($args);
+
+        return $stmt;
+    }
+
+    protected static function connection(): \PDO
+    {
         if (empty(self::$pdo)) {
             self::$pdo = DB::getNewPdoInstance();
             self::$pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
             self::$pdo->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_ASSOC);
         }
-        $stmt = self::$pdo->prepare($sql);
-        $stmt->execute($args);
-
-        return $stmt;
+        return self::$pdo;
     }
 
 }
