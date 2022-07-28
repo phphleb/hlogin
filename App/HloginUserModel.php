@@ -6,53 +6,43 @@ namespace Phphleb\Hlogin\App;
 use Hleb\Main\DB;
 use Phphleb\Hlogin\App\System\UserRegistration;
 
-final class HloginUserModel extends \Hleb\Scheme\App\Models\MainModel
+final class HloginUserModel extends BaseModel
 {
-    const CELL_ID = 'id'; // int(11) NOT NULL AUTO_INCREMENT
+    public const CELL_ID = 'id'; // int(11) NOT NULL AUTO_INCREMENT
 
-    const CELL_REGTYPE = 'regtype'; // int(2) NOT NULL DEFAULT 0
+    public const CELL_REGTYPE = 'regtype'; // int(2) NOT NULL DEFAULT 0
 
-    const CELL_CONFIRM = 'confirm'; // int(1) NOT NULL DEFAULT 0
+    public const CELL_CONFIRM = 'confirm'; // int(1) NOT NULL DEFAULT 0
 
-    const CELL_EMAIL = 'email'; // varchar(100) NOT NULL
+    public const CELL_EMAIL = 'email'; // varchar(100) NOT NULL
 
-    const CELL_LOGIN = 'login'; // varchar(100) DEFAULT NULL
+    public const CELL_LOGIN = 'login'; // varchar(100) DEFAULT NULL
 
-    const CELL_PASSWORD = 'password'; // varchar(255) NOT NULL
+    public  const CELL_PASSWORD = 'password'; // varchar(255) NOT NULL
 
-    const CELL_NAME = 'name'; // varchar(100) DEFAULT NULL
+    public const CELL_NAME = 'name'; // varchar(100) DEFAULT NULL
 
-    const CELL_SURNAME = 'surname'; // varchar(100) DEFAULT NULL
+    public const CELL_SURNAME = 'surname'; // varchar(100) DEFAULT NULL
 
-    const CELL_PHONE = 'phone'; // varchar(30) DEFAULT NULL
+    public const CELL_PHONE = 'phone'; // varchar(30) DEFAULT NULL
 
-    const CELL_ADDRESS= 'address'; // varchar(255) DEFAULT NULL
+    public const CELL_ADDRESS= 'address'; // varchar(255) DEFAULT NULL
 
-    const CELL_PROOCODE = 'promocode'; // varchar(100) DEFAULT NULL
+    public const CELL_PROOCODE = 'promocode'; // varchar(100) DEFAULT NULL
 
-    const CELL_IP = 'ip'; // varchar(50) DEFAULT NULL
+    public const CELL_IP = 'ip'; // varchar(50) DEFAULT NULL
 
-    const CELL_SUBSCRIPTION = 'subscription'; // varchar(1) DEFAULT NULL
+    public const CELL_SUBSCRIPTION = 'subscription'; // varchar(1) DEFAULT NULL
 
-    const CELL_PERIOD = 'period'; // int(11) NOT NULL DEFAULT 0
+    public const CELL_PERIOD = 'period'; // int(11) NOT NULL DEFAULT 0
 
-    const CELL_REGDATE = 'regdate'; // timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+    public const CELL_REGDATE = 'regdate'; // timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 
-    const CELL_HASH = 'hash'; // varchar(100) DEFAULT NULL
+    public const CELL_HASH = 'hash'; // varchar(100) DEFAULT NULL
 
-    const CELL_SESSIONKEY = 'sessionkey'; // varchar(100) DEFAULT NULL
+    public const CELL_SESSIONKEY = 'sessionkey'; // varchar(100) DEFAULT NULL
 
     protected static $name = 'users';
-
-    protected static ?\PDO $pdo = null;
-
-    /**
-     * Установленное в конфигурационном файле название таблицы с пользователями
-     * @return string
-     */
-    public static function getTableName() {
-        return Main::getTableName();
-    }
 
     // Получение пользователя по E-mail
     public static function checkEmailAddressAndGetData(string $email) {
@@ -262,32 +252,6 @@ final class HloginUserModel extends \Hleb\Scheme\App\Models\MainModel
             $list[$filter['name'] . $key ] = $filter['selector'] === '7' ? '%' . $filter['value'] . '%' : $filter['value'];
         }
         return [$where, $list];
-    }
-
-    public static function getConnectionData()
-    {
-        return [
-            'driver' => self::connection()->getAttribute(\PDO::ATTR_DRIVER_NAME) ?? 'undefined',
-            'connection' => defined('HLEB_TYPE_DB') ? HLEB_TYPE_DB : 'undefined'
-        ];
-    }
-
-    protected static function run($sql, $args = []): \PDOStatement
-    {
-        $stmt = self::connection()->prepare($sql);
-        $stmt->execute($args);
-
-        return $stmt;
-    }
-
-    protected static function connection(): \PDO
-    {
-        if (empty(self::$pdo)) {
-            self::$pdo = DB::getNewPdoInstance();
-            self::$pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-            self::$pdo->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_ASSOC);
-        }
-        return self::$pdo;
     }
 
 }

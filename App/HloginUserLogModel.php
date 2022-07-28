@@ -5,44 +5,37 @@ namespace Phphleb\Hlogin\App;
 
 use Hleb\Main\DB;
 
-final class HloginUserLogModel extends \Hleb\Scheme\App\Models\MainModel
+final class HloginUserLogModel extends BaseModel
 {
-    const CELL_ID = 'id'; // int(11) NOT NULL AUTO_INCREMENT
+    public const CELL_ID = 'id'; // int(11) NOT NULL AUTO_INCREMENT
 
-    const CELL_REGTYPE = 'regtype'; // int(2) NOT NULL
+    public const CELL_REGTYPE = 'regtype'; // int(2) NOT NULL
 
-    const CELL_ACTION = 'action'; // varchar(25) DEFAULT NULL
+    public const CELL_ACTION = 'action'; // varchar(25) DEFAULT NULL
 
-    const CELL_PARENT = 'parent'; // int(11) NOT NULL
+    public const CELL_PARENT = 'parent'; // int(11) NOT NULL
 
-    const CELL_EMAIL = 'email'; // varchar(100) NOT NULL
+    public const CELL_EMAIL = 'email'; // varchar(100) NOT NULL
 
-    const CELL_IP = 'ip'; // varchar(50) DEFAULT NULL
+    public  const CELL_IP = 'ip'; // varchar(50) DEFAULT NULL
 
-    const CELL_NAME = 'name'; // varchar(100) DEFAULT NULL
+    public const CELL_NAME = 'name'; // varchar(100) DEFAULT NULL
 
-    const CELL_SURNAME = 'surname'; // varchar(100) DEFAULT NULL
+    public const CELL_SURNAME = 'surname'; // varchar(100) DEFAULT NULL
 
-    const CELL_PHONE = 'phone'; // varchar(30) DEFAULT NULL
+    public const CELL_PHONE = 'phone'; // varchar(30) DEFAULT NULL
 
-    const CELL_ADDRESS= 'address'; // varchar(255) DEFAULT NULL
+    public const CELL_ADDRESS= 'address'; // varchar(255) DEFAULT NULL
 
-    const CELL_LOGDATE = 'logdate'; // timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+    public const CELL_LOGDATE = 'logdate'; // timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+
+    public const CELL_DESCRIPTION = 'description'; // varchar(255) DEFAULT NULL
+
+    public const CELL_MODERATOR_ID = 'moderatorid'; // int(11) DEFAULT NULL
 
     const REG_ACTION = 'registration';
 
     const MODIFICATION_ACTION = 'modification';
-
-    protected static ?\PDO $pdo = null;
-
-    /**
-     * Установленное в конфигурационном файле название таблицы с архивом пользователей
-     * @return string
-     */
-    public static function getTableName(): string
-    {
-        return 'userlogs';
-    }
 
     /**
      * Проверка существования таблицы
@@ -150,24 +143,6 @@ final class HloginUserLogModel extends \Hleb\Scheme\App\Models\MainModel
         PRIMARY KEY AUTO_INCREMENT (id)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci");
 
-    }
-
-    protected static function run($sql, $args = []): \PDOStatement
-    {
-        $stmt = self::connection()->prepare($sql);
-        $stmt->execute($args);
-
-        return $stmt;
-    }
-
-    protected static function connection(): \PDO
-    {
-        if (empty(self::$pdo)) {
-            self::$pdo = DB::getNewPdoInstance();
-            self::$pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-            self::$pdo->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_ASSOC);
-        }
-        return self::$pdo;
     }
 
 }

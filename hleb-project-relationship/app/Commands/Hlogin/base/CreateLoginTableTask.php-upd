@@ -35,10 +35,10 @@ class CreateLoginTableTask extends \Hleb\Scheme\App\Commands\MainTask
 
     protected function execute() {
         try {
-            foreach (HloginUserModel::getConnectionData() as $key => $value) {
-                echo '| ' . strtoupper($key) . ': ' . $value . PHP_EOL;
+            foreach (HloginUserModel::getConnectionData() as $name => $param) {
+                echo  PHP_EOL . $name . ': ' . $param;
             }
-            echo PHP_EOL;
+            echo PHP_EOL . PHP_EOL;
         } catch (\Exception $e) {
            die($e->getMessage() .  PHP_EOL);
         }
