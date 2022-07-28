@@ -20,8 +20,8 @@ class BaseModel extends \Hleb\Scheme\App\Models\MainModel
     public static function getConnectionData()
     {
         $connection = [
-            'connection' . defined('HLEB_TYPE_DB') ? HLEB_TYPE_DB : 'undefined',
-            'driver' => self::connection()->getAttribute(\PDO::ATTR_DRIVER_NAME) ?? 'undefined',
+            'driver' => self::connection()->getAttribute(\PDO::ATTR_DRIVER_NAME),
+            'connection' => defined('HLEB_TYPE_DB') ? HLEB_TYPE_DB : 'undefined',
         ];
 
         if (defined('HLEB_TYPE_DB')) {
