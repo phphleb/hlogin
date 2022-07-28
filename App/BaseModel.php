@@ -9,14 +9,6 @@ class BaseModel extends \Hleb\Scheme\App\Models\MainModel
 {
     protected static ?\PDO $pdo = null;
 
-    /**
-     * Установленное в конфигурационном файле название таблицы с пользователями
-     * @return string
-     */
-    public static function getTableName() {
-        return Main::getTableName();
-    }
-
     public static function getConnectionData()
     {
         $connection = [

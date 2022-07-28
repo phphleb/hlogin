@@ -44,6 +44,14 @@ final class HloginUserModel extends BaseModel
 
     protected static $name = 'users';
 
+    /**
+     * Установленное в конфигурационном файле название таблицы с пользователями
+     * @return string
+     */
+    public static function getTableName() {
+        return Main::getTableName();
+    }
+
     // Получение пользователя по E-mail
     public static function checkEmailAddressAndGetData(string $email) {
         try {

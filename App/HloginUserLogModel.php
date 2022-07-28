@@ -38,6 +38,14 @@ final class HloginUserLogModel extends BaseModel
     const MODIFICATION_ACTION = 'modification';
 
     /**
+     * Название таблицы с историей пользователей
+     * @return string
+     */
+    public static function getTableName() {
+        return 'userlogs';
+    }
+
+    /**
      * Проверка существования таблицы
      * @return bool
      */
@@ -108,7 +116,7 @@ final class HloginUserLogModel extends BaseModel
     public static function createRegisterLogTable() {
         if (self::connection()->getAttribute(\PDO::ATTR_DRIVER_NAME) === 'pgsql') {
             return self::run("
-    CREATE TABLE IF NOT EXISTS userlogs (
+    CREATE TABLE IF NOT EXISTS " . self::getTableName() . " (
         id BIGSERIAL PRIMARY KEY,
         parent integer NOT NULL,
         regtype integer NOT NULL,
@@ -126,7 +134,7 @@ final class HloginUserLogModel extends BaseModel
         }
 
         return self::run("
-     CREATE TABLE userlogs (
+     CREATE TABLE " . self::getTableName() . " (
         id int(11) NOT NULL AUTO_INCREMENT,
         parent int(11) NOT NULL,
         regtype int(2) NOT NULL,
