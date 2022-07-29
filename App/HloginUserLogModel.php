@@ -5,7 +5,7 @@ namespace Phphleb\Hlogin\App;
 
 use Hleb\Main\DB;
 
-final class HloginUserLogModel extends BaseModel
+final class HloginUserLogModel extends \Hleb\Scheme\App\Models\MainModel
 {
     public const CELL_ID = 'id'; // int(11) NOT NULL AUTO_INCREMENT
 
@@ -36,6 +36,8 @@ final class HloginUserLogModel extends BaseModel
     const REG_ACTION = 'registration';
 
     const MODIFICATION_ACTION = 'modification';
+
+    protected static ?\PDO $pdo = null;
 
     /**
      * Название таблицы с историей пользователей
@@ -114,7 +116,7 @@ final class HloginUserLogModel extends BaseModel
     }
 
     public static function createRegisterLogTable() {
-        if (self::connection()->getAttribute(\PDO::ATTR_DRIVER_NAME) === 'pgsql') {
+        if (self::getConnection()->getAttribute(\PDO::ATTR_DRIVER_NAME) === 'pgsql') {
             return self::run("
     CREATE TABLE IF NOT EXISTS " . self::getTableName() . " (
         id BIGSERIAL PRIMARY KEY,
@@ -151,6 +153,24 @@ final class HloginUserLogModel extends BaseModel
         PRIMARY KEY AUTO_INCREMENT (id)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci");
 
+    }
+
+    protected static function run($sql, $args = []): \PDOStatement
+    {
+        $stmt = self::getConnection()->prepare($sql);
+        $stmt->execute($args);
+
+        return $stmt;
+    }
+
+    protected static function getConnection(): \PDO
+    {
+        if (empty(self::$pdo)) {
+            self::$pdo = DB::getNewPdoInstance();
+            self::$pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+            self::$pdo->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_ASSOC);
+        }
+        return self::$pdo;
     }
 
 }

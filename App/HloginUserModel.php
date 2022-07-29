@@ -6,7 +6,7 @@ namespace Phphleb\Hlogin\App;
 use Hleb\Main\DB;
 use Phphleb\Hlogin\App\System\UserRegistration;
 
-final class HloginUserModel extends BaseModel
+final class HloginUserModel extends \Hleb\Scheme\App\Models\MainModel
 {
     public const CELL_ID = 'id'; // int(11) NOT NULL AUTO_INCREMENT
 
@@ -44,6 +44,8 @@ final class HloginUserModel extends BaseModel
 
     protected static $name = 'users';
 
+    protected static ?\PDO $pdo = null;
+
     /**
      * Установленное в конфигурационном файле название таблицы с пользователями
      * @return string
@@ -61,6 +63,27 @@ final class HloginUserModel extends BaseModel
             error_log($exception->getMessage());
             return false;
         }
+    }
+
+    // Возвращает массив с данными соединения
+    public static function getConnectionData()
+    {
+        $connection = [
+            'driver' => self::getConnection()->getAttribute(\PDO::ATTR_DRIVER_NAME),
+            'connection' => defined('HLEB_TYPE_DB') ? HLEB_TYPE_DB : 'undefined',
+        ];
+
+        if (defined('HLEB_TYPE_DB')) {
+            foreach (HLEB_PARAMETERS_FOR_DB[HLEB_TYPE_DB] as $key => $param) {
+                if (is_numeric($key)) {
+                    $row = explode('=', $param);
+                    if (count($row) === 2) {
+                        $connection[$row[0]] = $row[1];
+                    }
+                }
+            }
+        }
+        return $connection;
     }
 
     // Удаление данных пользователя
@@ -113,7 +136,7 @@ final class HloginUserModel extends BaseModel
     }
 
     public static function createRegisterTable() {
-        if (self::connection()->getAttribute(\PDO::ATTR_DRIVER_NAME) === 'pgsql') {
+        if (self::getConnection()->getAttribute(\PDO::ATTR_DRIVER_NAME) === 'pgsql') {
             return self::run("
     CREATE TABLE IF NOT EXISTS  " . Main::getTableName() . " (
         id SERIAL PRIMARY KEY,
@@ -232,7 +255,7 @@ final class HloginUserModel extends BaseModel
         if ($pageLimit > 1000) {
             $pageLimit = 1000;
         }
-        if (self::connection()->getAttribute(\PDO::ATTR_DRIVER_NAME) === 'pgsql') {
+        if (self::getConnection()->getAttribute(\PDO::ATTR_DRIVER_NAME) === 'pgsql') {
             return self::run("SELECT id, email, login, name, surname, phone, address, promocode, regtype, ip, subscription, regdate, confirm FROM " . self::getTableName() . " WHERE {$where} {$sort} OFFSET {$firstLimit} LIMIT {$pageLimit}", $list)
                 ->fetchAll();
         } else {
@@ -260,6 +283,24 @@ final class HloginUserModel extends BaseModel
             $list[$filter['name'] . $key ] = $filter['selector'] === '7' ? '%' . $filter['value'] . '%' : $filter['value'];
         }
         return [$where, $list];
+    }
+
+    protected static function run($sql, $args = []): \PDOStatement
+    {
+        $stmt = self::getConnection()->prepare($sql);
+        $stmt->execute($args);
+
+        return $stmt;
+    }
+
+    protected static function getConnection(): \PDO
+    {
+        if (empty(self::$pdo)) {
+            self::$pdo = DB::getNewPdoInstance();
+            self::$pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+            self::$pdo->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_ASSOC);
+        }
+        return self::$pdo;
     }
 
 }
