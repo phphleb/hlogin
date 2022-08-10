@@ -658,7 +658,7 @@ if (typeof mHLogin.actions === 'undefined') {
             if(this.captchaClose) return '';
             this.tabCount++;
             var cell = "<input type='text' data-type='captcha' placeholder='" + this.i18n.get('captcha_code') + "' maxlength='10'  class='hlogin-g-input-cell hlogin-captcha-cell' value='' tabindex='1' pattern='^[a-zA-Z0-9]{5,6}$' data-req='1' onkeyup='mHLogin.actions.sortFormsOnchange()'>";
-            var remove = '<img src="/en/login/resource/version/all/svg/svg/hlogin-remove-img/" class="hlogin-captcha-remove" onmousedown="mHLogin.actions.updateCaptchaCell()">';
+            var remove = '<img src="/en/login/resource/version/all/svg/svg/hlogin-remove-img' + mHLogin.base.confEndingUrl()  + '" class="hlogin-captcha-remove" onmousedown="mHLogin.actions.updateCaptchaCell()">';
             return '<div class="hlogin-captcha-over" align="justify"><img src="' + this.captchaCode + '" height="30" width="120" class="hlogin-captcha">' + remove + cell + '<br></div>';
         },
         updateCaptchaCell: function() {
@@ -943,7 +943,7 @@ if (typeof mHLogin.actions === 'undefined') {
         },
         // Отправка запроса
         actionAjaxRequest: function (type) {
-            var url = "/" + this.F.lang + "/login/data/ajax/" + type.toLowerCase() + "/?" + Math.random();
+            var url = "/" + this.F.lang + "/login/data/ajax/" + type.toLowerCase() + mHLogin.base.confEndingUrl() + "?" + Math.random();
             var params = this.setFormToObject(type);
             var data = "json_data=" + encodeURIComponent(JSON.stringify(params)) + "&_token=" + mHLogin.base.csrfToken;
             var methodType = "POST";
@@ -952,7 +952,7 @@ if (typeof mHLogin.actions === 'undefined') {
             this.M.sendAjaxRequest(url, data, methodType, functionName, contentType);
         },
         actionAjaxRequestGetData: function (type) {
-            var url = "/" + this.F.lang + "/login/data/ajax/" + type.toLowerCase() + "/?_debug=off&_token=" + mHLogin.base.csrfToken + "&" + Math.random();
+            var url = "/" + this.F.lang + "/login/data/ajax/" + type.toLowerCase() + mHLogin.base.confEndingUrl() + "?_debug=off&_token=" + mHLogin.base.csrfToken + "&" + Math.random();
             var methodType = "GET";
             var functionName = "fHloginVariableReturn_";
             var contentType = "application/json";
