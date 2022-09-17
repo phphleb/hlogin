@@ -131,14 +131,15 @@ class Action
             }
             hleb_redirect('/' . $urlLang . '/login/action/enter/');
         }
+        if (is_null($panels)) {
+            $panels = OriginData::SHOW_PANELS;
+        }
         // Показ панелей
         OriginData::setRegPanelOn($panels === OriginData::SHOW_PANELS);
-        if (!is_null($panels)) {
-            if (($panels === OriginData::SHOW_PANELS || $panels === OriginData::HIDE_BUTTONS) && Request::getMethod() === 'GET') {
-                $this->createContent($panels);
-            } else {
-                PageFinisher::setVisibleType(UserRegistration::CONTENT_TYPE, false);
-            }
+        if (($panels === OriginData::SHOW_PANELS || $panels === OriginData::HIDE_BUTTONS) && Request::getMethod() === 'GET') {
+            $this->createContent($panels);
+        } else {
+            PageFinisher::setVisibleType(UserRegistration::CONTENT_TYPE, false);
         }
     }
 
