@@ -37,7 +37,7 @@ final class AddContent
         $csrf = hleb_csrf_token();
         $action = 'return';
         $reg = self::getRegistration();
-        $endingUrl = HLEB_PROJECT_ENDING_URL ? 1 : 0;
+        $endingUrl = (defined('HLEB_SYSTEM_ENDING_URL') ? HLEB_SYSTEM_ENDING_URL : HLEB_PROJECT_ENDING_URL) ? 1 : 0;
         $jsFunctions = "/en/login/resource/$version/all/js/js/hlogin-functions" . ($endingUrl ? "/" : "");
         $design = OriginData::getDesign();
         $languages = implode(',', OriginData::getLanguages());
