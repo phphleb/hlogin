@@ -43,6 +43,8 @@ class OriginData
 
     const HIDE_BUTTONS = 3;
 
+    const FROM_API = 4;
+
     private static $design = null;
 
     private static bool $showPanels = true;

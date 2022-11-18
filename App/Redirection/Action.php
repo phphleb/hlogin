@@ -111,7 +111,7 @@ class Action
     public function checkRegisterData($type = 0, $compare = '>=', $panels = null) {
         // Проверка регистрации
         $check = UserRegistration::getRegType($type, $compare);
-        if (!$check && $type < 0) {
+        if (!$check && ($type < 0 || $panels === OriginData::FROM_API)) {
             http_response_code(403);
             exit();
         }
