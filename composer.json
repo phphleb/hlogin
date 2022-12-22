@@ -24,6 +24,7 @@
         "ext-json": "*",
         "ext-pdo": "*",
         "ext-gd": "*",
+        "ext-imagick": "*",
         "phphleb/framework": ">=1.6.3",
         "phphleb/debugpan": ">=1.3",
         "phphleb/updater": "*",
