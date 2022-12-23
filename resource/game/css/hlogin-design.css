@@ -472,3 +472,18 @@
     color: ghostwhite;
 }
 
+/*  Full size   */
+@media only screen and (min-width: 480px) {
+    .hlogin-p-register-popup-global {
+        width: 100% !important;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        height: 100% !important;
+        overflow: auto !important;
+    }
+    .hlogin-p-close-popup-x a {
+        right: 35px;
+        top: 10px;
+    }
+}
