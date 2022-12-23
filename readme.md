@@ -4,7 +4,7 @@ The HLOGIN library expands the capabilities of the [HLEB](https://github.com/php
 
 Supported  __MySQL__ / __MariaDB__ / __PostgreSQL__
 
-Required PHP extensions: __json__, __gd__, __imagick__, __pdo__, __pdo-mysql__ / __pdo_pgsql__, __readline__
+Required PHP extensions: __json__, __gd__,  __pdo__, __pdo-mysql__ / __pdo_pgsql__, __readline__
 
 [Demo page](https://auth.phphleb.ru/)
 
