@@ -4,8 +4,8 @@
      * Removing the `hlogin` registration from the project.
      */
 
-    require __DIR__ . "/loader.php";
-    require __DIR__ . "/../updater/FileRemover.php";
+    include_once __DIR__ . "/loader.php";
+    include_once __DIR__ . "/../updater/FileRemover.php";
 
     $remover = new \Phphleb\Updater\FileRemover(__DIR__ . DIRECTORY_SEPARATOR);
 

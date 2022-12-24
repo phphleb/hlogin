@@ -3,8 +3,6 @@
      * @author  Foma Tuturov <fomiash@yandex.ru>
      */
 
-    $action = true;
-
     if (end($argv) === '--help') {
         die (
             "\n" . "HLOGIN: Registration module for the HLEB project." .
@@ -14,27 +12,10 @@
     }
 
     if (end($argv) === '--remove') {
-        $action = false;
+        include __DIR__ . "/remove_hlogin.php";
     } else if (end($argv) === '--add') {
-        $action = true;
-    } else {
-        $action = (bool)selectAction();
-    }
-    if ($action) {
         include __DIR__ . "/add_hlogin.php";
     } else {
-        include __DIR__ . "/remove_hlogin.php";
+        exit(PHP_EOL . 'For details, repeat the command with the `--help` flag.' . PHP_EOL);
     }
-
-    function selectAction() {
-        $actionType = readline('What action should be performed? Enter symbol to add(A) or remove(R) files>');
-        if ($actionType === "A") {
-            return true;
-        }
-        if ($actionType === "R") {
-            return false;
-        }
-        return selectAction();
-    }
-
 

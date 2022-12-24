@@ -6,8 +6,8 @@
      * Adding `hlogin` functionality.
      */
 
-    require __DIR__ . "/loader.php";
-    require __DIR__ . "/../updater/FileUploader.php";
+    include_once __DIR__ . "/loader.php";
+    include_once __DIR__ . "/../updater/FileUploader.php";
 
     $designPatterns = \Phphleb\Hlogin\App\OriginData::GLOBAL_PATTERNS; // The first value will be the main
 
@@ -28,5 +28,5 @@
     $config->mullerCopy();
     $config->ucaptchaCopy();
 
-print PHP_EOL . "After installing the new version, run `php console --clear-cache` and `php console --clear-routes-cache`" . PHP_EOL;
+    print PHP_EOL . "After installing the new version, run `php console --clear-cache` and `php console --clear-routes-cache`" . PHP_EOL;
 
