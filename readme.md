@@ -139,16 +139,35 @@ Example:
  ```php
 <?php
 use Phphleb\Hlogin\App\System\UserRegistration;
+
 if (UserRegistration::checkPrimaryAndHigher()) {
-   print '<button onclick="hloginVariableOpenPopup(\'UserProfile\')">Open user profile panel</button>';
+  print '<button onclick=\"hloginVariableOpenPopup(\'UserProfile\')\">Open user profile panel</button>';
 } else {
-    print '<button onclick="hloginVariableOpenPopup(\'UserRegister\')">Open registration panel</button>';
-    print '<button onclick="hloginVariableOpenPopup(\'UserEnter\')">Open login panel</button>';
+   print '<button onclick=\"hloginVariableOpenPopup(\'UserRegister\')\">Open registration panel</button>';
+   print '<button onclick=\"hloginVariableOpenPopup(\'UserEnter\')\">Open login panel</button>';
 }
- print '<button onclick="hloginVariableOpenPopup(\'ContactMessage\')">Open the message sending panel</button>';
- print '<button onclick="hloginSetDesignToPopups(\'special\')">Version for the visually impaired</button>';  
- print '<button onclick="hloginRevertDesignToPopups()">Undo version change</button>'; 
+print '<button onclick=\"hloginVariableOpenPopup(\'ContactMessage\')\">Open the message sending panel</button>';
+print '<button onclick=\"hloginSetDesignToPopups(\'special\')\">Version for the visually impaired</button>';  
+print '<button onclick=\"hloginRevertDesignToPopups()\">Undo version change</button>';
+print '<button onclick=\"hloginCloseAllPopups()\">Close panels</button>'; 
 ````
+Or with attributes:
+ ```php
+<?php
+use Phphleb\Hlogin\App\System\UserRegistration;
+
+if (UserRegistration::checkPrimaryAndHigher()) {
+   print '<button class=\"hlogin=variable-open-popup\" data-type=\"UserProfile\">Open user profile panel</button>';
+} else {
+   print '<button class=\"hlogin=variable-open-popup\" data-type=\"UserRegister\">Open registration panel</button>';
+   print '<button class=\"hlogin=variable-open-popup\" data-type=\"UserEnter\">Open login panel</button>';
+}
+print '<button class=\"hlogin=variable-open-popup\" data-type=\"ContactMessage\">Open the message sending panel</button>';
+print '<button class=\"hlogin=set-design-to-popups\" data-design=\"special\">Version for the visually impaired</button>';
+print '<button class=\"hlogin=revert-design-to-popups\">Undo version change</button>';
+print '<button class=\"hlogin=close-all-popups\">Close panels</button>'; 
+````
+
 
 As you can understand registration cannot be accessed by users with disabled javascript in the browser. Now there are almost no such people.
 

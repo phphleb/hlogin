@@ -1,7 +1,7 @@
 console.log(
-    '==================' + "\n" +
-    'Phphleb/Hlogin 1.4' + "\n" +
-    '==================' + "\n"
+    '%c Phphleb/Hlogin %c v1.5 ',
+    "color:#fff; background: #3f9adb; padding: 2px",
+    "color:#000; background:#ccc; padding: 2px"
 );
 if (typeof uHLogin === 'undefined') uHLogin = {};
 if (typeof uHLogin.functions === 'undefined') uHLogin.functions = {
@@ -48,21 +48,31 @@ if (typeof uHLogin.functions === 'undefined') uHLogin.functions = {
   loadRegistrationData: function() {
     if (typeof hlogin_init_script === 'function') {
       this.registrationData = hlogin_init_script();
-      this.version = this.registrationData.version;
-      this.languages = this.registrationData.languages.split(',');
       this.registrationData.config = this.configData = JSON.parse(this.registrationData.config);
-      this.deleteBlocks(uHLogin.functions.$$('.hlogin_init_script'));
-      if(this.registrationData.lang) {
-        this.lang = this.registrationData.lang;
-      } else if(typeof this.registrationData.config.lang !== "undefined" && this.languages.indexOf(this.registrationData.config.lang.toLowerCase()) !== -1) {
-        this.lang = this.registrationData.config.lang;
+    } else {
+      var dataBlocks = uHLogin.functions.$$('script');
+      if (dataBlocks) {
+        for (var element of dataBlocks) {
+          if (!this.registrationData && typeof element !== 'undefined' && element && element.className === 'hlogin_init_script') {
+            this.registrationData = JSON.parse(element.getAttribute('data-object'));
+            this.registrationData.config = this.configData = JSON.parse(element.getAttribute('data-config'));
+          }
+        }
       }
-      this.design = this.pageDesign !== null ? this.pageDesign : (this.registrationData.design !== '' ? this.registrationData.design : this.registrationData.config.design);
-      this.isContact = this.registrationData.isContact;
-      if(this.configData.block_orient !== 'none') {
-        this.loadCss('/en/login/resource/' + this.version + '/all/css/css/hlogin-buttons' + this.confEndingUrl());
-        this.loadJs('/en/login/resource/' + this.version + '/all/js/js/hlogin-buttons' + this.confEndingUrl());
-      }
+    }
+    this.version = this.registrationData.version;
+    this.languages = this.registrationData.languages.split(',');
+    this.deleteBlocks(uHLogin.functions.$$('.hlogin_init_script'));
+    if (this.registrationData.lang) {
+      this.lang = this.registrationData.lang;
+    } else if (typeof this.registrationData.config.lang !== "undefined" && this.languages.indexOf(this.registrationData.config.lang.toLowerCase()) !== -1) {
+      this.lang = this.registrationData.config.lang;
+    }
+    this.design = this.pageDesign !== null ? this.pageDesign : (this.registrationData.design !== '' ? this.registrationData.design : this.registrationData.config.design);
+    this.isContact = this.registrationData.isContact;
+    if (this.configData.block_orient !== 'none') {
+      this.loadCss('/en/login/resource/' + this.version + '/all/css/css/hlogin-buttons' + this.confEndingUrl());
+      this.loadJs('/en/login/resource/' + this.version + '/all/js/js/hlogin-buttons' + this.confEndingUrl());
     }
     this.captchaActive = this.registrationData.captchaActive;
     var th = this;
@@ -72,6 +82,7 @@ if (typeof uHLogin.functions === 'undefined') uHLogin.functions = {
         th.setLang();
       }
     }, 20);
+    this.assignAutoStart();
   },
   removeDesign: function (design) {
     var th = uHLogin.functions;
@@ -183,7 +194,47 @@ if (typeof uHLogin.functions === 'undefined') uHLogin.functions = {
   },
   createInputInPopup: function(name, dataType, req, type, placeholder, value, maxlength) {
     return "<div class='hlogin-g-input-cell-over'><label><div class='hlogin-g-input-cell-text'>" + name + "<span class='hlogin-s-required-marker'>" + (req ? "*" : "") + "</span></div><input data-type='" + dataType + "' type='" + (type ? type : "text") + "' tabindex='1' placeholder='" + (placeholder ? placeholder : "") + "' maxlength='" + (maxlength ? maxlength : 255) + "' class='hlogin-g-input-cell' value='" + (value ? value : "") + "' data-req='" + (req ? 1 : 0) + "' onkeyup='mHLogin.actions.sortFormsOnchange()'></div>";
-  }
+  },
+  assignAutoStart: function () {
+    setInterval(function() {
+      var openPopups = document.querySelectorAll('[class*="hlogin="]');
+      for (var el of openPopups) {
+        if (typeof el !== 'undefined' && el && !el.classList.contains('hloginExcludeSearch') && el.getAttribute('onclick') === null && el.className.indexOf('hlogin=') !== -1) {
+          el.classList.add('hloginExcludeSearch');
+          var n = el.className;
+          if (n.indexOf('hlogin=variable-open-popup') !== -1) {
+            el.addEventListener('click', function(){
+              hloginVariableOpenPopup(this.dataset.type);
+            });
+          } else if ((n === 'hlogin=set-design-to-popups')) {
+            el.addEventListener('click', function(){
+              hloginSetDesignToPopups(this.dataset.design);
+            });
+          } else if ((n === 'hlogin=revert-design-to-popups')) {
+            el.addEventListener('click', function(){
+              hloginRevertDesignToPopups();
+            });
+          } else if ((n === 'hlogin=close-all-popups')) {
+            el.addEventListener('click', function(){
+              hloginCloseAllPopups();
+            });
+          } else if ((n === 'hlogin=open-message')) {
+            el.addEventListener('click', function(){
+              hloginOpenMessage(this.dataset.title, this.dataset.text, this.dataset.button);
+            });
+          } else if ((n === 'hlogin=popup-button')) {
+            el.addEventListener('click', function(){
+              hloginPopupButton(this.dataset.text, this.dataset.onclick, this.dataset.type);
+            });
+          } else if ((n === 'hlogin=popup-input')) {
+            el.addEventListener('click', function(){
+              hloginPopupInput(this.dataset.name, this.dataset.dataType, this.dataset.isRequired, this.dataset.type, this.dataset.placeholder, this.dataset.defaultValue, this.dataset.maxlength);
+            });
+          }
+        }
+      }
+    }, 500);
+  },
 };
 uHLogin.functions.loadRegistrationData();
 

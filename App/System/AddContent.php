@@ -33,7 +33,8 @@ final class AddContent
 
         // Registration
         $version = Main::getVersion();
-        $config = (new JsonConverter(json_encode(self::clearConfig(Main::getConfigRegData(), $type)), 0, 0, "\\" . "\n" . str_repeat(" ", 13)))->get();
+        $clearConfig = json_encode(self::clearConfig(Main::getConfigRegData(), $type));
+        $config = (new JsonConverter($clearConfig, 0, 0, "\\" . "\n" . str_repeat(" ", 13)))->get();
         $csrf = hleb_csrf_token();
         $action = 'return';
         $reg = self::getRegistration();
@@ -66,9 +67,22 @@ final class AddContent
             }
             ErrorOutput::get($message);
         }
+        $pageSettings = json_encode([
+            'csrfToken' => $csrf,
+            'userRegister' => $reg,
+            'version' => $version,
+            'lang' => $lang,
+            'languages' => $languages,
+            'endingUrl' => $endingUrl,
+            'captchaActive' => $captchaActive,
+            'isContact' => $sendMessageBlock,
+            'design' => $design,
+            'config' => null // data-config
 
+        ]);
 
-        return "<script class=\"{$name}\">
+        if (!defined('HLOGIN_LOAD_SCRIPT_VARIANT') || HLOGIN_LOAD_SCRIPT_VARIANT === 1) {
+            return "<script class=\"{$name}\">
       if (typeof {$name} !== 'function'){ 
           function {$name}() {
               var {$name} = {
@@ -99,6 +113,16 @@ var {$name}_interval = setInterval(function(){
     }, 20);  
 </script>
 ";
+        } else if (HLOGIN_LOAD_SCRIPT_VARIANT === 2) {
+            return "
+    <script class=\"hlogin_init_script\"
+     async 
+     src=\"$jsFunctions\" 
+     data-object='$pageSettings'
+     data-config='$clearConfig'
+    ></script></body>";
+        }
+
     }
 
     static protected function clearConfig($data, $type) {
