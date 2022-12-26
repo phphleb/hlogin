@@ -120,7 +120,7 @@ var {$name}_interval = setInterval(function(){
      src=\"$jsFunctions\" 
      data-object='$pageSettings'
      data-config='$clearConfig'
-    ></script></body>";
+    ></script>";
         }
 
     }
