@@ -1,1 +1,0 @@
-The HLOGIN library expands the capabilities of the HLEB framework by adding full-fledged user registration on the site which is characterized by simplicity of settings and quick installation and (at the same time) convenient and diverse functionality that supports multilingualism and several design options.  https://github.com/phphleb/hlogin
