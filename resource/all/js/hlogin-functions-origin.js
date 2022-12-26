@@ -206,27 +206,27 @@ if (typeof uHLogin.functions === 'undefined') uHLogin.functions = {
             el.addEventListener('click', function(){
               hloginVariableOpenPopup(this.dataset.type);
             });
-          } else if ((n === 'hlogin=set-design-to-popups')) {
+          } else if (n.indexOf('hlogin=set-design-to-popups') !== -1) {
             el.addEventListener('click', function(){
               hloginSetDesignToPopups(this.dataset.design);
             });
-          } else if ((n === 'hlogin=revert-design-to-popups')) {
+          } else if (n.indexOf('hlogin=revert-design-to-popups') !== -1) {
             el.addEventListener('click', function(){
               hloginRevertDesignToPopups();
             });
-          } else if ((n === 'hlogin=close-all-popups')) {
+          } else if (n.indexOf('hlogin=close-all-popups') !== -1) {
             el.addEventListener('click', function(){
               hloginCloseAllPopups();
             });
-          } else if ((n === 'hlogin=open-message')) {
+          } else if (n.indexOf('hlogin=open-message') !== -1) {
             el.addEventListener('click', function(){
               hloginOpenMessage(this.dataset.title, this.dataset.text, this.dataset.button);
             });
-          } else if ((n === 'hlogin=popup-button')) {
+          } else if (n.indexOf('hlogin=popup-button') !== -1) {
             el.addEventListener('click', function(){
               hloginPopupButton(this.dataset.text, this.dataset.onclick, this.dataset.type);
             });
-          } else if ((n === 'hlogin=popup-input')) {
+          } else if (n.indexOf('hlogin=popup-input') !== -1) {
             el.addEventListener('click', function(){
               hloginPopupInput(this.dataset.name, this.dataset.dataType, this.dataset.isRequired, this.dataset.type, this.dataset.placeholder, this.dataset.defaultValue, this.dataset.maxlength);
             });
