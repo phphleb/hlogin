@@ -9,12 +9,21 @@ namespace Phphleb\Hlogin\App;
 
 use Phphleb\Spreader\ConfigTransfer;
 use Phphleb\Updater\Classes\Data;
+use Phphleb\Updater\FileUploader;
 
 final class AddConfig
 {
+    private FileUploader $uploader;
+
+    public function __construct(FileUploader $uploader)
+    {
+        $this->uploader = $uploader;
+    }
+
     public function hloginCopy(): void
     {
-        $design = Data::getDesign();
+        $design = $this->uploader->getDesign();
+
         $configFile = $this->getStorageDirPath() . "/register/config.json";
         $configStandardFile = realpath(__DIR__ . "/../standard_config.json");
         $standardData = $this->getOrigin($configStandardFile);

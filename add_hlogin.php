@@ -19,14 +19,15 @@
 
     $uploader->setSpecialNames('hlogin', 'Hlogin');
 
-    $uploader->run();
+    if ($uploader->run()) {
 
-    $config = new \Phphleb\Hlogin\App\AddConfig();
-    $config->hloginCopy();
-    $config->contactCopy();
-    $config->copyHloginInfo();
-    $config->mullerCopy();
-    $config->ucaptchaCopy();
+        $config = new \Phphleb\Hlogin\App\AddConfig($uploader);
+        $config->hloginCopy();
+        $config->contactCopy();
+        $config->copyHloginInfo();
+        $config->mullerCopy();
+        $config->ucaptchaCopy();
 
-    print PHP_EOL . "After installing the new version, run `php console --clear-cache` and `php console --clear-routes-cache`" . PHP_EOL;
+        print PHP_EOL . "After installing the new version, run `php console --clear-cache` and `php console --clear-routes-cache`" . PHP_EOL;
+    }
 
