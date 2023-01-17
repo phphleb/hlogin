@@ -28,6 +28,6 @@
         $config->mullerCopy();
         $config->ucaptchaCopy();
 
-        print PHP_EOL . "After installing the new version, run `php console --clear-cache` and `php console --clear-routes-cache`" . PHP_EOL;
+        print PHP_EOL . "After installing the new version, run `php console --clear-cache` and `php console --update-routes-cache`" . PHP_EOL;
     }
 
