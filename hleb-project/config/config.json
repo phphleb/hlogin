@@ -1,0 +1,86 @@
+{
+  "version": 2,
+  "design": "base",
+  "registration": {
+    "design-options": [
+      "base",
+      "dark",
+      "light",
+      "special",
+      "sport",
+      "game",
+      "blank"
+    ],
+    "user-table": "users",
+    "user-log-table": "userlogs",
+    "admin-log-table": "adminlogs",
+    "database-type": "mysql.name",
+    "session-duration": 604800,
+    "password-in-mail": 1,
+    "regtype_after_confirm": 2,
+    "button": {
+      "active": true
+    },
+    "reg-page-head": "&amp;lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot;&amp;gt;",
+    "homepage-redirect": "/",
+    "enter-only": false,
+    "email-pattern": null,
+    "cells": {
+      "password": {"req": 1, "on": 1, "prof": 1},
+      "name": {"req": 0, "on": 0, "prof": 1},
+      "login": {"req": 0, "on": 0, "prof": 1},
+      "surname": {"req": 0, "on": 0, "prof": 1},
+      "phone": {"req": 0, "on": 0, "prof": 1},
+      "promocode": {"req": 0, "on": 0, "prof": 0},
+      "address": {"req": 0, "on": 0, "prof": 0},
+      "subscription": {"req": 0, "on": 0, "prof": 0},
+      "terms-of-use": {"req": 0, "on": 0, "prof": 0},
+      "privacy-policy": {"req": 0, "on": 0, "prof": 0},
+      "cell1":  {"req": 0, "on": 0, "prof": 0},
+      "cell2":  {"req": 0, "on": 0, "prof": 0},
+      "cell3":  {"req": 0, "on": 0, "prof": 0},
+      "cell4":  {"req": 0, "on": 0, "prof": 0},
+      "cell5":  {"req": 0, "on": 0, "prof": 0}
+    },
+    "table-cell-length": {
+      "name": 100,
+      "surname": 100,
+      "login": 100,
+      "phone": 30,
+      "address": 255,
+      "promocode": 100,
+      "cell1": 5000,
+      "cell2": 5000,
+      "cell3": 5000,
+      "cell4": 5000,
+      "cell5": 5000
+    },
+    "src": {
+      "terms-of-use": "\/$LANG\/user-agreement\/",
+      "privacy-policy": "\/$LANG\/privacy-policy\/",
+      "url-after-reg": "\/$LANG\/login\/profile\/"
+    }
+  },
+  "captcha": {
+    "active": false,
+    "design": "auto"
+  },
+  "contact": {
+    "active": true,
+    "for-email": null,
+    "title":  {
+      "register": "Feedback from #{id} {sender} for the site {domain}",
+      "guest": "Message from {sender} for the site {domain}"
+    }
+  },
+  "mail": {
+    "save-to-file": 0,
+    "send-to-email": 1,
+    "from": null,
+    "design": "base",
+    "duplicate": 0,
+    "letter-caption": null,
+    "sender-name": null,
+    "email-sources": []
+  }
+}

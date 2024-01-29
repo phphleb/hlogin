@@ -1,0 +1,14 @@
+<?php
+/**
+ * @var \Closure $trans
+ * @var null|int $idUser
+ */
+?>
+<div class="hlogin-az-search-form">
+    <label>
+    <input type="text" name="id_or_email" placeholder="E-mail / ID" value="<?= $idUser ?>" class="hlogin-az-search-input">
+    </label>
+    <button class="hlogin-az-btn-search"
+            tabindex="1"><?= $trans('search') ?></button>
+
+</div>

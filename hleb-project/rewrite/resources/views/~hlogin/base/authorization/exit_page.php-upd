@@ -1,0 +1,23 @@
+<?php
+
+use Phphleb\Hlogin\App\CurrentUser;
+use Phphleb\Hlogin\App\Data\ConfigStorage;
+
+CurrentUser::exit();
+
+$link = "<a href='/'>&#8658;</a>";
+/**
+ * @var string $lang
+ */
+$message = match ($lang){
+    'ru' => "Выход завершён. Перейти на главную страницу $link",
+    default => "Logout is complete. Go to home page $link",
+};
+$version = ConfigStorage::getConfig()['version'];
+$url = "/hlresource/hlogin/v$version/js/hloginexit";
+?>
+<script src="<?= $url ?>"></script>
+<noscript>
+    <meta http-equiv="refresh" content="0;url=<?= $url ?>"/>
+</noscript>
+<?= $message ?>

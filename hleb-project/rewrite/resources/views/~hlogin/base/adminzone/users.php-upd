@@ -1,0 +1,130 @@
+<?php
+
+require __DIR__ . '/header.php';
+
+/**
+ * @var string $lang
+ * @var \Closure $trans
+ * @var array $config
+ * @var array $hloginData
+ * @var int $countAll
+ * @var int $pages
+ * @var array $users
+ * @var \Closure $linkFn
+ * @var \Closure $strFn
+ * @var \Closure $boolFn
+ * @var array $regtypeData
+ * @var bool $activeUser
+ * @var bool $adminOnly
+ * @var array $searchList
+ * @var string $searchValue
+ * @var string $pageButtons
+ * @var bool $filterOn
+ * @var \Closure $sortBlockFn
+ * @var int $sortId
+ * @var int $sortConfirm
+ * @var int $sortSubscription
+ * @var int $page
+*/
+$lineNum = 0;
+?>
+<div class="hlogin-az-main<?php echo $lang === 'zh' ? ' hlogin-az-zh-mode' : '' ?>">
+    <div class="hlogin-az-form" data-type="users">
+
+        <h2><?= $trans('reg_title') ?></h2>
+
+        <div class="hlogin-az-filter-btn">
+            <button class="hlogin-az-filter-btn-show<?= $filterOn ? ' hlogin-az-checked' : ''  ?>"><?= $trans('show_filters') ?></button>
+            <button class="hlogin-az-filter-btn-hide"<?= $filterOn ? ' hlogin-az-checked' : ''  ?>><?= $trans('hide_filters') ?></button>
+            <button class="hlogin-az-filter-btn-send"><?= $trans('add_filter') ?></button>
+        </div>
+        <div class="hlogin-az-filter-block">
+
+            <label class="hlogin-az-str">
+                <input type="checkbox" name="active" <?= $activeUser ? 'checked' : '' ?> class="hlogin-az-checkbox"
+                       tabindex="1"
+                ><?= $trans('active_only') ?>
+            </label>
+            <label class="hlogin-az-str">
+                <input type="checkbox" name="admin_only" <?= $adminOnly ? 'checked' : '' ?> class="hlogin-az-checkbox"
+                       tabindex="1"
+                ><?= $trans('admin_only') ?>
+            </label>
+
+            <br>
+
+            <label class="hlogin-az-str">
+                <select class="hlogin-az-options" name="search" tabindex="1">
+                    <?php foreach ($searchList as $key => $type): ?>
+                        <option value="<?= $key ?>"><?= $type ?></option>
+                    <?php endforeach; ?>
+                </select><input type="text" name="search_value" value="<?= $searchValue ?>" class="hlogin-az-input"
+                       placeholder="<?= $trans('search_text') ?>" tabindex="1">
+            </label>
+            <label>
+                <input hidden type="number" name="page" value="<?= $page ?>" class="hlogin-az-input hlogin-az-hidden">
+            </label>
+            <label>
+                <input hidden type="number" name="sort_id" value="<?= $sortId ?>" class="hlogin-az-input hlogin-az-hidden">
+            </label>
+            <label>
+                <input hidden type="number" name="sort_confirm" value="<?= $sortConfirm ?>" class="hlogin-az-input hlogin-az-hidden">
+            </label>
+            <label>
+                <input hidden type="number" name="sort_subscription" value="<?= $sortSubscription ?>" class="hlogin-az-input hlogin-az-hidden">
+            </label>
+
+        </div>
+
+<?php if ($users): ?>
+<?= $pageButtons ?>
+<div class="hlogin-az-over-table">
+        <table class="hlogin-az-data-table hlogin-az-list" border="0" cellpadding="0" cellspacing="0">
+        <tr class="hlogin-az-table-header">
+            <td><b>id<?= $sortBlockFn('id', $sortId) ?></b></td>
+            <td><b>E-mail</b></td>
+            <td><b><?= $trans('verified_text') ?><?= $sortBlockFn('confirm', $sortConfirm) ?></b></td>
+            <td><b><?= $trans('login') ?></b></td>
+            <td><b><?= $trans('name') ?></b></td>
+            <td><b><?= $trans('surname') ?></b></td>
+            <td><b><?= $trans('phone') ?></b></td>
+            <td><b><?= $trans('address') ?></b></td>
+            <td><b><?= $trans('promo_code') ?></b></td>
+            <td><b>Reg. IP</b></td>
+            <td><b><?= $trans('reg_status') ?></b></td>
+            <td><b><?= $trans('subscription_info') ?><?= $sortBlockFn('subscription', $sortSubscription) ?></b></td>
+            <td><b><?= $trans('reg_date') ?></b></td>
+        </tr>
+<?php foreach($users as $user): ?>
+       <tr  class="hlogin-az-tr-standard <?= $lineNum++ % 2 !== 0 ? '' : ' hlogin-az-tr'; ?>" >
+           <td><b><?= $user['id'] ?></b></td>
+           <td><a href="<?= $linkFn($user['id']) ?>"><span class="hlogin-az-colored" ><span value="<?= $user['regtype'] ?>"><?= $strFn($user['email']) ?></span></a></td>
+           <td class="hlogin-az-td-middle" ><?= $boolFn($user['confirm']) ?></td>
+           <td><?= $strFn($user['login']) ?></td>
+           <td><?= $strFn($user['name']) ?></td>
+           <td><?= $strFn($user['surname']) ?></td>
+           <td><?= $strFn($user['phone']) ?></td>
+           <td><?= $strFn($user['address']) ?></td>
+           <td><?= $strFn($user['promocode']) ?></td>
+           <td><?= $strFn($user['ip']) ?></td>
+           <td class="hlogin-az-colored" ><span value="<?= $user['regtype'] ?>"><?= $regtypeData[$user['regtype']] ?></span></td>
+           <td class="hlogin-az-td-middle"><?= $boolFn($user['subscription']) ?></td>
+           <td><?= $strFn($user['regdate']) ?></td>
+       </tr>
+
+<?php endforeach; ?>
+        </table>
+</div>
+<?= $pageButtons ?>
+<?php else: ?>
+    <div class="hlogin-az-message-info"><?= $trans('data_not_found') ?></div>'
+<?php endif; ?>
+
+        <br><br>
+
+<label>
+    <textarea hidden class="hlogin-az-data hlogin-az-hidden"><?= json_encode($hloginData) ?></textarea>
+</label>
+
+   </div>
+

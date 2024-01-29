@@ -1,8 +1,7 @@
 {
     "name": "phphleb/hlogin",
-    "description": "Registration module for the HLEB project",
+    "description": "Registration module for the HLEB2 project",
     "type": "library",
-    "homepage": "https://phphleb.ru/ru/v1/authorization/",
     "license": "MIT",
     "authors": [
         {
@@ -16,16 +15,21 @@
     "autoload": {
         "psr-4": {
             "Phphleb\\Hlogin\\": "/"
-        }
+        },
+        "exclude-from-classmap": [
+            "/Optional",
+            "/hleb-project"
+        ]
     },
     "require": {
-        "php": ">=7.4.0",
+        "php": ">=8.2.0",
         "ext-readline": "*",
         "ext-json": "*",
         "ext-pdo": "*",
         "ext-gd": "*",
-        "phphleb/framework": ">=1.6.3",
-        "phphleb/debugpan": ">=1.3",
+        "ext-mbstring": "*",
+        "phphleb/framework": ">=2.0.0",
+        "phphleb/debugpan": ">=2.0.0",
         "phphleb/updater": "*",
         "phphleb/adminpan": "dev-master",
         "phphleb/muller": "*",

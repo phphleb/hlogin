@@ -1,0 +1,4 @@
+<?php
+/** @var array $config  */
+echo '<link rel="stylesheet" href="/hlresource/hlogin/v' . $config['version'] . '/css/hloginadminzone">' . PHP_EOL;
+echo '<script src="/hlresource/hlogin/v' . $config['version'] . '/js/hloginadminzone"></script>' . PHP_EOL;

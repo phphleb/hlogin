@@ -1,0 +1,87 @@
+<?php
+use Hleb\Constructor\Script\Hlogin;
+use Hleb\Static\System;
+
+?><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width"/>
+    <meta name="robots" content="noindex, noarchive"/>
+    <meta name="theme-color" content="#ff786c"/>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="/hlresource/framework/v<?= System::getApiVersion() ?>/css/default"/>
+    <title>HLOGIN UI Page</title>
+</head>
+<body>
+<div class="header">
+    <div class="wrapper">
+        <div class="header-indent"></div>
+        <div class="header-version">PHP HLEB Framework v<?= System::getVersion() ?></div>
+        <div class="header-block"></div>
+    </div>
+</div>
+<div class="info">
+    <div class="content-wrapper hlogin-ui-content">
+        <div class="content">
+            <?= Hlogin::info(); ?>
+        </div>
+        <hr>
+        <br>
+        <div class="hlogin-ui-btn">
+            <button class="hlogin-init-action" data-type="UserEnter">&#9658; UserEnter</button>
+        </div>
+        <div class="hlogin-ui-btn">
+            <button class="hlogin-init-action" data-type="UserProfile">&#9658; UserProfile</button>
+        </div>
+        <div class="hlogin-ui-btn">
+            <button class="hlogin-init-action" data-type="UserRegister">&#9658; UserRegister</button>
+        </div>
+        <div class="hlogin-ui-btn">
+            <button class="hlogin-init-action" data-type="ContactMessage">&#9658; ContactMessage</button>
+        </div>
+        <div class="hlogin-ui-btn">
+            <button class="hlogin-init-action" data-type="NewPassword">&#9658; NewPassword</button>
+        </div>
+        <div class="hlogin-ui-btn">
+            <button class="hlogin-init-action" data-type="ConfirmEmail" data-value="test">&#9658; ConfirmEmail (success)</button>
+        </div>
+        <div class="hlogin-ui-btn">
+            <button class="hlogin-init-action" data-type="ConfirmEmail">&#9658; ConfirmEmail (expired)</button>
+        </div>
+        <div class="hlogin-ui-btn">
+            <button class="hlogin-init-action" data-type="UserPassword">&#9658; UserPassword</button>
+        </div>
+        <div class="hlogin-ui-btn">
+            <button class="hlogin-init-action" data-type="CloseAllPopups">&#9658; CloseAllPopups</button>
+        </div>
+        <div class="hlogin-ui-btn">
+            <button class="hlogin-init-action" data-type="ChangeDesign" data-value="dark">&#9658; ChangeDesign (dark)
+            </button>
+        </div>
+        <div class="hlogin-ui-btn">
+            <button class="hlogin-init-action" data-type="DefaultDesign">&#9658; DefaultDesign</button>
+        </div>
+        <div class="hlogin-ui-btn">
+            <button class="hlogin-init-action" data-type="ChangeLang" data-value="de">&#9658; ChangeLang (de)</button>
+        </div>
+        <div class="hlogin-ui-btn">
+            <button class="hlogin-init-action" data-type="DefaultLang">&#9658; DefaultLang</button>
+        </div>
+        <div class="hlogin-ui-btn">
+            <button class="hlogin-init-action" data-type="CustomMessage" data-value="Test message" data-title="Title message">&#9658; CustomMessage
+            </button>
+        </div>
+
+        <br><br>
+    </div>
+</div>
+<div class="footer">
+    <div class="repository">GitHub:
+        <a href="https://github.com/phphleb/hleb/">phphleb/hleb<span class="footer-link">&#10551;</span></a>
+        <a href="https://github.com/phphleb/framework/">phphleb/framework<span class="footer-link">&#10551;</span></a>
+        <a href="https://github.com/phphleb/hlogin/">phphleb/hlogin<span class="footer-link">&#10551;</span></a>
+    </div>
+    <div class="php-version">PHP v<?= \phpversion() ?></div>
+</div>
+</body>

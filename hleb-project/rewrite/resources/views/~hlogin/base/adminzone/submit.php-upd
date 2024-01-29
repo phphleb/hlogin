@@ -1,0 +1,15 @@
+<?php
+/**
+ * @var \Closure $trans
+ * @var array $hloginData
+ */
+?>
+
+<br><br><br>
+
+<label>
+    <textarea hidden class="hlogin-az-data hlogin-az-hidden"><?= json_encode($hloginData) ?></textarea>
+</label>
+
+<button class="hlogin-az-btn-submit hlogin-az-btn-disabled" disabled
+        tabindex="1"><?= $trans('apply_changes') ?></button>

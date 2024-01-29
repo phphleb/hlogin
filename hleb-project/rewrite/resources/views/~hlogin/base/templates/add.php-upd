@@ -1,0 +1,7 @@
+<?php
+/**
+ * Adding a script for loading registration forms to the page.
+ *
+ * Добавление на страницу скрипта загрузки форм регистрации.
+ */
+echo \Phphleb\Hlogin\App\Content\ScriptLoader::get();

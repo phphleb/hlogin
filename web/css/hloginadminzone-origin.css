@@ -1,0 +1,304 @@
+.hlogin-az-main {
+    margin-top: 15px;
+}
+
+.hlogin-az-zh-mode b {
+    font-weight: normal;
+}
+
+.hlogin-az-dynamic-block {
+    display: inline-block;
+    margin-right: 25px;
+}
+
+.hlogin-az-str {
+    display: inline-block;
+    margin: 6px 12px 6px 6px;
+    white-space: nowrap;
+    width: 250px;
+}
+
+.hlogin-az-str-list {
+    display: inline-block;
+    margin-right: 10px;
+    padding-bottom: 15px;
+}
+
+.hlogin-az-options, .hlogin-az-checkbox, .hlogin-az-textarea, .hlogin-az-input, .hlogin-az-search-input {
+    display: inline-block;
+    margin-right: 5px;
+    position: relative;
+    top: 1px;
+    border-radius: 3px;
+    padding: 4px;
+    border-top: 1px solid #000;
+    border-right: 1px solid #000;
+    border-left: 1px solid #879ba4;
+    border-bottom: 1px solid #879ba4;
+    background-color: white;
+}
+
+.hlogin-az-options, .hlogin-az-input {
+    width: 250px;
+}
+
+.hlogin-az-btn-submit {
+    background-color: steelblue;
+    color: whitesmoke;
+    padding: 15px 45px;
+    cursor: pointer;
+    opacity: 1;
+    border-radius: 4px;
+    border-top: 1px solid #adbcd1;
+    border-right: 1px solid #b6b6b6;
+    border-left: 1px solid #044b85;
+    border-bottom: 1px solid #043d70;
+    margin: 10px 0 40px 5px;
+}
+
+.hlogin-az-btn-submit:hover {
+    opacity: 0.85;
+}
+
+.hlogin-az-btn-disabled {
+    background-color: #999;
+    opacity: 0.7;
+}
+
+.hlogin-az-btn-disabled:hover {
+    background-color: #999;
+    opacity: 0.7;
+}
+
+.hlogin-az-checked, .hlogin-az-sort-select {
+    outline: 3px solid orange;
+}
+
+.hlogin-az-data {
+    display: none;
+}
+
+.hlogin-az-message-ok, .hlogin-az-message-error {
+    display: block;
+    position: absolute;
+    z-index: 10;
+    top: 5px;
+    right: 5px;
+    color: white;
+    padding: 10px;
+    min-width: 200px;
+}
+
+.hlogin-az-message-ok {
+    background-color: green;
+    border-left: 10px solid #106410;
+}
+
+.hlogin-az-message-error {
+    background-color: #fa2545;
+    border-left: 10px solid #be1730;
+}
+
+.hlogin-az-message-info {
+    background-color: #fad725;
+    border-left: 10px solid #fab725;
+    width: max-content;
+    padding: 5px 10px;
+    color: #755204;
+    margin-bottom: 10px;
+    min-width: 230px;
+}
+
+.hlogin-az-textarea {
+    min-width: 200px;
+    width: 420px;
+    max-width: 450px;
+    overflow: auto;
+    font-size: 12px;
+    height: 100px;
+}
+
+.hlogin-az-data-cell {
+    padding-left: 2px;
+}
+
+.hlogin-az-data-table td {
+    padding: 5px;
+}
+
+.hlogin-az-hidden {
+    display: none;
+}
+
+.hlogin-az-tr {
+    background-color: #eeeded;
+}
+
+.hlogin-az-data-table {
+    border: 3px solid #eeeded;
+}
+
+.hlogin-az-btn-search,
+.hlogin-az-filter-btn-show,
+.hlogin-az-filter-btn-hide,
+.hlogin-az-filter-btn-send,
+.hlogin-az-page-btn-link,
+.hlogin-az-page-btn {
+    background-color: steelblue;
+    color: whitesmoke;
+    cursor: pointer;
+    opacity: 1;
+    padding: 4px 10px;
+    border-radius: 2px;
+    border-top: 1px solid #adbcd1;
+    border-right: 1px solid #b6b6b6;
+    border-left: 1px solid #044b85;
+    border-bottom: 1px solid #043d70;
+}
+
+.hlogin-az-btn-search:hover,
+.hlogin-az-filter-btn-show:hover,
+.hlogin-az-filter-btn-hide:hover,
+.hlogin-az-filter-btn-send:hover,
+.hlogin-az-page-btn-link:hover {
+    opacity: 0.85;
+}
+
+.hlogin-az-filter-btn-hide, .hlogin-az-filter-btn-send {
+    display: none;
+}
+
+.hlogin-az-filter-block {
+    min-height: 10px;
+    border: 1px solid grey;
+    padding: 5px;
+    display: none;
+}
+
+.hlogin-az-search-form {
+    margin-bottom: 30px;
+    margin-top: 10px;
+    white-space: nowrap;
+}
+
+.hlogin-az-search-form input {
+    max-width: 180px;
+}
+
+.hlogin-az-colored option, .hlogin-az-colored span {
+    color: #036964;
+}
+
+.hlogin-az-colored [value="-1"] {
+    color: #b65c02;
+}
+
+.hlogin-az-colored [value="-2"] {
+    color: #b90202;
+}
+
+.hlogin-az-colored [value="1"] {
+    color: #414040;
+}
+
+.hlogin-az-colored [value="2"] {
+    color: darkgreen;
+}
+
+.hlogin-az-colored [value="10"] {
+    color: blue;
+}
+
+.hlogin-az-colored [value="11"] {
+    color: darkblue;
+}
+
+.hlogin-az-over-table {
+    max-width: 100%;
+    width: max-content;
+    overflow: auto;
+    border: 3px solid #eeeded;
+}
+
+.hlogin-az-over-table table {
+    border-collapse: collapse;
+    border: 0;
+}
+
+.hlogin-az-over-table table td {
+    white-space: nowrap;
+    padding: 8px;
+}
+
+.hlogin-az-over-table table tr:hover {
+    cursor: pointer;
+    outline: 1px solid #969595;
+}
+
+.hlogin-az-table-header {
+    color: #1b2427;
+    background-color: #ffffff;
+}
+
+.hlogin-az-over-table {
+    color: #444343;
+}
+
+.hlogin-az-over-table a {
+    color: #2f5c8a;
+}
+
+.hlogin-az-td-middle {
+    text-align: center;
+}
+
+.hlogin-az-over-table td {
+    padding: 5px;
+    max-width: 205px;
+    overflow-x: hidden;
+}
+
+.hlogin-az-limit {
+    display: inline-block;
+}
+
+.hlogin-az-page-btn {
+    background-color: #c2bfbf;
+    color: #505050;
+}
+
+.hlogin-az-page-btn, .hlogin-az-page-btn-link {
+    margin-top: 6px;
+}
+
+.hlogin-az-btn-pagination {
+    margin: 10px 5px 5px 0;
+    white-space: nowrap;
+}
+
+.hlogin-az-sort-block {
+    display: inline-block;
+    margin: 0 0 3px 5px;
+    padding: 0;
+}
+
+.hlogin-az-sort-btn {
+    display: inline-block;
+    width: max-content;
+    padding: 0;
+    margin: 3px 0 4px 0;
+    border: 0;
+    background-color: white;
+    color: #d0cfcf;
+}
+
+.hlogin-az-sort-btn:hover {
+    color: #949393;
+    cursor: pointer;
+}
+
+.hlogin-az-sort-select {
+    color: #2f5c8a;
+
+}
+

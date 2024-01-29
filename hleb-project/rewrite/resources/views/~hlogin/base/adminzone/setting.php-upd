@@ -1,0 +1,242 @@
+<?php
+
+require __DIR__ . '/header.php';
+
+/**
+ * @var string $lang
+ * @var \Closure $trans
+ * @var array $config
+ * @var array $designOptions
+ * @var array $languageOptions
+ * @var bool $buttonActive
+ * @var bool $onlyEnter
+ * @var array $cells
+ * @var string $linkToUserAgreement
+ * @var string $linkToPrivacyPolicy
+ * @var string $getUrlAfterReg
+ * @var array $hloginData
+ * @var bool $sendPasswordInMail
+ */
+?>
+<div class="hlogin-az-main<?php echo $lang === 'zh' ? ' hlogin-az-zh-mode' : '' ?>">
+    <div class="hlogin-az-form" data-type="setting">
+
+        <h2><?= $trans('reg_settings') ?></h2>
+
+        <!-- Changing the panel design -->
+        <span class="hlogin-az-dynamic-block">
+     <p><b><?= $trans('design') ?></b></p>
+     <p>
+         <label class="hlogin-az-str">
+            <select class="hlogin-az-options" name="design" tabindex="1">
+<?php foreach ($designOptions as $designType): ?>
+    <option value="<?= $designType ?>"><?= $designType ?></option>
+<?php endforeach; ?>
+             </select>
+         </label>
+     </p>
+     </span>
+
+        <span class="hlogin-az-dynamic-block">
+     <p><b><?= $trans('block_position') ?></b></p>
+     <p>
+         <label class="hlogin-az-str">
+            <input type="checkbox" name="block_active" <?= $buttonActive ? 'checked' : '' ?> class="hlogin-az-checkbox"
+                   tabindex="1"
+            ><?= $trans('active') ?>
+         </label>
+     </p>
+     </span>
+
+        <span class="hlogin-az-dynamic-block">
+     <p><b><?= $trans('only_enter') ?></b></p>
+     <p>
+         <label class="hlogin-az-str">
+            <input type="checkbox" name="enter_only" <?= $onlyEnter ? 'checked' : '' ?>  class="hlogin-az-checkbox"
+                   tabindex="1"
+            ><?= $trans('active') ?>
+         </label>
+     </p>
+     </span>
+
+        <!-- Setting up registration restrictions -->
+        <span class="hlogin-az-dynamic-block">
+     <p><b><?= $trans('send_pass_to_email') ?></b></p>
+     <p>
+         <label class="hlogin-az-str">
+            <input type="checkbox"
+                   name="password_in_mail" <?= $sendPasswordInMail ? 'checked' : '' ?>  class="hlogin-az-checkbox"
+                   tabindex="1"
+            ><?= $trans('active') ?>
+         </label>
+     </p>
+     </span>
+
+        <hr>
+
+        <p><b><?= $trans('fields_for_registration') ?></b></p>
+
+        <label class="hlogin-az-str-list">
+            <input type="checkbox" name="on_email" checked disabled class="hlogin-az-checkbox" tabindex="1"
+            >E-mail
+        </label>
+
+        <label class="hlogin-az-str-list">
+            <input type="checkbox" name="on_password" <?= $cells['password']['on'] ? 'checked' : '' ?>
+                   class="hlogin-az-checkbox" tabindex="1"
+            ><?= $trans('password') ?>
+        </label>
+
+        <label class="hlogin-az-str-list">
+            <input type="checkbox" name="on_phone" <?= $cells['phone']['on'] ? 'checked' : '' ?>
+                   class="hlogin-az-checkbox" tabindex="1"
+            ><?= $trans('phone') ?>
+        </label>
+
+        <label class="hlogin-az-str-list">
+            <input type="checkbox" name="on_name" <?= $cells['name']['on'] ? 'checked' : '' ?>
+                   class="hlogin-az-checkbox" tabindex="1"
+            ><?= $trans('name') ?>
+        </label>
+
+        <label class="hlogin-az-str-list">
+            <input type="checkbox" name="on_surname" <?= $cells['surname']['on'] ? 'checked' : '' ?>
+                   class="hlogin-az-checkbox" tabindex="1"
+            ><?= $trans('surname') ?>
+        </label>
+
+        <label class="hlogin-az-str-list">
+            <input type="checkbox" name="on_address" <?= $cells['address']['on'] ? 'checked' : '' ?>
+                   class="hlogin-az-checkbox" tabindex="1"
+            ><?= $trans('address') ?>
+        </label>
+
+        <label class="hlogin-az-str-list">
+            <input type="checkbox" name="on_promo_code" <?= $cells['promocode']['on'] ? 'checked' : '' ?>
+                   class="hlogin-az-checkbox" tabindex="1"
+            ><?= $trans('promo_code') ?>
+        </label>
+
+        <label class="hlogin-az-str-list">
+            <input type="checkbox" name="on_subscription" <?= $cells['subscription']['on'] ? 'checked' : '' ?>
+                   class="hlogin-az-checkbox" tabindex="1"
+            ><?= $trans('subscription') ?>
+        </label>
+
+        <label class="hlogin-az-str-list">
+            <input type="checkbox" name="on_terms_of_use" <?= $cells['terms-of-use']['on'] ? 'checked' : '' ?>
+                   class="hlogin-az-checkbox" tabindex="1"
+            ><?= $trans('terms_of_use') ?>
+        </label>
+
+        <label class="hlogin-az-str-list">
+            <input type="checkbox" name="on_privacy_policy" <?= $cells['privacy-policy']['on'] ? 'checked' : '' ?>
+                   class="hlogin-az-checkbox" tabindex="1"
+            ><?= $trans('privacy_policy') ?>
+        </label>
+
+        <p><b><?= $trans('required_fields') ?></b></p>
+
+        <label class="hlogin-az-str-list">
+            <input type="checkbox" name="req_email" checked disabled class="hlogin-az-checkbox" tabindex="1"
+            >E-mail*
+        </label>
+
+        <label class="hlogin-az-str-list">
+            <input type="checkbox" name="req_password" <?= $cells['password']['req'] ? 'checked' : '' ?> disabled
+                   class="hlogin-az-checkbox" tabindex="1"
+            ><?= $trans('password') ?>*
+        </label>
+
+        <label class="hlogin-az-str-list">
+            <input type="checkbox" name="req_phone" <?= $cells['phone']['req'] ? 'checked' : '' ?>
+                   class="hlogin-az-checkbox" tabindex="1"
+            ><?= $trans('phone') ?>*
+        </label>
+
+        <label class="hlogin-az-str-list">
+            <input type="checkbox" name="req_name" <?= $cells['name']['req'] ? 'checked' : '' ?>
+                   class="hlogin-az-checkbox" tabindex="1"
+            ><?= $trans('name') ?>*
+        </label>
+
+        <label class="hlogin-az-str-list">
+            <input type="checkbox" name="req_surname" <?= $cells['surname']['req'] ? 'checked' : '' ?>
+                   class="hlogin-az-checkbox" tabindex="1"
+            ><?= $trans('surname') ?>*
+        </label>
+
+        <label class="hlogin-az-str-list">
+            <input type="checkbox" name="req_address" <?= $cells['address']['req'] ? 'checked' : '' ?>
+                   class="hlogin-az-checkbox" tabindex="1"
+            ><?= $trans('address') ?>*
+        </label>
+
+        <p><b><?= $trans('show_in_profile') ?></b></p>
+
+        <label class="hlogin-az-str-list">
+            <input type="checkbox" name="prof_email" checked disabled class="hlogin-az-checkbox" tabindex="1"
+            >E-mail*
+        </label>
+
+        <label class="hlogin-az-str-list">
+            <input type="checkbox" name="prof_phone" <?= $cells['phone']['prof'] ? 'checked' : '' ?>
+                   class="hlogin-az-checkbox" tabindex="1"
+            ><?= $trans('phone') ?>
+        </label>
+
+        <label class="hlogin-az-str-list">
+            <input type="checkbox" name="prof_name" <?= $cells['name']['prof'] ? 'checked' : '' ?>
+                   class="hlogin-az-checkbox" tabindex="1"
+            ><?= $trans('name') ?>
+        </label>
+
+        <label class="hlogin-az-str-list">
+            <input type="checkbox" name="prof_surname" <?= $cells['surname']['prof'] ? 'checked' : '' ?>
+                   class="hlogin-az-checkbox" tabindex="1"
+            ><?= $trans('surname') ?>
+        </label>
+
+        <label class="hlogin-az-str-list">
+            <input type="checkbox" name="prof_address" <?= $cells['address']['prof'] ? 'checked' : '' ?>
+                   class="hlogin-az-checkbox" tabindex="1"
+            ><?= $trans('address') ?>
+        </label>
+
+        <br><br>
+        <hr>
+
+        <span class="hlogin-az-dynamic-block">
+ <p><b><?= $trans('link_to_user_agreement') ?></b></p>
+ <p>
+     <label class="hlogin-az-str">
+         <input type="text" name="link_to_user_agreement" value="<?= $linkToUserAgreement ?>" class="hlogin-az-input"
+                tabindex="1">
+     </label>
+ </p>
+ </span>
+
+        <span class="hlogin-az-dynamic-block">
+ <p><b><?= $trans('link_to_privacy_policy') ?></b></p>
+ <p>
+     <label class="hlogin-az-str">
+         <input type="text" name="link_to_privacy_policy" value="<?= $linkToPrivacyPolicy ?>" class="hlogin-az-input"
+                tabindex="1">
+     </label>
+ </p>
+ </span>
+
+        <span class="hlogin-az-dynamic-block">
+ <p><b><?= $trans('get_url_after_reg') ?></b></p>
+ <p>
+     <label class="hlogin-az-str">
+         <input type="text" name="get_url_after_reg" value="<?= $getUrlAfterReg ?>" class="hlogin-az-input"
+                tabindex="1">
+     </label>
+ </p>
+ </span>
+
+<?php require __DIR__ . '/submit.php'; ?>
+
+    </div>
+</div>

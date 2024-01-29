@@ -1,0 +1,36 @@
+<?php
+
+use App\Middlewares\Hlogin\Registrar;
+use Phphleb\Hlogin\App\Content\ScriptLoader;
+use Phphleb\Hlogin\App\Data\ConfigStorage;
+
+/**
+ * @var string|null $command
+ *
+ * @var string $title
+ */
+
+$config = ConfigStorage::getConfig();
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width"/>
+<meta name="robots" content="noindex, noarchive"/>
+<meta name="description" content="<?= $title ?>"/>
+<meta name="theme-color" content="#2a3f54"/>
+<link rel="icon" href="/favicon.ico" type="image/x-icon"/>
+<link rel="stylesheet" href="/hlresource/hlogin/v<?= $config['version'] ?>/css/hloginstylepage"/>
+<?= html_entity_decode(htmlspecialchars_decode($config['registration']['reg-page-head'])) ?>
+
+<title><?= $title ?></title>
+</head>
+<body>
+    <div id="JsWarning">
+        <img src="/hlresource/hlogin/v<?= $config['version'] ?>r<?= rand(0, 100_000_000_000) ?>/gif/jswarning" alt="JS Disabled info">
+    </div>
+    <?= ScriptLoader::get(forced: true, openPanel: $command, loadMode: Registrar::DEFAULT_PANEL); ?>
+</body>
+</html>
+

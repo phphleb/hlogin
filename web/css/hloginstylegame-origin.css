@@ -1,0 +1,386 @@
+/* `game` design appearance */
+/* Внешний вид дизайна `game` */
+#hlogin-check-design-css {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: inline-block;
+    width: 50px;
+    height: 0;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+#hlogin-buttons {
+    color: white;
+    border: 0;
+    border-radius: 4px;
+    background: #323C54;
+    box-shadow: 0 -1px #242e42 inset;
+    transition: 0.2s;
+    border-bottom: 2px solid #192232;
+}
+
+.hlogin-btn-delimiter {
+    color: white;
+}
+
+.hlogin-email-tag {
+    font-weight: bolder;
+    color: #a5b5fa;
+}
+
+.hlogin-content-btn {
+    color: white;
+    background-color: #323C54;
+}
+
+/** PANELS */
+/** ПАНЕЛИ */
+
+.hlogin-over-content {
+    border: 0;
+    max-height: 100%;
+    color: #e3e3e3;
+}
+
+/* The contents of the panel. */
+/* Содержимое панели.  */
+.hlogin-frame-over, .hlogin-over-content, .hlogin-panel-content {
+    width: 100%;
+    min-width: 100%;
+}
+
+.hlogin-frame-content {
+    max-width: 360px;
+}
+
+.hlogin-frame-edge {
+    width: calc(50% - 180px);
+}
+
+.hlogin-frame-internal {
+    font-family: "PT Sans", sans-serif;
+    padding: 10px 20px 30px 20px;
+    margin: 4px 0 5px 0;
+    width: calc(100% - 42px);
+    max-width: 420px;
+}
+
+.hlogin-frame-internal hr {
+    display: none;
+}
+
+.hlogin-blob {
+    background-color: #323C54;
+    opacity: 0.9;
+}
+
+.hlogin-content-header, .hlogin-alternative-link {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 15px;
+    text-align: left;
+    -moz-text-align-last: left;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 22px;
+    padding: 0 !important;
+}
+
+.hlogin-pan-left, .hlogin-pan-right {
+    display: none;
+}
+
+.hlogin-alternative-link {
+    background: transparent !important;
+    background-image: none !important;
+    box-shadow: none !important;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-bottom: 0 !important;
+    float: right;
+    color: darkorange;
+    width: max-content;
+    border: 0;
+}
+
+.hlogin-frame-internal input, .hlogin-password-cell, .hlogin-email-second-cell {
+    width: calc(100% - 11px) !important;
+    height: 30px;
+    font-size: 14px;
+    padding: 0 4px !important;
+    color: #505050;
+    margin-bottom: 5px;
+    border-radius: 0;
+    border: 1px solid grey;
+    background-color: rgb(232, 240, 254);
+    box-shadow: 0 0 0 1px #ffffff, 0 0 0 1px #ffffff;
+}
+
+.hlogin-password-over {
+    width: 100%;
+}
+
+.hlogin-over-panel *:focus {
+    outline: 2px solid deepskyblue;
+    outline-offset: -2px;
+}
+
+.hlogin-email-first-cell {
+    display: inline-block;
+    max-width: calc(50% - 20px) !important;
+}
+
+.hlogin-email-second-cell {
+    display: inline-block;
+    width: calc(50% - 20px) !important;
+    max-width: calc(50% - 20px) !important;
+}
+
+.hlogin-outer-x, .hlogin-inner-x {
+    border: 0;
+    background: transparent none !important;
+    box-shadow: none !important;
+    position: fixed;
+    z-index: 2000;
+    right: 18px;
+    top: 12px;
+    font-weight: bold;
+    color: #efefef;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 100%;
+    font-size: 30px;
+    text-decoration: none;
+}
+
+.hlogin-input-title {
+    font-weight: bold;
+    padding: 10px 0 0 4px;
+}
+
+.hlogin-input-marker {
+    display: inline-block;
+    color: #a5b5fa;
+    padding-left: 2px;
+}
+
+.hlogin-origin-checkbox {
+    display: none;
+}
+
+.hlogin-footer-link {
+    display: inline-block;
+    text-decoration: none;
+}
+
+.hlogin-footer-link button {
+    display: inline-block;
+    border: 0;
+    padding: 0;
+    background: transparent none !important;
+    box-shadow: none !important;
+    color: #e3e3e3;
+    text-decoration: none;
+    margin: 2px 15px 10px 5px;
+    cursor: pointer;
+    font-size: 17px;
+}
+
+.hlogin-footer-link button:hover {
+    text-decoration: underline;
+}
+
+.hlogin-over-link {
+    margin-top: 15px;
+    margin-bottom: 8px;
+}
+
+.hlogin-pan-btn {
+    display: block;
+    padding: 8px 4px;
+    cursor: pointer;
+    color: #f5f5f5;
+    background-color: #a8a8a8;
+    width: calc(100% - 2px);
+    border-radius: 2px;
+    border: 1px solid grey;
+    font-size: 14px;
+    text-shadow: 1px 1px 1px #666;
+    -webkit-box-shadow: 0 0 3px 0 rgb(0 0 0 / 5%), 0 0 3px 0 rgb(0 0 0 / 5%);
+    -moz-box-shadow: 0 0 3px 0 rgba(0, 0, 0, .05), 0 0 3px 0 rgba(0, 0, 0, .05);
+    box-shadow: 0 0 3px 0 rgb(0 0 0 / 5%), 0 0 3px 0 rgb(0 0 0 / 5%);
+    letter-spacing: 0.06em;
+    min-height: 30px;
+    margin: 5px 0 15px 0;
+}
+
+.hlogin-pan-btn-adaptive {
+    position: relative;
+    width: 220px;
+    display: inline-block;
+    margin-top: 15px;
+    right: 0;
+}
+
+.hlogin-pan-btn-blue {
+    border: 1px solid #879ba4;
+    background-color: #456dbb;
+    text-shadow: 1px 1px 1px #3d4c85;
+    border-bottom: 1px solid #1c68bb;
+    border-left: 1px solid #1c68bb;
+}
+
+.hlogin-pan-btn-green {
+    border-top: 1px solid #74d461;
+    border-right: 1px solid #74d461;
+    background-color: #2f9140;
+    text-shadow: 1px 1px 1px #18660d;
+    border-bottom: 1px solid #0e7715;
+    border-left: 1px solid #0e7715;
+}
+
+.hlogin-cell-notice {
+    margin: 2px;
+}
+
+.hlogin-captcha-img {
+    height: 50px;
+    aspect-ratio: auto 200 / 50;
+    width: 200px;
+    margin: 0 4px 10px 0;
+}
+
+.hlogin-remove-img-over {
+    width: 32px;
+    height: 32px;
+    margin: 0;
+    opacity: 1;
+    cursor: pointer;
+    background: transparent none !important;
+}
+
+.hlogin-remove-img-over img {
+    width: 32px;
+    height: 32px;
+}
+
+.hlogin-btn-checkbox {
+    position: relative;
+    bottom: 2px;
+    left: 0;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    width: max-content;
+    height: 20px;
+    border: 0;
+    background: transparent none !important;
+    box-shadow: none !important;
+}
+
+.hlogin-btn-checkbox img {
+    vertical-align: middle !important;
+    width: 20px;
+    height: 20px;
+
+}
+
+.hlogin-checkbox-over, .hlogin-btn-checkbox img {
+    padding: 0;
+    margin: 0;
+}
+
+.hlogin-checkbox-over {
+    margin: 10px 0 10px 0;
+}
+
+.hlogin-checkbox-text {
+    display: inline-block;
+    max-width: 85%;
+    vertical-align: middle;
+    margin-left: 8px;
+    color: rgb(243, 241, 241);
+    font-size: 12px;
+}
+
+.hlogin-checkbox-text a {
+    color: rgb(243, 241, 241);
+    text-decoration: underline;
+}
+
+.hlogin-cell-notice, .hlogin-btn-notice {
+    color: darkorange;
+}
+
+.hlogin-pan-hr {
+    margin: 12px 0 8px 0;
+    border-bottom: 1px solid #dcd9d9;
+    width: 100%;
+}
+
+.hlogin-text-input-cell {
+    width: calc(100% - 11px) !important;
+    margin-bottom: 20px;
+    min-height: 100px;
+    padding: 4px !important;
+    color: #505050;
+    margin-bottom: 5px;
+    border-radius: 0;
+    border: 1px solid grey;
+    background-color: rgb(232, 240, 254);
+    box-shadow: 0 0 0 1px #ffffff, 0 0 0 1px #ffffff;
+}
+
+.hlogin-pan-maximize-block .hlogin-blob {
+    opacity: 1;
+}
+
+@media only screen and (max-width: 992px) {
+    .hlogin-pan-btn-adaptive {
+        width: calc(100% - 10px);
+        right: 7px;
+        margin-top: 25px;
+    }
+}
+
+@media only screen and (max-width: 640px) {
+    .hlogin-checkbox-text {
+        font-size: 14px;
+    }
+
+    .hlogin-btn-checkbox img {
+        bottom: -1px;
+    }
+
+    .hlogin-footer-link button {
+        display: inline-block;
+        font-size: 18px;
+    }
+
+    .hlogin-alternative-link {
+        float: none;
+        margin-left: 10px;
+    }
+
+    .hlogin-content-header {
+        display: inline-block;
+    }
+
+    .hlogin-pan-maximize-block .hlogin-alternative-link {
+        float: right;
+    }
+
+    .hlogin-pan-maximize-block .hlogin-content-header {
+        display: inline-block;
+        width: 100%;
+    }
+
+    #hlogin-buttons div {
+        display: none !important;
+        padding: 0;
+    }
+}
+

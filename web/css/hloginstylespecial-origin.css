@@ -1,0 +1,528 @@
+/* `special` design appearance */
+/* Внешний вид дизайна `special` */
+#hlogin-check-design-css {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: inline-block;
+    width: 50px;
+    height: 0;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+#hlogin-buttons {
+    background-color: #ffffff;
+    color: #000000;
+    border: 2px solid #000000;
+    border-bottom: 8px solid #000000;
+}
+
+.hlogin-content-btn {
+    color: #000000;
+    background-color: #ffffff;
+    font-family: "Times New Roman", Times, serif;
+    letter-spacing: 1px;
+    font-size: 19px;
+    font-weight: bold;
+    margin-right: 2px;
+}
+
+.hlogin-content-btn img {
+    display: none;
+}
+
+
+/** PANELS */
+/** ПАНЕЛИ */
+.hlogin-over-panel * {
+    font-family: "Times New Roman", Times, serif;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+.hlogin-frame-content {
+    width: 440px;
+}
+
+.hlogin-frame-edge {
+    width: 10%;
+}
+
+.hlogin-over-content {
+    background-color: white;
+    border: 3px solid black;
+    border-radius: 1px;
+    border-left: 0;
+    border-right: 0;
+    max-height: calc(100% - 8px);
+}
+
+/* The contents of the panel. */
+/* Содержимое панели.  */
+.hlogin-frame-internal {
+    font-family: "PT Sans", sans-serif;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+    padding: 10px 20px 30px 20px;
+    margin: 4px 0 5px 0;
+    width: calc(100% - 42px);
+}
+
+.hlogin-frame-internal hr {
+    display: none;
+}
+
+
+/** The top part of the panel with the title. */
+/** Верхняя часть панели с заголовком. */
+.hlogin-content-header, .hlogin-alternative-link {
+    display: inline;
+    color: #000000;
+    font-weight: bold;
+    font-size: 25px;
+    border: 0 !important;
+    padding: 0 !important;
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+.hlogin-content-header {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 15px;
+    text-align: left;
+    -moz-text-align-last: left;
+    letter-spacing: 1px;
+}
+
+.hlogin-alternative-link {
+    background: transparent none !important;
+    box-shadow: none !important;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-bottom: 0 !important;
+    float: right;
+}
+
+.hlogin-frame-edge {
+    text-align: right;
+    -moz-text-align-last: right;
+}
+
+.hlogin-outer-x, .hlogin-inner-x {
+    border: 0;
+    box-shadow: none !important;
+    position: absolute;
+    right: 13px;
+    top: 7px;
+    background: transparent none !important;
+    font-weight: bold;
+    color: #000000;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 100%;
+    font-size: 28px;
+    text-decoration: none;
+    font-family: Arial, "PT Sans", sans-serif;
+}
+
+.hlogin-inner-x {
+    margin: 4px;
+    font-size: 26px;
+    color: #000000;
+    font-family: Arial, "PT Sans", sans-serif;
+}
+
+.hlogin-frame-internal input, .hlogin-password-cell, .hlogin-email-second-cell {
+    width: calc(100% - 11px) !important;
+    height: 42px;
+    padding: 0px 4px !important;
+    border-radius: 1px;
+    border: 2px solid gray;
+    background-color: #e5e5e5;
+    font-size: 19px;
+    margin-bottom: 5px;
+    color: black;
+    letter-spacing: 2px;
+}
+
+.hlogin-over-content *:focus {
+    outline: 4px solid #176cc9;
+    outline-offset: 2px;
+}
+
+.hlogin-frame-internal input:focus,
+.hlogin-password-cell:focus,
+.hlogin-email-second-cell:focus,
+.hlogin-email-first-cell:focus,
+.hlogin-btn-checkbox:focus {
+    outline: 4px solid #176cc9;
+    outline-offset: -2px;
+}
+
+.hlogin-email-first-cell {
+    display: inline-block;
+    max-width: calc(50% - 26px) !important;
+}
+
+.hlogin-email-second-cell {
+    display: inline-block;
+    width: calc(50% - 25px) !important;
+    max-width: calc(50% - 25px) !important;
+}
+
+.hlogin-text-input-cell {
+    width: calc(100% - 11px) !important;
+    border-radius: 4px;
+    min-height: 160px;
+    border: 2px solid grey;
+    background-color: #e5e5e5;
+    font-size: 19px;
+    margin-bottom: 5px;
+    color: black;
+    line-height: 1.5;
+    padding: 5px;
+}
+
+.hlogin-email-tag {
+    display: inline-block;
+    font-size: 18px;
+    padding: 2px 0 2px 6px;
+    color: black;
+}
+
+.hlogin-password-over {
+    width: 100%;
+}
+
+.hlogin-input-title {
+    padding-left: 3px;
+    font-size: 20px;
+    letter-spacing: 1px;
+    font-weight: bold;
+    color: #2e303e;
+    text-align: left;
+    padding-bottom: 4px;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;
+    margin-top: 14px;
+    margin-bottom: 1px;
+}
+
+.hlogin-input-marker {
+    display: inline-block;
+    color: #000000;
+    padding-left: 2px;
+    font-size: 30px;
+}
+
+.hlogin-origin-checkbox {
+    display: none;
+}
+
+.hlogin-btn-checkbox {
+    position: relative;
+    bottom: 2px;
+    left: 0;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    width: max-content;
+    height: 30px;
+    border: 0;
+    background: transparent none !important;
+    box-shadow: none !important;
+}
+
+.hlogin-btn-checkbox img {
+    vertical-align: middle !important;
+    width: 30px;
+    height: 30px;
+
+}
+
+.hlogin-checkbox-over, .hlogin-btn-checkbox img {
+    padding: 0;
+    margin: 0;
+}
+
+.hlogin-checkbox-over {
+    margin: 10px 0 10px 0;
+}
+
+.hlogin-checkbox-text {
+    display: inline-block;
+    max-width: 85%;
+    vertical-align: middle;
+    margin-left: 14px;
+    color: black;
+    font-size: 19px;
+}
+
+.hlogin-checkbox-text a {
+    color: black;
+    text-decoration: underline;
+}
+
+.hlogin-btn-checkbox img {
+    position: relative;
+    display: inline-block;
+    bottom: 0;
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.hlogin-over-link {
+    padding: 0;
+    margin: 10px 0 0 0;
+}
+
+.hlogin-footer-link {
+    display: inline-block;
+}
+
+.hlogin-footer-link button {
+    display: inline-block;
+    border: 0;
+    padding: 0;
+    background: transparent none !important;
+    box-shadow: none !important;
+    text-decoration: underline;
+    color: #171717;
+    border-bottom: 0;
+    margin: 2px 15px 10px 5px;
+    cursor: pointer;
+    font-size: 21px;
+}
+
+.hlogin-pan-btn-checkbox-text {
+    font-size: 19px;
+    padding: 5px;
+    top: 5px;
+    color: #171717;
+}
+
+.hlogin-pan-btn {
+    display: block;
+    padding: 8px 4px;
+    cursor: pointer;
+    color: #f5f5f5;
+    background-color: #a8a8a8;
+    width: calc(100% - 2px);
+    border-radius: 2px;
+    border: 1px solid grey;
+    font-size: 14px;
+    text-shadow: 1px 1px 1px #666;
+    -webkit-box-shadow: 0 0 3px 0 rgb(0 0 0 / 5%), 0 0 3px 0 rgb(0 0 0 / 5%);
+    -moz-box-shadow: 0 0 3px 0 rgba(0, 0, 0, .05), 0 0 3px 0 rgba(0, 0, 0, .05);
+    box-shadow: 0 0 3px 0 rgb(0 0 0 / 5%), 0 0 3px 0 rgb(0 0 0 / 5%);
+    letter-spacing: 0.06em;
+    min-height: 30px;
+    margin: 5px 0 15px 0;
+}
+
+.hlogin-pan-btn-adaptive {
+    position: relative;
+    width: 70%;
+    display: inline-block;
+    margin-top: 25px;
+    right: 0;
+}
+
+.hlogin-pan-btn-adaptive button {
+    text-transform: uppercase;
+    font-size: 20px;
+    letter-spacing: 3px;
+}
+
+.hlogin-pan-btn-blue {
+    border: 2px solid white;
+    background-color: #171717;
+    color: white;
+}
+
+.hlogin-pan-btn-green {
+    border: 2px solid white;
+    background-color: #171717;
+    color: white;
+}
+
+.hlogin-pan-btn:focus {
+    border: 2px solid black;
+    background-color: white;
+    color: #171717;
+    outline: 4px solid #171717;
+    outline-offset: -2px;
+}
+
+.hlogin-error-border:focus {
+    outline: 6px solid #2447b2 !important;
+}
+
+.hlogin-origin-checkbox {
+    max-width: 30px !important;
+    height: 30px !important;
+}
+
+.hlogin-remove-img-over {
+    width: 24px;
+    height: 24px;
+    margin: 4px;
+    opacity: .75;
+    cursor: pointer;
+}
+
+.hlogin-captcha-code {
+    max-width: calc(100% - 170px);
+    display: inline-block;
+    float: right;
+    margin: 0 2px;
+}
+
+.hlogin-pan-scroll {
+    position: absolute;
+    right: 22px;
+}
+
+.hlogin-captcha-reload {
+    background-color: #fcfdfb !important;
+}
+
+.hlogin-password-text-show, .hlogin-password-text-hide {
+    background-color: white;
+    color: #171717;
+    top: 7px;
+    font-size: 19px;
+    border-radius: 0;
+}
+
+.hlogin-custom-message {
+    font-size: 19px;
+    padding: 4px;
+}
+
+.hlogin-pan-hr {
+    margin: 14px 0 12px 0;
+    border-bottom: 2px solid #171717;
+    width: 100%;
+}
+
+.hlogin-btn-checkbox {
+    margin-top: 10px;
+    margin-bottom: 7px;
+}
+
+.hlogin-captcha-code {
+    display: block;
+    float: none;
+    max-width: 100% !important;
+    margin: 5px 2px;
+}
+
+.hlogin-captcha-img {
+    height: 50px;
+    aspect-ratio: auto 200 / 50;
+    width: 200px;
+}
+
+.hlogin-remove-img-over img {
+    width: 34px;
+    height: 34px;
+}
+
+.hlogin-error-border {
+    border-color: #004dff !important;
+    outline: 5px solid #004dff;
+    background-color: white !important;
+    margin: 5px 0 4px 0;
+}
+
+.hlogin-cell-notice {
+    color: #004dff;
+    font-size: 19px;
+    margin-bottom: 2px;
+    max-width: 100%;
+}
+
+.hlogin-btn-notice {
+    font-size: 19px;
+    color: #004dff;
+    margin-bottom: 2px;
+    margin-top: 10px;
+}
+
+.hlogin-pan-exit-title {
+    color: #004dff !important;
+}
+
+@media only screen and (max-width: 992px) {
+    .hlogin-pan-btn-adaptive {
+        width: calc(100% - 10px);
+        right: 3px;
+        margin-top: 25px;
+    }
+}
+
+@media only screen and (max-width: 640px) {
+    .hlogin-input-title {
+        font-size: 20px;
+        margin-top: 15px;
+    }
+
+    .hlogin-checkbox-text {
+        font-size: 17px;
+        max-width: 70%;
+    }
+
+    .hlogin-btn-checkbox img {
+        bottom: -1px;
+    }
+
+    .hlogin-footer-link button {
+        display: inline-block;
+        font-size: 19px;
+    }
+
+    .hlogin-alternative-link {
+        float: none;
+        margin-left: 10px;
+    }
+
+    .hlogin-content-header {
+        display: inline-block;
+    }
+
+    .hlogin-pan-maximize-block .hlogin-alternative-link {
+        float: right;
+    }
+
+    .hlogin-pan-maximize-block .hlogin-content-header {
+        display: inline-block;
+        width: 100%;
+    }
+
+    #hlogin-buttons {
+        min-height: 50px;
+        display: inline-block;
+        height: max-content;
+    }
+
+    #hlogin-buttons div {
+        display: inline-block;
+        padding: 10px 0;
+    }
+
+    .hlogin-content-btn {
+        display: inline-block;
+    }
+}
+
+@media only screen and (min-width: 920px) {
+    .hlogin-content-header, .hlogin-alternative-link {
+        font-size: 32px;
+    }
+}

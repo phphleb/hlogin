@@ -1,0 +1,126 @@
+<?php
+
+require __DIR__ . '/header.php';
+
+/**
+ * @var string $lang
+ * @var \Closure $trans
+ * @var array $config
+ * @var array $hloginData
+ * @var int $idUser
+ * @var array $regtypeList
+ * @var array $regtypeData
+ * @var bool $confirm
+ * @var string|null $name
+ * @var string|null $email
+ * @var string|null $surname
+ * @var string|null $phone
+ * @var string|null $address
+ * @var bool $subscription
+ * @var string|null $regdate
+ * @var string|null $login
+ */
+
+?>
+
+<div class="hlogin-az-main<?php echo $lang === 'zh' ? ' hlogin-az-zh-mode' : '' ?>">
+    <div class="hlogin-az-form" data-type="rights">
+
+    <h2><?= $trans('reg_user_management') ?></h2>
+
+    <?php require __DIR__ . '/block.php'; ?>
+
+    <label><input hidden type="text" name="id"  value="<?= $idUser ?>" class="hlogin-az-input hlogin-az-hidden"></label>
+
+    <table class="hlogin-az-data-table" border="0" cellpadding="0" cellspacing="0">
+        <tr class="hlogin-az-tr">
+            <td><?= $trans('user_id') ?></td>
+            <td><div class="hlogin-az-data-cell"><?= $idUser ?></div></td>
+        </tr>
+        <tr>
+            <td>E-mail</td>
+            <td>
+                <label>
+                    <input type="text" name="email" value="<?= $email ?>" class="hlogin-az-input" tabindex="1">
+                </label>
+            </td>
+        </tr>
+        <tr class="hlogin-az-tr">
+            <td><?= $trans('reg_status') ?></td>
+            <td>
+                <label>
+                <select class="hlogin-az-options hlogin-az-colored" name="regtype" tabindex="1">
+                    <?php foreach ($regtypeList as $num): ?>
+                        <option value="<?= $num ?>"><?= $regtypeData[$num] . ' [' . $num . ']' ?></option>
+                    <?php endforeach; ?>
+                </select>
+                </label>
+            </td>
+        </tr>
+        <tr>
+            <td><?= $trans('verified_text') ?></td>
+            <td>
+                <label>
+                <input type="checkbox" name="confirm" <?= $confirm ? 'checked' : '' ?> class="hlogin-az-checkbox"
+                       tabindex="1"> <i><?= $trans('confirm_text') ?></i>
+                </label>
+            </td>
+        </tr>
+        <tr class="hlogin-az-tr">
+            <td><?= $trans('subscription_info') ?></td>
+            <td>
+                <label>
+                <input type="checkbox" name="subscription" <?= $subscription ? 'checked' : '' ?>
+                       class="hlogin-az-checkbox" tabindex="1"> <i><?= $trans('subscription_text') ?></i>
+                </label>
+            </td>
+        </tr>
+        <tr>
+            <td><?= $trans('login') ?></td>
+            <td>
+                <label>
+                <input type="text" name="login" value="<?= $login ?>" class="hlogin-az-input" tabindex="1">
+                </label>
+            </td>
+        </tr>
+        <tr class="hlogin-az-tr">
+            <td><?= $trans('name') ?></td>
+            <td>
+                <label>
+                <input type="text" name="name" value="<?= $name ?>" class="hlogin-az-input" tabindex="1">
+                </label>
+            </td>
+        </tr>
+        <tr>
+            <td><?= $trans('surname') ?></td>
+            <td>
+                <label>
+                <input type="text" name="surname" value="<?= $surname ?>" class="hlogin-az-input" tabindex="1">
+                </label>
+            </td>
+        </tr>
+        <tr class="hlogin-az-tr">
+            <td><?= $trans('phone') ?></td>
+            <td>
+                <label>
+                <input type="text" name="phone" value="<?= $phone ?>" class="hlogin-az-input" tabindex="1">
+                </label>
+            </td>
+        </tr>
+        <tr>
+            <td><?= $trans('address') ?></td>
+            <td>
+                <label>
+                <input type="text" name="address" value="<?= $address ?>" class="hlogin-az-input" tabindex="1">
+                </label>
+            </td>
+        </tr>
+        <tr class="hlogin-az-tr">
+            <td><?= $trans('reg_date') ?></td>
+            <td><div class="hlogin-az-data-cell"><?= $regdate ?></div></td>
+        </tr>
+
+    </table>
+
+
+<?php require __DIR__ . '/submit.php'; ?>

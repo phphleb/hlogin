@@ -1,0 +1,71 @@
+<?php
+/*
+ * To block the admin area, place this code in the router.
+ * Для блокировки страниц админзоны необходимо расположить этот код в основном файле роутов.
+   Route::get('/{lang}/adminzone/{first_block_page}/{second_block_page?}/', view('404'));
+ */
+
+use Phphleb\Hlogin\App\RegType;
+use App\Middlewares\Hlogin\Registrar;
+use App\Controllers\Hlogin\AuthController;
+use App\Controllers\Hlogin\AdminZoneController;
+
+Route::toGroup()
+    ->prefix('/{lang}/login/')
+    ->where(['lang' => '[a-z0-9\-]{1,7}'])
+    ->middleware(Registrar::class, data: [RegType::UNDEFINED_USER, '>=', Registrar::NO_PANEL]);
+    // Separate pages (logout and logout on all devices).
+    // Отдельные страницы  (выход и выход на всех устройствах).
+    Route::get('/action/exit/{value?}/')
+        ->controller(AuthController::class,'exit')->where(['value' => 'forced'])->name('hlogin.exit');
+    // Separate pages for forms (registration, login, feedback).
+    // Отдельные страницы для форм (регистрация, вход, обратная связь).
+    Route::get('/action/{action}/{value?}/')
+        ->controller(AuthController::class,'action')
+        ->where(['action' => '/^(enter|registration|feedback|confirm|recovery|profile)$/', 'value' => '[a-z]+'])->name('hlogin.action.page');
+    // Route for ajax requests from registration forms.
+    // Маршрут для ajax-запросов из форм регистрации.
+    Route::post('/data/{action}/{value?}/')->controller(AuthController::class, 'data')
+        ->where(['action' => '[a-z0-9]+', 'value' => '[a-z0-9]+'])
+        ->protect();
+    // Separate page for user profile (simple url).
+    // Отдельная страница для профиля пользователя (простой url).
+    Route::get('/profile/{value?}/')->controller(AuthController::class,'profile')->name('hlogin.profile.page');
+Route::endGroup();
+
+Route::toGroup()
+    ->prefix('/{lang}/adminzone/')
+    ->where(['lang' => '[a-z0-9\-]{1,7}'])
+    ->middleware(Registrar::class, data: [RegType::REGISTERED_ADMIN, '>=', Registrar::NO_PANEL]);
+
+    Route::get( '/registration/users/')
+        ->page('hlogin',AdminzoneController::class, 'userPage')->name('hlogin.users');
+
+    Route::get('/registration/rights/')
+        ->page('hlogin',AdminzoneController::class, 'rightPage')->name('hlogin.rights');
+
+    Route::get('/registration/settings/')
+        ->page('hlogin',AdminzoneController::class, 'settingPage')->name('hlogin.settings');
+
+    Route::get('/registration/captcha/')
+        ->page('hlogin',AdminzoneController::class, 'captchaPage')->name('hlogin.captcha');
+
+    Route::get( '/registration/email/')
+        ->page('hlogin',AdminzoneController::class, 'emailPage')->name('hlogin.email');
+
+    Route::get('/registration/additional/')
+       ->page('hlogin',AdminzoneController::class, 'additionalPage')->name('hlogin.additional');
+
+    Route::get('/registration/contact/')
+        ->page('hlogin',AdminzoneController::class, 'contactPage')->name('hlogin.contact');
+
+    Route::get('/registration/profile/')
+        ->page('hlogin',AdminzoneController::class, 'profilePage')->name('hlogin.profile');
+    // Handling Ajax requests for the admin panel.
+    // Реализация ajax-запросов для административной панели.
+    Route::post('/registration/data/{action}')->controller(AdminzoneController::class, 'data')->protect();
+Route::endGroup();
+
+Route::toGroup()->middleware(Registrar::class, data: [RegType::REGISTERED_COMMANDANT, '>=', Registrar::SHOW_BUTTON]);
+    Route::get('/{lang}/login/gui/main/preview/', view('hlogin/gui/'))->name('hlogin.gui'); // Preview of standard panels
+Route::endGroup();

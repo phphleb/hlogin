@@ -1,0 +1,45 @@
+<?php
+
+require __DIR__ . '/header.php';
+
+/**
+ * @var string $lang
+ * @var \Closure $trans
+ * @var array $config
+ * @var array $hloginData
+ * @var bool $contactActive
+ * @var string $mail
+ * @var string $mailPlaceholder
+ */
+?>
+<div class="hlogin-az-main<?php echo $lang === 'zh' ? ' hlogin-az-zh-mode' : '' ?>">
+    <div class="hlogin-az-form" data-type="contact">
+
+        <h2><?= $trans('feedback') ?></h2>
+
+        <span class="hlogin-az-dynamic-block">
+     <p><b><?= $trans('feedback_on') ?></b></p>
+     <p>
+         <label class="hlogin-az-str">
+            <input type="checkbox" name="active" <?= $contactActive ? 'checked' : '' ?> class="hlogin-az-checkbox"
+                   tabindex="1"
+            ><?= $trans('active') ?>
+         </label>
+     </p>
+     </span>
+        <br>
+
+        <span class="hlogin-az-dynamic-block">
+ <p><b><?= $trans('mail_to') ?></b></p>
+ <p>
+     <label class="hlogin-az-str">
+         <input type="text" name="email" value="<?= $mail ?>" class="hlogin-az-input"
+                placeholder="<?= $mailPlaceholder ?>" tabindex="1">
+     </label>
+ </p>
+ </span>
+
+<?php require __DIR__ . '/submit.php'; ?>
+
+    </div>
+</div>

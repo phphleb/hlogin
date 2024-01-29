@@ -1,0 +1,25 @@
+<?php
+
+require __DIR__ . '/header.php';
+
+/**
+ * @var string $lang
+ * @var \Closure $trans
+ * @var array $config
+ * @var array $hloginData
+ * @var null|string $message
+ * @var null|int $idUser
+ */
+?>
+<div class="hlogin-az-form" data-type="search">
+<h2><?= $trans('reg_user_management') ?></h2>
+
+<?= $message ? '<div class="hlogin-az-message-info">' . $message . '</div>' : ''; ?>
+
+<label>
+    <textarea hidden class="hlogin-az-data hlogin-az-hidden"><?= json_encode($hloginData) ?></textarea>
+</label>
+
+<?php require __DIR__ . '/block.php'; ?>
+
+</div>

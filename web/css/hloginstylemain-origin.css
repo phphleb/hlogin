@@ -1,0 +1,422 @@
+/* General panel structure */
+/* Общая структура панелей */
+#hlogin-check-main-css {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: inline-block;
+    width: 50px;
+    height: 0;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+.hlogin-over-panel {
+    font-family: "PT Sans", "Arial", serif;
+    display: flex;
+    position: fixed;
+    scroll: auto;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
+    z-index: 2147483647;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.hlogin-over-panel * {
+    user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    border: none;
+    padding: none;
+    outline: none;
+    margin: none;
+    opacity: 1;
+    visibility: visible;
+}
+
+.hlogin-over-panel input, .hlogin-over-panel textarea {
+    user-select: text;
+    -webkit-user-select: initial;
+    -khtml-user-select: initial;
+    -moz-user-select: initial;
+    -ms-user-select: initial;
+    user-select: initial;
+}
+
+.hlogin-over-panel[data-lang=zh] * {
+    font-weight: normal !important;
+}
+
+.hlogin-over-panel img {
+    vertical-align: middle !important;
+}
+
+.hlogin-pan-trim-target-for-open-popup {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.hlogin-pan-maximize-block .hlogin-frame-content {
+    width: 100% !important;
+}
+
+.hlogin-pan-maximize-block .hlogin-frame-internal {
+    width: calc(100% - 42px) !important;
+}
+
+.hlogin-pan-maximize-block .hlogin-frame-edge {
+    width: 20% !important;
+}
+
+.hlogin-pan-maximize-block .hlogin-frame-over {
+    height: calc(100% - 18px) !important;
+}
+
+.hlogin-pan-maximize-block,
+.hlogin-pan-maximize-block .hlogin-over-content,
+.hlogin-pan-maximize-block .hlogin-pan-center,
+.hlogin-pan-maximize-block .hlogin-panel-content {
+    width: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    min-height: 100% !important;
+    border: 0 !important;
+}
+
+.hlogin-over-panel * {
+    box-sizing: content-box !important;
+}
+
+.hlogin-over-panel > div {
+    box-sizing: border-box;
+}
+
+.hlogin-hidden {
+    display: none;
+}
+
+.hlogin-error-border {
+    border-color: #d24616 !important;
+}
+
+.hlogin-captcha-img {
+    height: 30px;
+    aspect-ratio: auto 120 / 30;
+    width: 120px;
+}
+
+.hlogin-captcha-img, .hlogin-remove-img-over {
+    display: inline-block;
+    border: 0;
+    padding: 0;
+    margin: 0;
+}
+
+.hlogin-captcha-reload {
+    border: 0;
+    background: transparent none !important;
+    height: 24px;
+    width: 24px;
+}
+
+
+.hlogin-ca {
+    height: 30px;
+    aspect-ratio: auto;
+    width: 30px;
+}
+
+.hlogin-cell-notice, .hlogin-btn-notice {
+    display: block;
+    font-size: 12px;
+    color: #d24616;
+    padding: 0 0 2px 2px;
+}
+
+.hlogin-pan-exit-title {
+    color: #f68331 !important;
+}
+
+.hlogin-email-tag {
+    color: #2e303e;
+}
+
+.hlogin-btn-notice {
+    font-size: 14px;
+    margin-top: 8px;
+}
+
+.hlogin-pan-top, .hlogin-pan-bottom, hlogin-pan-center {
+    display: flex;
+    justify-content: space-between;
+}
+
+.hlogin-pan-center {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+}
+
+.hlogin-pan-top {
+    width: 100%;
+    height: 10%;
+}
+
+.hlogin-pan-left, .hlogin-pan-right {
+    display: flex;
+    width: 10%;
+    align-self: stretch;
+    flex: 1;
+}
+
+.hlogin-pan-bottom {
+    width: 100%;
+    height: 5%;
+}
+
+.hlogin-panel-content {
+    position: relative;
+    display: flex;
+    flex: 1;
+    max-width: 650px;
+    min-width: 600px;
+    width: 600px;
+}
+
+.hlogin-pan-full-height {
+    height: 100%;
+}
+
+.hlogin-alternative-link, .hlogin-footer-link button {
+    text-underline-offset: 3px;
+}
+
+.hlogin-blob {
+    background-color: #474b59;
+    opacity: 0.5;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.hlogin-password-over {
+    display: inline-block;
+    position: relative;
+    width: max-content;
+}
+
+.hlogin-password-text-show, .hlogin-password-text-hide {
+    display: inline-block;
+    position: absolute;
+    right: 3px;
+    top: 2px;
+    padding: 5px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.hlogin-password-text-show {
+    display: none;
+}
+
+.hlogin-pan-btn-checkbox-text {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    margin-left: 4px;
+}
+
+.hlogin-over-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    width: 100%;
+    min-height: 200px;
+    max-height: 100%;
+    flex-direction: column;
+    line-height: 1;
+}
+
+.hlogin-over-content label {
+    display: block;
+    width: 100%;
+    border: 0;
+    padding: 0;
+    margin: 0;
+}
+
+/* Duplicate header block */
+/* Дублирующий блок заголовка  */
+.hlogin-content-title {
+    display: none;
+}
+
+.hlogin-inner-x {
+    float: right;
+    display: none;
+}
+
+.hlogin-content-title span {
+    display: inline-block;
+    float: right;
+}
+
+.hlogin-nowrap {
+    white-space: nowrap;
+}
+
+.hlogin-frame-over {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    flex: 1;
+    min-height: max-content;
+    overflow-x: auto;
+}
+
+.hlogin-frame-content {
+    display: inline-flex;
+    width: 360px;
+    flex: 1;
+}
+
+/* The contents of the panel. */
+/* Содержимое панели.  */
+.hlogin-frame-internal {
+    flex: none;
+    width: 100%;
+    height: max-content;
+}
+
+.hlogin-frame-edge {
+    width: 20%;
+    flex: none;
+}
+
+.hlogin-pan-scroll-over .hlogin-pan-top {
+    height: 0;
+}
+
+.hlogin-pan-scroll-over .hlogin-pan-top {
+    height: 0;
+}
+
+.hlogin-img-checkbox {
+    cursor: pointer;
+}
+
+.hlogin-origin-checkbox {
+    position: relative;
+    top: 9px;
+    display: inline-block;
+    max-width: max-content !important;
+    max-height: max-content !important;
+}
+
+.hlogin-captcha-over {
+    margin-top: 10px;
+}
+
+@media only screen and (max-width: 992px) {
+    .hlogin-panel-content {
+        max-width: 600px;
+        min-width: 500px;
+        width: 500px;
+    }
+}
+
+@media only screen and (max-width: 620px) {
+    .hlogin-panel-content {
+        max-width: 400px;
+        min-width: 350px;
+        width: 400px;
+    }
+
+    .hlogin-pan-bottom, .hlogin-pan-top {
+        height: 5%;
+    }
+
+    .hlogin-frame-edge {
+        width: 30px;
+    }
+
+    .hlogin-inner-x {
+        display: block;
+    }
+
+    .hlogin-frame-edge {
+        display: none;
+    }
+
+    .hlogin-footer-link {
+        margin-bottom: 10px;
+    }
+
+    .hlogin-alternative-link {
+        display: none;
+    }
+
+}
+
+@media only screen and (max-width: 480px) {
+    .hlogin-over-content {
+        height: 100%;
+    }
+
+    .hlogin-panel-content {
+        height: 100%;
+        width: 100%;
+        max-width: 100%;
+        min-width: 100%;
+    }
+
+    .hlogin-pan-top {
+        height: 0;
+    }
+
+    .hlogin-pan-bottom {
+        height: 0;
+    }
+
+    .hlogin-pan-left, .hlogin-pan-right {
+        width: 0;
+    }
+
+    .hlogin-inner-x {
+        display: block;
+    }
+
+    .hlogin-frame-edge {
+        display: none;
+    }
+
+    .hlogin-footer-link {
+        margin-bottom: 15px;
+    }
+}
+
+@media only screen and (min-width: 620px) {
+    .hlogin-pan-maximize-block .hlogin-frame-content {
+        width: 420px !important;
+    }
+
+    .hlogin-pan-maximize-block .hlogin-frame-internal {
+        width: 378px !important;
+    }
+
+    .hlogin-pan-maximize-block .hlogin-frame-edge {
+        width: calc(50% - 210px) !important;
+    }
+}
+

@@ -1,0 +1,71 @@
+<?php
+
+require __DIR__ . '/header.php';
+
+/**
+ * @var string $lang
+ * @var \Closure $trans
+ * @var array $config
+ * @var array $hloginData
+ * @var string $mail
+ * @var string $mailPlaceholder
+ * @var bool $sendToEmail
+ * @var bool $savePostToLog
+ * @var bool $duplicateInEnglish
+ * @var array $designList
+ * @var string $letterCaption
+ */
+?>
+<div class="hlogin-az-main<?php echo $lang === 'zh' ? ' hlogin-az-zh-mode' : '' ?>">
+    <div class="hlogin-az-form" data-type="email">
+
+        <h2><?= $trans('e_mail') ?></h2>
+
+        <span class="hlogin-az-dynamic-block">
+ <p><b><?= $trans('mail_from') ?></b></p>
+ <p>
+     <label class="hlogin-az-str">
+         <input type="text" name="email" value="<?= $mail ?>" class="hlogin-az-input"
+                placeholder="<?= $mailPlaceholder ?>" tabindex="1">
+     </label>
+ </p>
+ </span>
+        <br>
+        <p><b><?= $trans('mail_settings') ?></b></p>
+
+        <label class="hlogin-az-str-list">
+            <input type="checkbox" name="not_send_by_email" <?= $sendToEmail ? '' : 'checked' ?>
+                   class="hlogin-az-checkbox" tabindex="1"
+            ><?= $trans('not_send_by_email') ?>
+        </label>
+
+        <label class="hlogin-az-str-list">
+            <input type="checkbox" name="save_post_to_log" <?= $savePostToLog ? 'checked' : '' ?>
+                   class="hlogin-az-checkbox" tabindex="1"
+            ><?= $trans('save_post_to_log') ?>
+        </label>
+
+        <label class="hlogin-az-str-list">
+            <input type="checkbox" name="duplicate_english" <?= $duplicateInEnglish ? 'checked' : '' ?>
+                   class="hlogin-az-checkbox" tabindex="1"
+            ><?= $trans('duplicate-english') ?>
+        </label>
+        <br>
+
+        <span class="hlogin-az-dynamic-block">
+     <p><b><?= $trans('design') ?></b></p>
+     <p>
+         <label class="hlogin-az-str">
+            <select class="hlogin-az-options" name="design" tabindex="1">
+<?php foreach ($designList as $designType): ?>
+    <option value="<?= $designType ?>"><?= $designType ?></option>
+<?php endforeach; ?>
+             </select>
+         </label>
+     </p>
+     </span>
+
+<?php require __DIR__ . '/submit.php'; ?>
+
+    </div>
+</div>

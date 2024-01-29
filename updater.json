@@ -1,0 +1,13 @@
+{
+  "component": "phphleb/hlogin",
+  "name": "Registration module",
+  "description": "Universal user registration module.",
+  "directory": "hleb-project",
+  "settings": {
+    "hlogin": {
+       "name": "design",
+       "default": "base",
+       "select": ["base", "dark", "light", "special", "sport", "game"]
+     }
+  }
+}
