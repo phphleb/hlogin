@@ -17,7 +17,7 @@
     "database-type": null,
     "session-duration": 604800,
     "password-in-mail": 1,
-    "regtype_after_confirm": 2,
+    "regtype-after-confirm": 2,
     "button": {
       "active": true
     },
