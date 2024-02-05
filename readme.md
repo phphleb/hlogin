@@ -12,6 +12,8 @@ Required PHP extensions: __json__, __gd__,  __pdo__, __pdo-mysql__ / __pdo_pgsql
 
 [**Link to instructions**](https://hleb2framework.ru)
 
+[**Demo site**](https://auth2.phphleb.ru/)
+
 
 ### Installation
 Step 1. Installation via Composer into an existing HLEB2 project:

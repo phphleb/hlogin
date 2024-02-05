@@ -190,7 +190,7 @@ final class UserProfileAction extends AbstractBaseAction
            $newPassword ?? $currentUser['password'],
            \time(),
            (bool)$currentUser['confirm'],
-           $currentUser['regtype'],
+           (int) $currentUser['regtype'],
            login: $params['value']['login'] ?? null,
            name: $params['value']['name'] ?? null,
            surname: $params['value']['surname'] ?? null,
@@ -198,7 +198,7 @@ final class UserProfileAction extends AbstractBaseAction
            address: $params['value']['address'] ?? null,
            promocode: $params['value']['promocode'] ?? null,
            ip: Request::getUri()->getIp(),
-           subscription: $currentUser['subscription'],
+           subscription: (int)$currentUser['subscription'],
            hash: $hash,
        );
 
