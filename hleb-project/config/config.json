@@ -14,7 +14,7 @@
     "user-table": "users",
     "user-log-table": "userlogs",
     "admin-log-table": "adminlogs",
-    "database-type": "mysql.name",
+    "database-type": null,
     "session-duration": 604800,
     "password-in-mail": 1,
     "regtype_after_confirm": 2,
