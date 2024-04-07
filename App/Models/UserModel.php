@@ -174,6 +174,34 @@ final class UserModel extends BaseModel
     )");
             return $result !== false;
         }
+
+        if (self::getConnection()->getAttribute(\PDO::ATTR_DRIVER_NAME) === 'sqlite') {
+            $result = self::getConnection()->exec("
+    CREATE TABLE IF NOT EXISTS  " . self::getTableName() . " (
+         id INTEGER PRIMARY KEY AUTOINCREMENT,
+         regtype INTEGER NOT NULL DEFAULT 0,
+         confirm INTEGER NOT NULL DEFAULT 0,
+         email TEXT NOT NULL,
+         login TEXT,
+         password TEXT NOT NULL,
+         name TEXT,
+         surname TEXT,
+         phone TEXT,
+         address TEXT,
+         promocode TEXT,
+         ip TEXT,
+         subscription TEXT NOT NULL DEFAULT '0',
+         period INTEGER NOT NULL DEFAULT 0,
+         regdate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+         newemail TEXT,
+         hash TEXT,
+         code TEXT,
+         sessionkey TEXT,
+         UNIQUE(email)
+    )");
+            return $result !== false;
+        }
+
         $result = self::getConnection()->exec("
     CREATE TABLE IF NOT EXISTS  " . self::getTableName() . " (
         id int(11) NOT NULL AUTO_INCREMENT,

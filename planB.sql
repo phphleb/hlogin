@@ -103,3 +103,55 @@ CREATE TABLE IF NOT EXISTS adminlogs (
     moderatorid int(11) DEFAULT NULL,
     logdate timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
 );
+
+
+/* SQLite */
+
+CREATE TABLE IF NOT EXISTS users (
+     id INTEGER PRIMARY KEY AUTOINCREMENT,
+     regtype INTEGER NOT NULL DEFAULT 0,
+     confirm INTEGER NOT NULL DEFAULT 0,
+     email TEXT NOT NULL,
+     login TEXT,
+     password TEXT NOT NULL,
+     name TEXT,
+     surname TEXT,
+     phone TEXT,
+     address TEXT,
+     promocode TEXT,
+     ip TEXT,
+     subscription TEXT NOT NULL DEFAULT '0',
+     period INTEGER NOT NULL DEFAULT 0,
+     regdate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+     newemail TEXT,
+     hash TEXT,
+     code TEXT,
+     sessionkey TEXT,
+     UNIQUE(email)
+    );
+
+CREATE TABLE IF NOT EXISTS userlogs (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    parent INTEGER NOT NULL,
+    regtype INTEGER NOT NULL,
+    action TEXT,
+    email TEXT NOT NULL,
+    ip TEXT,
+    name TEXT,
+    surname TEXT,
+    phone TEXT,
+    address TEXT,
+    logdate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    description TEXT,
+    moderatorid INTEGER
+);
+
+CREATE TABLE IF NOT EXISTS adminlogs (
+     id INTEGER PRIMARY KEY AUTOINCREMENT,
+     changedata TEXT,
+     previousdata TEXT,
+     fromtype TEXT,
+     description TEXT,
+     moderatorid INTEGER,
+     logdate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

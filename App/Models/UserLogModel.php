@@ -131,6 +131,26 @@ final class UserLogModel extends BaseModel
             return $result !== false;
         }
 
+        if (self::getConnection()->getAttribute(\PDO::ATTR_DRIVER_NAME) === 'sqlite') {
+            $result = self::getConnection()->exec("
+     CREATE TABLE IF NOT EXISTS " . self::getTableName() . " (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        parent INTEGER NOT NULL,
+        regtype INTEGER NOT NULL,
+        action TEXT,
+        email TEXT NOT NULL,
+        ip TEXT,
+        name TEXT,
+        surname TEXT,
+        phone TEXT,
+        address TEXT,
+        logdate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        description TEXT,
+        moderatorid INTEGER
+    )");
+            return $result !== false;
+        }
+
         $result =  self::getConnection()->exec("
      CREATE TABLE IF NOT EXISTS " . self::getTableName() . " (
         id int(11) NOT NULL AUTO_INCREMENT,

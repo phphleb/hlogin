@@ -6,9 +6,9 @@
 
 The HLOGIN library expands the capabilities of the [HLEB2](https://github.com/phphleb/hleb) framework by adding full-fledged user registration on the site which is characterized by simplicity of settings and quick installation and (at the same time) convenient and diverse functionality that supports multilingualism and several design options. Optionally you can display a feedback form that goes in addition to registration and authorization. In the automatically created admin panel you will find tools for user management and display settings. After that you can immediately direct your thoughts to creating content for the site.
 
-Supported  __MySQL__ / __MariaDB__ / __PostgreSQL__
+Supported  __MySQL__ / __MariaDB__ / __PostgreSQL__ / _SQLite__
 
-Required PHP extensions: __json__, __gd__,  __pdo__, __pdo-mysql__ / __pdo_pgsql__, __readline__
+Required PHP extensions: __json__, __gd__,  __pdo__, __pdo-mysql__ / __pdo-pgsql__, __pdo-sqlite__, __readline__
 
 [**Link to instructions**](https://hleb2framework.ru)
 

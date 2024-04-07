@@ -98,6 +98,19 @@ final class ActionLogModel extends BaseModel
     )");
             return $result !== false;
         }
+        if (self::getConnection()->getAttribute(\PDO::ATTR_DRIVER_NAME) === 'sqlite') {
+            $result = self::getConnection()->exec("
+     CREATE TABLE IF NOT EXISTS " . self::getTableName() . " (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        changedata TEXT,
+        previousdata TEXT,
+        fromtype TEXT,
+        description TEXT,
+        moderatorid INTEGER,
+        logdate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    )");
+            return $result !== false;
+        }
 
         $result = self::getConnection()->exec("
      CREATE TABLE IF NOT EXISTS " . self::getTableName() . " (
@@ -112,7 +125,7 @@ final class ActionLogModel extends BaseModel
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;");
 
         return $result !== false;
-    }
+      }
 
 }
 
