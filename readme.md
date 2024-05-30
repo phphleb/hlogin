@@ -24,7 +24,7 @@ Step 1. Installation via Composer into an existing HLEB2 project:
 Step 2. Installing the library into the project. You will be asked to choose a design from several:
 
  ```bash
- $ php console phphleb/hlogin --add
+ $ php console phphleb/hlogin add
  ```
 
  ```bash
