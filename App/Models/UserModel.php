@@ -306,7 +306,6 @@ final class UserModel extends BaseModel
      */
     public static function getUserViaId(int $id): mixed
     {
-         $result = self::getCells('id', $id);
          if (self::$fullUserComposition) {
              if (!array_key_exists($id, self::$fullUserComposition)) {
                  self::clearUser();
@@ -314,7 +313,7 @@ final class UserModel extends BaseModel
                  return self::$fullUserComposition[$id];
              }
          }
-        return self::$fullUserComposition[$id] = $result;
+        return self::$fullUserComposition[$id] = self::getCells('id', $id);
     }
 
     /**
