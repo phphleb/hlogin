@@ -41,7 +41,7 @@ final class RightPageController extends Controller
             );
         }
         if (\is_numeric($idUser)) {
-            $data = UserModel::getCells('id', (int)$idUser);
+            $data = UserModel::getUserViaId((int)$idUser);
         } else {
             $email = EmailHelper::convert($idUser);
             if (!preg_match(RegData::EMAIL_PATTERN, $email)) {

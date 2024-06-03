@@ -11,6 +11,7 @@ use Hleb\Static\Router;
 use Hleb\Static\Session;
 use Hleb\Static\Settings;
 use Phphleb\Hlogin\App\Content\ScriptLoader;
+use Phphleb\Hlogin\App\Models\UserModel;
 use Phphleb\Hlogin\App\RegData;
 use Phphleb\Hlogin\App\RegType;
 
@@ -171,6 +172,7 @@ class Registrar extends Middleware
     public static function rollback(): void
     {
         self::$isUsed = false;
+        class_exists(UserModel::class, false) and UserModel::rollback();
     }
 
     /**

@@ -111,7 +111,7 @@ final class CurrentUser
         if (!$isChanged) {
             return;
         }
-        $previous = UserModel::getCells('id', $userId);
+        $previous = UserModel::getUserViaId($userId);
         if (!$previous) {
             throw new \RuntimeException('The update method cannot be applied when user data is missing.');
         }

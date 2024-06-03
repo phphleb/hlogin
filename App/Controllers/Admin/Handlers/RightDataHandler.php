@@ -25,7 +25,7 @@ final readonly class RightDataHandler extends BaseHandler
             return $this->errorResponse(AuthLang::trans($this->lang, 'user_not_found'));
         }
         $userId = (int)$data['id'];
-        $searchUser = UserModel::getCells('id', $userId);
+        $searchUser = UserModel::getUserViaId($userId);
         if (!$searchUser) {
             return $this->errorResponse(AuthLang::trans($this->lang, 'user_not_found'));
         }

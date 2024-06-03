@@ -183,7 +183,7 @@ final class UserLogModel extends BaseModel
         #[\SensitiveParameter] int|null    $moderatorId = null,
     ): bool
     {
-        $userData = UserModel::getCells('id', $userId);
+        $userData = UserModel::getUserViaId($userId);
         if (!$userData) {
             return false;
         }

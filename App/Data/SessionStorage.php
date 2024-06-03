@@ -24,7 +24,7 @@ class SessionStorage
       if (!$active) {
           return false;
       }
-      $user = UserModel::getCells('id', $userId);
+      $user = UserModel::getUserViaId((int)$userId);
       if (!$user) {
           return false;
       }

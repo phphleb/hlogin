@@ -14,6 +14,8 @@ use Phphleb\Hlogin\App\RegType;
 
 final class UserModel extends BaseModel
 {
+    public static array $fullUserComposition = [];
+
     /**
      * Returns the name of the table with users set in the configuration file.
      *
@@ -53,6 +55,8 @@ final class UserModel extends BaseModel
      */
     public static function deleteUser(#[\SensitiveParameter] string $email): bool
     {
+        self::clearUser();
+
         try {
             return self::exec("DELETE FROM " . self::getTableName() . " WHERE email=?", [$email]);
         } catch (\Throwable $exception) {
@@ -83,6 +87,8 @@ final class UserModel extends BaseModel
         #[\SensitiveParameter] string $code = null,
     ): bool
     {
+        self::clearUser();
+
         try {
             $password = PasswordData::generateHash($password);
             if (self::exec("INSERT INTO " . self::getTableName() . " (email, password, period, regtype, login, name, surname, phone, address, promocode, ip, subscription, hash, code) VALUES
@@ -116,6 +122,8 @@ final class UserModel extends BaseModel
         #[\SensitiveParameter] string $code = null,
     ): bool
     {
+        self::clearUser();
+
         try {
             if (self::exec("UPDATE " . self::getTableName() . " SET newemail=:newemail , password=:password, period=:period, confirm=:confirm, regtype=:regtype, login=:login, name=:name, surname=:surname, phone=:phone, address=:address, promocode=:promocode, ip=:ip, subscription=:subscription, hash=:hash, code=:code
             WHERE email=:oldEmail",
@@ -131,6 +139,8 @@ final class UserModel extends BaseModel
 
     public static function setPeriodTime(#[\SensitiveParameter] string $email): bool
     {
+        self::clearUser();
+
         try {
             return self::exec("UPDATE " . self::getTableName() . " SET period=? WHERE email=?", [\time(), $email]);
         } catch (\Throwable $exception) {
@@ -242,6 +252,8 @@ final class UserModel extends BaseModel
         #[\SensitiveParameter] int    $type = RegType::REGISTERED_ADMIN,
     ): bool
     {
+        self::clearUser();
+
         if (self::exec("INSERT INTO " . self::getTableName() . " (regtype, confirm, name, email, password) VALUES (?, ?, ?, ?, ?)", [$type, 1, $name, $email, $passwordHash])) {
             return self::setSessionKeyByEmail($email);
         }
@@ -285,6 +297,24 @@ final class UserModel extends BaseModel
             return false;
         }
         return $result !== false;
+    }
+
+    /**
+     * Specialized retrieval of current user data by his ID.
+     *
+     * Специализированное получение данных текущего пользователя по его ID.
+     */
+    public static function getUserViaId(int $id): mixed
+    {
+         $result = self::getCells('id', $id);
+         if (self::$fullUserComposition) {
+             if (!array_key_exists($id, self::$fullUserComposition)) {
+                 self::clearUser();
+             } else {
+                 return self::$fullUserComposition[$id];
+             }
+         }
+        return self::$fullUserComposition[$id] = $result;
     }
 
     /**
@@ -334,6 +364,8 @@ final class UserModel extends BaseModel
         #[\SensitiveParameter] array  $cells
     ): bool
     {
+        self::clearUser();
+
         $searchName = 'prefixFromDuplicateName' . $name;
         $list = \array_merge([$searchName => $perm], $cells);
         $param = [];
@@ -350,6 +382,8 @@ final class UserModel extends BaseModel
 
     private static function setSessionKeyByEmail(#[\SensitiveParameter] string $email): bool
     {
+        self::clearUser();
+
         $user = self::getCells('email', $email, 'id');
         if ($user) {
             $ttl = ConfigStorage::getRegConfig()['session-duration'] ?? null;
@@ -439,6 +473,26 @@ final class UserModel extends BaseModel
             $where = ' WHERE ' . $where . ' 1=1 ';
         }
         return (int)self::run('SELECT COUNT(1) as count FROM ' . self::getTableName() . $where, $list)->fetchColumn();
+    }
+
+    /**
+     * Rollback for an asynchronous request.
+     *
+     * Откат для асинхронного запроса.
+     */
+    public static function rollback(): void
+    {
+       self::clearUser();
+    }
+
+    /**
+     * Clearing user data.
+     *
+     * Очистка данных пользователя.
+     */
+    private static function clearUser(): void
+    {
+        self::$fullUserComposition = [];
     }
 }
 

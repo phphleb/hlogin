@@ -41,7 +41,7 @@ class CookieData
       if (!$userId) {
           return false;
       }
-      $user = UserModel::getCells('id', $userId);
+      $user = UserModel::getUserViaId($userId);
       if (!$user) {
           return false;
       }
