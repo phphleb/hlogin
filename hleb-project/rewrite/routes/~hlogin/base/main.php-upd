@@ -39,31 +39,31 @@ Route::toGroup()
     ->middleware(Registrar::class, data: [RegType::REGISTERED_ADMIN, '>=', Registrar::NO_PANEL]);
 
     Route::get( '/registration/users/')
-        ->page('hlogin',AdminzoneController::class, 'userPage')->name('hlogin.users');
+        ->page('hlogin',AdminZoneController::class, 'userPage')->name('hlogin.users');
 
     Route::get('/registration/rights/')
-        ->page('hlogin',AdminzoneController::class, 'rightPage')->name('hlogin.rights');
+        ->page('hlogin',AdminZoneController::class, 'rightPage')->name('hlogin.rights');
 
     Route::get('/registration/settings/')
-        ->page('hlogin',AdminzoneController::class, 'settingPage')->name('hlogin.settings');
+        ->page('hlogin',AdminZoneController::class, 'settingPage')->name('hlogin.settings');
 
     Route::get('/registration/captcha/')
-        ->page('hlogin',AdminzoneController::class, 'captchaPage')->name('hlogin.captcha');
+        ->page('hlogin',AdminZoneController::class, 'captchaPage')->name('hlogin.captcha');
 
     Route::get( '/registration/email/')
-        ->page('hlogin',AdminzoneController::class, 'emailPage')->name('hlogin.email');
+        ->page('hlogin',AdminZoneController::class, 'emailPage')->name('hlogin.email');
 
     Route::get('/registration/additional/')
-       ->page('hlogin',AdminzoneController::class, 'additionalPage')->name('hlogin.additional');
+       ->page('hlogin',AdminZoneController::class, 'additionalPage')->name('hlogin.additional');
 
     Route::get('/registration/contact/')
-        ->page('hlogin',AdminzoneController::class, 'contactPage')->name('hlogin.contact');
+        ->page('hlogin',AdminZoneController::class, 'contactPage')->name('hlogin.contact');
 
     Route::get('/registration/profile/')
-        ->page('hlogin',AdminzoneController::class, 'profilePage')->name('hlogin.profile');
+        ->page('hlogin',AdminZoneController::class, 'profilePage')->name('hlogin.profile');
     // Handling Ajax requests for the admin panel.
     // Реализация ajax-запросов для административной панели.
-    Route::post('/registration/data/{action}')->controller(AdminzoneController::class, 'data')->protect();
+    Route::post('/registration/data/{action}')->controller(AdminZoneController::class, 'data')->protect();
 Route::endGroup();
 
 Route::toGroup()->middleware(Registrar::class, data: [RegType::REGISTERED_COMMANDANT, '>=', Registrar::SHOW_BUTTON]);
