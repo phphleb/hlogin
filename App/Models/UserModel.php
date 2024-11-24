@@ -71,20 +71,20 @@ final class UserModel extends BaseModel
      * Создание нового пользователя.
      */
     public static function createNewUser(
-        #[\SensitiveParameter] string $email,
-        #[\SensitiveParameter] string $password,
-        #[\SensitiveParameter] int    $period,
-        #[\SensitiveParameter] int    $regtype = RegType::PRIMARY_USER,
-        #[\SensitiveParameter] string $login = null,
-        #[\SensitiveParameter] string $name = null,
-        #[\SensitiveParameter] string $surname = null,
-        #[\SensitiveParameter] string $phone = null,
-        #[\SensitiveParameter] string $address = null,
-        #[\SensitiveParameter] string $promocode = null,
-        #[\SensitiveParameter] string $ip = null,
-        #[\SensitiveParameter] int    $subscription = 0,
-        #[\SensitiveParameter] string $hash = null,
-        #[\SensitiveParameter] string $code = null,
+        #[\SensitiveParameter] string  $email,
+        #[\SensitiveParameter] string  $password,
+        #[\SensitiveParameter] int     $period,
+        #[\SensitiveParameter] int     $regtype = RegType::PRIMARY_USER,
+        #[\SensitiveParameter] ?string $login = null,
+        #[\SensitiveParameter] ?string $name = null,
+        #[\SensitiveParameter] ?string $surname = null,
+        #[\SensitiveParameter] ?string $phone = null,
+        #[\SensitiveParameter] ?string $address = null,
+        #[\SensitiveParameter] ?string $promocode = null,
+        #[\SensitiveParameter] ?string $ip = null,
+        #[\SensitiveParameter] int     $subscription = 0,
+        #[\SensitiveParameter] ?string $hash = null,
+        #[\SensitiveParameter] ?string $code = null,
     ): bool
     {
         self::clearUser();
@@ -104,22 +104,22 @@ final class UserModel extends BaseModel
     }
 
     public static function updateUser(
-        #[\SensitiveParameter] string $oldEmail,
-        #[\SensitiveParameter] string $newemail,
-        #[\SensitiveParameter] string $password,
-        #[\SensitiveParameter] int    $period,
-        #[\SensitiveParameter] bool   $confirm,
-        #[\SensitiveParameter] int    $regtype = RegType::PRIMARY_USER,
-        #[\SensitiveParameter] string $login = null,
-        #[\SensitiveParameter] string $name = null,
-        #[\SensitiveParameter] string $surname = null,
-        #[\SensitiveParameter] string $phone = null,
-        #[\SensitiveParameter] string $address = null,
-        #[\SensitiveParameter] string $promocode = null,
-        #[\SensitiveParameter] string $ip = null,
-        #[\SensitiveParameter] int    $subscription = 0,
-        #[\SensitiveParameter] string $hash = null,
-        #[\SensitiveParameter] string $code = null,
+        #[\SensitiveParameter] string  $oldEmail,
+        #[\SensitiveParameter] string  $newemail,
+        #[\SensitiveParameter] string  $password,
+        #[\SensitiveParameter] int     $period,
+        #[\SensitiveParameter] bool    $confirm,
+        #[\SensitiveParameter] int     $regtype = RegType::PRIMARY_USER,
+        #[\SensitiveParameter] ?string $login = null,
+        #[\SensitiveParameter] ?string $name = null,
+        #[\SensitiveParameter] ?string $surname = null,
+        #[\SensitiveParameter] ?string $phone = null,
+        #[\SensitiveParameter] ?string $address = null,
+        #[\SensitiveParameter] ?string $promocode = null,
+        #[\SensitiveParameter] ?string $ip = null,
+        #[\SensitiveParameter] int     $subscription = 0,
+        #[\SensitiveParameter] ?string $hash = null,
+        #[\SensitiveParameter] ?string $code = null,
     ): bool
     {
         self::clearUser();
