@@ -31,11 +31,10 @@
         "phphleb/framework": ">=2.0.0",
         "phphleb/debugpan": ">=2.0.0",
         "phphleb/updater": "*",
-        "phphleb/adminpan": "dev-master",
+        "phphleb/adminpan": "*",
         "phphleb/muller": "*",
-        "phphleb/nicejson": "dev-main",
-        "phphleb/ucaptcha": "dev-main",
-        "phphleb/spreader": "dev-main"
-    },
-    "minimum-stability": "dev"
+        "phphleb/nicejson": "*",
+        "phphleb/ucaptcha": "*",
+        "phphleb/spreader": "*"
+    }
 }
