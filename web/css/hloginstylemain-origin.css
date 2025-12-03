@@ -281,7 +281,7 @@
     flex-direction: row;
     height: 100%;
     flex: 1;
-    min-height: max-content;
+    /* min-height: max-content; */
     overflow-x: auto;
 }
 
