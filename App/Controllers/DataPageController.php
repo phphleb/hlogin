@@ -30,7 +30,7 @@ class DataPageController extends Controller
      */
     public function index(): array
     {
-        $data = Request::post('json_data')->asString();
+        $data = Request::post('json_data')->value;
 
         // This is an additional conversion in case the previous conversion
         // to a string disabled the check.

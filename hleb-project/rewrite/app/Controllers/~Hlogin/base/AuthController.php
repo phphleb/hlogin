@@ -66,7 +66,7 @@ class AuthController extends Controller
     {
         // Technical errors, they are not visible during normal operation.
         // Технические ошибки, при обычной работе они не видны.
-        $data = Request::post('json_data')->asString();
+        $data = Request::post('json_data')->value;
         if (!$data) {
             Response::setStatus(400);
             return [

@@ -23,7 +23,7 @@ class AuthServiceController extends Controller
     {
         $type = Request::param('value')->value();
         $key = Request::get('_token')->asString();
-        if (!$key || $key !== Csrf::token()) {
+        if (!$key || !Csrf::validate($key)) {
             throw new Http403ForbiddenException();
         }
         $page = 'exit_page';
