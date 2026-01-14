@@ -36,20 +36,14 @@ final class ScriptLoader
     {
     }
 
-    /** @throws RuntimeException */
-    final public function __wakeup(): void
+    final public function __serialize(): array
     {
         throw new RuntimeException("Cannot serialize singleton");
     }
 
-    final public function __serialize(): array
-    {
-        self::__wakeup();
-    }
-
     final public function __unserialize(array $data)
     {
-        self::__wakeup();
+        throw new RuntimeException("Cannot unserialize singleton");
     }
 
     /**
