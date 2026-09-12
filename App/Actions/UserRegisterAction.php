@@ -38,6 +38,7 @@ final class UserRegisterAction extends AbstractBaseAction
        $captcha = $params['value']['captcha'] ?? null;
        $detector = $params['value']['detector'] ?? null;
        $terms = $params['value']['terms'] ?? null;
+       $personalDataConsent = $params['value']['personal_data_consent'] ?? null;
        $login = $params['value']['login'] ?? null;
 
        \is_string($login) and $login = \trim($login);
@@ -114,6 +115,9 @@ final class UserRegisterAction extends AbstractBaseAction
        }
        if (($cells['terms-of-use']['on'] || $cells['privacy-policy']['on']) && empty($terms)) {
            $errorCells['terms'] = $checkboxError;
+       }
+       if ($cells['personal-data-consent']['on'] && empty($personalDataConsent)) {
+           $errorCells['personal_data_consent'] = $checkboxError;
        }
 
        if ($cells['password']['on']) {

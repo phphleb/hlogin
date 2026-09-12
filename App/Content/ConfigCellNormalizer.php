@@ -16,6 +16,10 @@ final class ConfigCellNormalizer
      */
     public function update(array $cells): array
     {
+        if (!isset($cells['personal-data-consent'])) {
+            $cells['personal-data-consent'] = ['req' => 0, 'on' => 0, 'prof' => 0];
+        }
+
         foreach($cells as $name => &$cell) {
             if (!isset($cell['req'])) {
                 $cell['req'] = 0;
@@ -33,8 +37,11 @@ final class ConfigCellNormalizer
                 $cell['prof'] = 0;
                 $cell['req'] = 0;
             }
-            if (($name === 'privacy-policy' || $name === 'terms-of-use') && $cell['on']) {
+            if (($name === 'privacy-policy' || $name === 'terms-of-use' || $name === 'personal-data-consent') && $cell['on']) {
                 $cell['req'] = 1;
+            }
+            if ($name === 'personal-data-consent') {
+                $cell['prof'] = 0;
             }
             if ($name === 'subscription') {
                 $cell['req'] = 0;

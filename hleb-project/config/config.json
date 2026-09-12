@@ -36,6 +36,7 @@
       "subscription": {"req": 0, "on": 0, "prof": 0},
       "terms-of-use": {"req": 0, "on": 0, "prof": 0},
       "privacy-policy": {"req": 0, "on": 0, "prof": 0},
+      "personal-data-consent": {"req": 0, "on": 0, "prof": 0},
       "cell1":  {"req": 0, "on": 0, "prof": 0},
       "cell2":  {"req": 0, "on": 0, "prof": 0},
       "cell3":  {"req": 0, "on": 0, "prof": 0},
@@ -58,6 +59,7 @@
     "src": {
       "terms-of-use": "\/$LANG\/user-agreement\/",
       "privacy-policy": "\/$LANG\/privacy-policy\/",
+      "personal-data-consent": "\/$LANG\/personal-data-consent\/",
       "url-after-reg": "\/$LANG\/login\/profile\/"
     }
   },

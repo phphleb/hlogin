@@ -9,6 +9,7 @@ use Hleb\Constructor\Data\View;
 use Hleb\Helpers\ArrayHelper;
 use Hleb\Static\Settings;
 use Phphleb\Hlogin\App\Content\AuthLang;
+use Phphleb\Hlogin\App\Content\ConfigCellNormalizer;
 use Phphleb\Hlogin\App\Data\ConfigStorage;
 
 /**
@@ -27,9 +28,10 @@ final class SettingPageController extends Controller
         $languageOptions = AuthLang::getAll();
         $buttonActive = (bool)$config['registration']['button']['active'];
         $onlyEnter = (bool)$config['registration']['enter-only'];
-        $cells = $config['registration']['cells'];
+        $cells = (new ConfigCellNormalizer())->update($config['registration']['cells']);
         $linkToUserAgreement = $config['registration']['src']['terms-of-use'];
         $linkToPrivacyPolicy = $config['registration']['src']['privacy-policy'];
+        $linkToPersonalDataConsent = $config['registration']['src']['personal-data-consent'] ?? '';
         $getUrlAfterReg = $config['registration']['src']['url-after-reg'];
         $sendPasswordInMail = $config['registration']['password-in-mail'];
 
@@ -47,6 +49,7 @@ final class SettingPageController extends Controller
                 'cells' => $cells,
                 'linkToUserAgreement' => $linkToUserAgreement,
                 'linkToPrivacyPolicy' => $linkToPrivacyPolicy,
+                'linkToPersonalDataConsent' => $linkToPersonalDataConsent,
                 'getUrlAfterReg' => $getUrlAfterReg,
                 'hloginData' => $this->getData(),
                 'sendPasswordInMail' => (bool)$sendPasswordInMail,

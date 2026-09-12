@@ -73,6 +73,9 @@ final readonly class SettingDataHandler extends BaseHandler
         if (isset($data['on_privacy_policy'])){
             $config['cells']['privacy-policy']['on'] = (int)(bool)$data['on_privacy_policy'];
         }
+        if (isset($data['on_personal_data_consent'])){
+            $config['cells']['personal-data-consent']['on'] = (int)(bool)$data['on_personal_data_consent'];
+        }
 
         if (isset($data['req_password'])){
             $config['cells']['password']['req'] = (int)(bool)$data['req_password'];
@@ -108,6 +111,9 @@ final readonly class SettingDataHandler extends BaseHandler
         }
         if (isset($data['link_to_privacy_policy'])){
             $config['src']['privacy-policy'] = (string)$data['link_to_privacy_policy'];
+        }
+        if (isset($data['link_to_personal_data_consent'])){
+            $config['src']['personal-data-consent'] = (string)$data['link_to_personal_data_consent'];
         }
         if (isset($data['get_url_after_reg'])){
             $config['src']['url-after-reg'] = (string)$data['get_url_after_reg'];

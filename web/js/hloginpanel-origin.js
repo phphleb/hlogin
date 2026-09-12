@@ -454,7 +454,7 @@ if (typeof hlogin.panel === 'undefined') hlogin.panel = {
                 ls = {'UserEnter': 'sign_in'};
                 break;
             case 'CustomEmailMessage':
-                ls = {'RegisterEmail': 'email_confirm_post'};
+                ls = {'RegisterEmail': 'email_confirm_post', 'UserExit': 'exit'};
                 break;
             case 'CustomMessage':
             case 'NewPassword':
@@ -863,6 +863,7 @@ if (typeof hlogin.panel === 'undefined') hlogin.panel = {
         var cl = hlogin.script.config.registration.cells;
         var termLink = hlogin.script.config.registration.src['terms-of-use'];
         var policyLink = hlogin.script.config.registration.src['privacy-policy'];
+        var personalDataConsentLink = hlogin.script.config.registration.src['personal-data-consent'];
         var res = '';
         if (cl['terms-of-use'].on && cl['privacy-policy'].on) {
             res += '<div class="hlogin-checkbox-terms">' + this.getSimpleCheckBox(this.getI18n('familar') + ' <a href="' + termLink  + '" target="_blank">' + this.getI18n('terms') + '</a> ' + this.getI18n('and') + ' <a href="' + policyLink + '" target="_blank">' + this.getI18n('privacy_policy') + '</a>, ' + this.getI18n('conditions') + '.' , 'terms') + '</div>';
@@ -870,6 +871,9 @@ if (typeof hlogin.panel === 'undefined') hlogin.panel = {
             res += '<div class="hlogin-checkbox-terms">' + this.getSimpleCheckBox(this.getI18n('familar') + ' <a href="' + termLink  + '" target="_blank">' + this.getI18n('terms') + '</a>, '+ this.getI18n('conditions') + '.' , 'terms') + '</div>';
         } else if (cl['privacy-policy'].on) {
             res += '<div class="hlogin-checkbox-terms">' + this.getSimpleCheckBox(this.getI18n('familar') + ' <a href="' + policyLink  + '" target="_blank">' + this.getI18n('privacy_policy') + '</a>, '+ this.getI18n('conditions') + '.' , 'terms') + '</div>';
+        }
+        if (cl['personal-data-consent'].on) {
+            res += '<div class="hlogin-checkbox-terms">' + this.getSimpleCheckBox(this.getI18n('personal_data_consent_before') + ' <a href="' + this.convertLink(personalDataConsentLink || '') + '" target="_blank" rel="noopener noreferrer">' + this.getI18n('personal_data_consent_link') + '</a> ' + this.getI18n('personal_data_consent_after') + '.', 'personal_data_consent') + '</div>';
         }
         if (cl['subscription'].on) {
             res += '<div class="hlogin-checkbox-subscription">' + this.getSimpleCheckBox(this.getI18n('subscription') + '.', 'subscription') + '</div>';

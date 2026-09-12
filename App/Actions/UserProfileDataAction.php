@@ -59,7 +59,7 @@ class UserProfileDataAction extends AbstractBaseAction
                 [
                     'data' => [
                         'id' => AuthLang::trans($this->lang, 'profile_page'),
-                        'value' => AuthLang::trans($this->lang, 'email_not_confirm'),
+                        'value' => sprintf(AuthLang::trans($this->lang, 'email_not_confirm'), $user['email']),
                     ],
                     'action' => ['type' => 'CustomEmailMessage'],
                     'captcha' => true,
