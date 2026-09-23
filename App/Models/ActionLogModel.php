@@ -28,7 +28,7 @@ final class ActionLogModel extends BaseModel
     {
         try {
             $time = \microtime(true);
-            $sql = "SELECT * FROM " . self::getTableName() . " WHERE change=?";
+            $sql = "SELECT * FROM " . self::getTableName() . " WHERE changedata=?";
             $stmt = self::run($sql, [$param]);
             $result = $stmt->fetch(\PDO::FETCH_ASSOC) !== false;
             self::log($time, $sql);
@@ -53,7 +53,7 @@ final class ActionLogModel extends BaseModel
     ): bool
     {
         return self::exec(
-                "INSERT INTO " . self::getTableName() . " (change, previous, gettype, description, moderatorid) VALUES (?, ?, ?, ?, ?)",
+                "INSERT INTO " . self::getTableName() . " (changedata, previousdata, fromtype, description, moderatorid) VALUES (?, ?, ?, ?, ?)",
                 [$change, $previous, $gettype, $description, $moderatorid]
             );
     }
