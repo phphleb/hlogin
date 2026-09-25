@@ -485,13 +485,29 @@ final class UserModel extends BaseModel
     }
 
     /**
+     * Clearing cached data for a specific user.
+     *
+     * Очистка закешированных данных конкретного пользователя.
+     */
+    public static function clearCachedUser(int $id): void
+    {
+        self::clearUser($id);
+    }
+
+    /**
      * Clearing user data.
+     * Without an ID, the entire cache is cleared; with an ID, only that user.
      *
      * Очистка данных пользователя.
+     * Без ID очищается весь кеш; с ID — только этот пользователь.
      */
-    private static function clearUser(): void
+    private static function clearUser(?int $id = null): void
     {
-        self::$fullUserComposition = [];
+        if ($id === null) {
+            self::$fullUserComposition = [];
+            return;
+        }
+        unset(self::$fullUserComposition[$id]);
     }
 }
 

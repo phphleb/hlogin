@@ -54,6 +54,11 @@ final class CurrentUser
         $key = $parts['id'];
         $timeOut = (int)$parts['timeout'];
         if ($key && $timeOut) {
+            if (!$cached) {
+                // Reset the model cache for the current user when requesting without cache.
+                // Сброс кеша модели для текущего пользователя при запросе без кеша.
+                UserModel::clearCachedUser((int)$key);
+            }
             if (SessionStorage::searchValidTtl($timeOut)) {
                 $user = SessionStorage::getUserByKey($key, (int)$timeOut);
                 // Verifies that the user exists and that their session key has not changed.
@@ -71,6 +76,14 @@ final class CurrentUser
         $key = Cookies::get(self::COOKIE_NAME)->value();
         if ($key) {
             if (CookieData::searchValidKey($key)) {
+                if (!$cached) {
+                    $userId = CookieData::searchUserId($key);
+                    if ($userId) {
+                        // Reset the model cache for the current user when requesting without cache.
+                        // Сброс кеша модели для текущего пользователя при запросе без кеша.
+                        UserModel::clearCachedUser($userId);
+                    }
+                }
                 $user = CookieData::getUserByKey($key);
                 if ($user) {
                     // Saving to the user's session to take from it next time.
