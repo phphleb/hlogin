@@ -142,7 +142,7 @@ final class ScriptLoader
                 'design' => PanelData::getDesign() ?? AuthDesign::getActual(),
                 'version' => $config['version'],
                 'registration' => [
-                    'type' => AuthUser::getNumericType(),
+                    'type' => AuthUser::getRequestNumericType(),
                     'button' => [
                         'active' => $config['registration']['button']['active'],
                     ],

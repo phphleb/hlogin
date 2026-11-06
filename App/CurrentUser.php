@@ -34,6 +34,19 @@ final class CurrentUser
     private static ?string $requestId = null;
 
     /**
+     * Resets the current user data cache for the request.
+     * The next get() call will reload the data.
+     *
+     * Сбрасывает кеш данных текущего пользователя для запроса.
+     * Следующий вызов get() загрузит данные заново.
+     */
+    public static function clearCache(): void
+    {
+        self::init();
+        self::$user = false;
+    }
+
+    /**
      * Returns the data of the current user.
      * The data is cached and can be changed in the update() method.
      *

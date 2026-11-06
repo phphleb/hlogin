@@ -8,14 +8,40 @@ final class AuthUser
 {
      /**
      * Checking for registration of the current user, returns a numeric type.
+     * Always requests data without using the request cache.
      *
      * Проверка на регистрацию текущего пользователя, возвращает числовой тип.
+     * Всегда запрашивает данные без использования кеша запроса.
      */
     public static function getNumericType(): int
     {
         $user = CurrentUser::get(cached: false);
 
-        return $user ? (int)$user['regtype'] : 0;
+        return $user ? (int)$user['regtype'] : RegType::UNDEFINED_USER;
+    }
+
+    /**
+     * Returns the numeric type of the current user from the request cache.
+     * Suitable for repeated checks within a single request.
+     *
+     * Возвращает числовой тип текущего пользователя из кеша запроса.
+     * Подходит для повторных проверок в рамках одного запроса.
+     */
+    public static function getRequestNumericType(): int
+    {
+        $user = CurrentUser::get(cached: true);
+
+        return $user ? (int)$user['regtype'] : RegType::UNDEFINED_USER;
+    }
+
+    /**
+     * Resets the current user request cache.
+     *
+     * Сбрасывает кеш текущего пользователя для запроса.
+     */
+    public static function clearRequestCache(): void
+    {
+        CurrentUser::clearCache();
     }
 
     /**
