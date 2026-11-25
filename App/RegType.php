@@ -62,10 +62,10 @@ final class RegType
     public static function check(int|array $type, string|null $cp = '>='): bool
     {
         $t = AuthUser::getNumericType();
-        return ((\is_integer($type) && (
+        return ((\is_int($type) && (
                     ($cp == '=' && $t === $type) ||
                     ($cp == '>=' && $t >= $type) ||
-                    ($cp == '<=' && $t >= $type) ||
+                    ($cp == '<=' && $t <= $type) ||
                     ($cp == '<>' && $t != $type) ||
                     ($cp == '!=' && $t != $type) ||
                     ($cp == '>' && $t > $type) ||
